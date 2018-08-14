@@ -176,18 +176,21 @@ except ImportError:
     from bs4 import BeautifulSoup
 
 try:
-    import pyopenssl
+    import ssl
 except:
-    pass
+    install_module("pyopenssl")
+    import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt", "titlekeys_overwrite.txt"]
 try:
     for file in req_file:
         check_req_file(file)
     print(_("Everything looks good!"))
-except:
-    print(_("Unable to get required files! Check your internet connection"))
-    
+except Exception as e:
+    print(_("Unable to get required files! Check your internet connection: [{}]".format(str(e))))
+
 # CDNSP script
 
 import argparse
