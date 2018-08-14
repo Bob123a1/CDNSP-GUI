@@ -1,0 +1,710 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-08-01 00:27+1200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:25
+msgid ""
+"\n"
+"\n"
+"Error - Application launched with Python 2, please install Python 3 and delete Python 2\n"
+msgstr ""
+"\n"
+"\n"
+"Hiba - Az alkalmazás Python 2-vel indult el, kérlek telepítsd a Python 3 programot, és töröld a Python 2-őt!\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:49
+msgid "Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}"
+msgstr "Hiba a(z) {0} telepítése közben, zárd be az alkalmazást, és telepítsd a modult manuálísan a parancssorban az alábbi paranccsal:  pip3 install {0}"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:51
+msgid ""
+"\n"
+"Checking if all required modules are installed!\n"
+"\n"
+msgstr ""
+"\n"
+"Telepített modulok ellenőrzése..\n"
+"\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:86
+msgid "Everything looks good!"
+msgstr "Minden működik!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:88
+msgid "Unable to get required files! Check your internet connection"
+msgstr "A szükséges fájlok letöltése sikertelen! Ellenőrizd, hogy van-e internet kapcsolatod."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1334
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2470
+msgid "Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"
+msgstr "Nézd meg, hogy van-e üres hely kihagyva a titlekeys.txt fájlban! Ha igen, akkor töröld!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1355
+msgid "Error!, Missing CDNSP-GUI-config.json file"
+msgstr "Error!, hiányzó CDNSP-GUI-config.json fájl"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1485
+msgid "Select Download Location"
+msgstr "Letöltés Helyének Megadása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1486
+msgid "Preload Game Images"
+msgstr "Játékok képeinek letöltése egyszerre"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1488
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1709
+msgid "Load Saved Queue"
+msgstr "Elmentett Sor Betöltése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1489
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1710
+msgid "Save Queue"
+msgstr "Sor Elmentése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1493
+msgid "Aria2c will be missed"
+msgstr "Az Aria2c hiányozni fog"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1494
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1540
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2544
+msgid "DISABLE GAME IMAGE"
+msgstr "JÁTÉK KÉPÉNEK KIKAPCSOLÁSA"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1498
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1532
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2499
+msgid "Mute All Pop-ups"
+msgstr "Előugró ablakok némítása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1499
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1526
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2344
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2522
+msgid "Disable NSP Repack"
+msgstr "NSP újracsomagolás kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1500
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1534
+msgid "Disable Titlekey check"
+msgstr "Titlekey ellenőrzés kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1504
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1544
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2642
+msgid "Enable Shorten Name"
+msgstr "Rövidített név bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1505
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1548
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2652
+msgid "Enable Tinfoil Download"
+msgstr "Tinfoil Letöltés bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1506
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1552
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2855
+msgid "Enable SysVer 0 Patch"
+msgstr "SysVer 0 Patch bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1510
+msgid "Save Windows Location and Size"
+msgstr "Ablak helyének és méretének mentése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1515
+msgid "Scan for existing games"
+msgstr "Meglévő játékok keresése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1516
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2786
+msgid "Base64 Decoder"
+msgstr "Base64 Dekódoló"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1519
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1684
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1713
+msgid "Download"
+msgstr "Letöltés"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1520
+msgid "Options"
+msgstr "Beállítások"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1521
+msgid "Tools"
+msgstr "Eszközök"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1528
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2341
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2516
+msgid "Enable NSP Repack"
+msgstr "NSP újracsomagolás bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1530
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2496
+msgid "Unmute All Pop-ups"
+msgstr "Előugró ablakok némításának feloldása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1536
+msgid "Enable Titlekey check"
+msgstr "Titlekey ellenőrzés bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1538
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2541
+msgid "ENABLE GAME IMAGE"
+msgstr "JÁTÉK KÉPÉNEK ENGEDÉLYEZÉSE"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1542
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2639
+msgid "Disable Shorten Name"
+msgstr "Rövidített név kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1546
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2649
+msgid "Disable Tinfoil Download"
+msgstr "Tinfoil Letöltés kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1550
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2852
+msgid "Disable SysVer 0 Patch"
+msgstr "SysVer 0 Patch kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1555
+msgid "Status:"
+msgstr "Állapot:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1589
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1904
+msgid "Game"
+msgstr "Játék"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1591
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1905
+msgid "State"
+msgstr "Állapot"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1603
+msgid "Game Image:"
+msgstr "Játék Képe:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1615
+msgid ""
+"Click the game image above \n"
+"to open the game in the eShop!"
+msgstr ""
+"Kattints a képre fent, \n"
+"hogy megnyisd a játékot az eShop-ban!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1626
+msgid "No Demo"
+msgstr "Demo-k kizárása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1631
+msgid "Title ID:"
+msgstr "Title ID:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1639
+msgid "Title Key:"
+msgstr "Title Key:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1647
+msgid "Select update version:"
+msgstr "Frissítés verziója:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1657
+msgid "Download options:"
+msgstr "Letöltési opciók:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1661
+msgid "Base game + Update + DLC"
+msgstr "Alap játék + Frissítés + DLC"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1662
+msgid "Base game + Update"
+msgstr "Alap játék + Frissítés"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1663
+msgid "Update + DLC"
+msgstr "Frissítés + DLC"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1664
+msgid "Base game only"
+msgstr "Csak az alap játék"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1665
+msgid "Update only"
+msgstr "Csak frissítés"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1666
+msgid "All DLC"
+msgstr "Összes DLC"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1682
+msgid "Add to queue"
+msgstr "Hozzáadás a sorhoz"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1687
+msgid "Update Titlekeys"
+msgstr "Titlekey-ek frissítése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1700
+msgid "Queue Menu"
+msgstr "Sor Menü"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1728
+msgid "Remove selected game"
+msgstr "A kiválasztott játék eltávolítása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1729
+msgid "Remove all"
+msgstr "Összes Eltávolítása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1730
+msgid "Download all"
+msgstr "Összes Letöltése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1731
+msgid "Click download all to download all games in queue!"
+msgstr "Kattints az 'Összes Letöltése' gombra, hogy az összes sorban álló játékot letöltsd!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1795
+msgid "Status: Getting game status... Please wait"
+msgstr "Állapot: Játék állapotának lekérése... Kérlek várj!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1803
+msgid ""
+"\n"
+"Building the current state file... Please wait, this may take some time depending on how many games you have."
+msgstr ""
+"\n"
+"A jelenlegi állapotfájl elkészítése zajlik... Kérlek legyél türelemmel, ez eltarthat egy ideig attól függően, hogy mennyi játékod van."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1899
+msgid "Error, Current_status.txt doesn't exist"
+msgstr "Hiba, a 'Current_status.txt' nem létezik"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1919
+msgid "Status: Done!"
+msgstr "Állapot: Kész!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1996
+msgid ""
+"\n"
+"\n"
+"\n"
+"Downloading game image..."
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Játék képfájljának letöltése..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+msgid "Error"
+msgstr "Hiba"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
+msgid "Titlekey {} is not a 32-digits hexadecimal number!"
+msgstr "TitleID {} nem egy 32-karakterű hexadecimális szám!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
+msgid "TitleID {} is not a 16-digits hexadecimal number!"
+msgstr "TitleID {} nem egy 16-karakterű hexadecimális szám!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2034
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2042
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2062
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2077
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
+msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+msgstr "A letöltés elkezdődött! Egy ideig elfog tartani, kérlek legyél türelemmel. Megtudod nézni a CMD-t (parancssor) a letöltés állapotáról."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2073
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2087
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2095
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2105
+msgid "Download finished!"
+msgstr "Letöltés befejezve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2038
+msgid "No updates available for the game"
+msgstr "Nincsenek elérhető frissítések a játékhoz"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2107
+msgid "No updates available for the game, base game downloaded!"
+msgstr "Nincsenek elérhető frissítések a játékhoz, alap játék letöltve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2124
+msgid ""
+"\n"
+"You didn't choose a location to save the file!"
+msgstr ""
+"\n"
+"Nem választottál mentési helyet a fájlnak!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2143
+msgid "Persistent queue not found, skipping..."
+msgstr "Jelenlegi sor nem található, kihagyás..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2149
+msgid "Item not found in queue"
+msgstr "Ez az elem nem található a sorban."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2198
+msgid "Name for titleID not found in the list"
+msgstr "A titleID nem található a listában."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2224
+msgid "No game selected to remove!"
+msgstr "Nem választottál ki törlendő játékokat!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2235
+msgid "Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"
+msgstr "A sorba állított játékaid letöltése elkezdődött! Értesülni fogsz róla, amint a letöltés befejeződött, addig pedig várj türelemmel."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2236
+msgid "Downloading games..."
+msgstr "Játékok letöltése..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2247
+msgid "No updates available for titleID: {}"
+msgstr "Nem érhető el frissítés ehhez a titleID-hoz: {}"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2306
+msgid "No updates available for titleID: {}, base game downloaded!"
+msgstr "Nem érhető el frissítés ehhez a titleID-hoz: {}, alap játék letöltve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2312
+msgid "Download complete!"
+msgstr "Letöltés befejezve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2313
+msgid "Download Complete!"
+msgstr "Letöltés Befejezve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2349
+msgid "Status: Updating titlekeys"
+msgstr "Állapot: Titlekey frissítése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2385
+msgid "Finished update!"
+msgstr "Frissítés befejezve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2412
+msgid "Total of new games added: {}"
+msgstr "Új játékok száma: {}"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2413
+msgid "Close"
+msgstr "Bezárás"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2434
+msgid "Status: Finished update, There were no new games to update!"
+msgstr "Állapot: Frissítés befejezve, nincs több frissítésre váró játék!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2435
+msgid ""
+"\n"
+"Status: Finished update, There were no new games to update!"
+msgstr ""
+"\n"
+"Állapot: Frissítés befejezve, nincs több frissítésre váró játék!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2450
+msgid "Status: Finished update, Database rebuilt from scratch"
+msgstr "Állapot: Frissítés befejezve, Adatbázis teljesen újraépítve"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
+msgid "The database server {} might be down or unavailable"
+msgstr "Az {} adatbázis szerver éppen nem elérhető"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2507
+msgid ""
+"\n"
+"{}\n"
+msgstr ""
+"\n"
+"{}\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2514
+msgid "Enable Titlekey Check"
+msgstr "Titlekey ellenőrzés bekapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2520
+msgid "Disable Titlekey Check"
+msgstr "Titlekey ellenőrzés kikapcsolása"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2593
+msgid ""
+"\n"
+"It took {} seconds for you to get all images!\n"
+msgstr ""
+"\n"
+"{} másodpercbe telt az összes kép letöltése!\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2594
+msgid "Done getting all game images!"
+msgstr "A játékok képeinek letöltése befejeződött!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2631
+msgid "Failed to get version"
+msgstr "Hiba a verzió lekérése közben"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2633
+msgid "No TitleID or TitleID not 16 characters!"
+msgstr "Nincs TitleID, vagy a TitleID nem 16 karakterből áll!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2677
+msgid "Windows size and position saved!"
+msgstr "Ablak mérete és helyzete elmentve!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2682
+msgid "Search for existing games"
+msgstr "Meglévő játékok keresése"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2694
+msgid "Browse"
+msgstr "Böngészés"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2696
+msgid "Scan"
+msgstr "Keresés"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
+msgid "You didn't choose a directory!"
+msgstr "Nem választottál kategóriát!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+msgid "The chosen directory doesn't exist!"
+msgstr "A kiválasztott mappa nem létezik!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2778
+msgid "Finished scanning your games!"
+msgstr "Befejeződött a játékaid keresése!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2779
+msgid "Status: Building the current state file... Please wait, this may take some time depending on how many games you have."
+msgstr "Állapot: A jelenlegi fájl felépítése zajlik... Kérlek várj, ez sok ideig is eltarthat attól függően, hogy mennyi játékod van."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2791
+msgid "Base64 text:"
+msgstr "Base64 szöveg:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2796
+msgid "Decode"
+msgstr "Dekódolás"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2799
+msgid "Decoded text:"
+msgstr "Dekódolt szöveg:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2804
+msgid "Open"
+msgstr "Megnyitás"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2885
+msgid "Game Info:"
+msgstr "Játék infó:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2886
+msgid "Game Price:"
+msgstr "Játék ára:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2887
+msgid "Game Description:"
+msgstr "Játék leírása:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2888
+msgid "Publisher:"
+msgstr "Kiadó:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2889
+msgid "Developer"
+msgstr "Fejlesztő"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2890
+msgid "Release Date:"
+msgstr "Kiadás dátuma:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2891
+msgid "Category:"
+msgstr "Kategória:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2892
+msgid "Number of Players:"
+msgstr "Játékosok száma:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2893
+msgid "Game Info not avaiable for this game at the moment!"
+msgstr "A játék infó nem érhető el jelenleg!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2894
+msgid "About"
+msgstr "Infó"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2895
+msgid "Credits"
+msgstr "Készítők"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2896
+msgid "Language"
+msgstr "Nyelv"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2897
+msgid "Please restart the GUI for the new language to apply!"
+msgstr "Kérlek indítsd újra a GUI-t, az új nyelv használatához!"
+
+
+msgid 'New'
+msgstr 'Új'
+
+msgid 'Own'
+msgstr 'Meglévő játék'
+
+msgid 'Update'
+msgstr 'Frissítés elérhető'
+
+msgid 'Latest'
+msgstr 'Legújabb'

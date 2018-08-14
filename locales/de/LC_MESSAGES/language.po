@@ -1,0 +1,716 @@
+# REALLY DESCRIPTIVE TITLE.
+# Copyright (C) 2018 CDNSP GUI Translation Team
+# Jojo, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-08-01 00:27+1200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:25
+msgid ""
+"\n"
+"\n"
+"Error - Application launched with Python 2, please install Python 3 and delete Python 2\n"
+msgstr ""
+"\n"
+"\n"
+"Fehler - Anwendung wurde mit Python 2 gestartet, bitte installiere Python 3 und entferne Python 2\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:49
+msgid "Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}"
+msgstr "Fehler bei der Installation von {0}, schließe die Anwendung und installiere das Modul manuell in der Eingabeaufforderung (CMD) mit dem Befehl: pip3 install {0}"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:51
+msgid ""
+"\n"
+"Checking if all required modules are installed!\n"
+"\n"
+msgstr ""
+"\n"
+"Prüfe ob alle erforderlichen Module installiert sind!\n"
+"\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:86
+msgid "Everything looks good!"
+msgstr "Sieht alles in Ordnung aus!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:88
+msgid "Unable to get required files! Check your internet connection"
+msgstr "Die erforderlichen Dateien konnten nicht abgerufen werden! Bitte überprüfe die Internetverbindung!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1334
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2470
+msgid "Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"
+msgstr "Bitte überprüfe ob am Ende der titlekeys.txt Datei zusätzliche Leerzeichen befinden, falls vorhanden lösche diese!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1355
+msgid "Error!, Missing CDNSP-GUI-config.json file"
+msgstr "Fehler, die Datei CDNSP-GUI-config.json existiert nicht!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1485
+msgid "Select Download Location"
+msgstr "Speicherort auswählen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1486
+msgid "Preload Game Images"
+msgstr "Spiel Abbilder vorladen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1488
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1709
+msgid "Load Saved Queue"
+msgstr "Gespeicherte Warteschlange öffnen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1489
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1710
+msgid "Save Queue"
+msgstr "Warteschlange speichern"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1493
+msgid "Aria2c will be missed"
+msgstr "Aria2c wird uns fehlen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1494
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1540
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2544
+msgid "DISABLE GAME IMAGE"
+msgstr "SPIEL ABBILDER DEAKTIVIEREN"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1498
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1532
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2499
+msgid "Mute All Pop-ups"
+msgstr "Alle Pop-ups stummschalten"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1499
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1526
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2344
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2522
+msgid "Disable NSP Repack"
+msgstr "NSP Neuverpacken deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1500
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1534
+msgid "Disable Titlekey check"
+msgstr "Titlekey Überprüfung deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1504
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1544
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2642
+msgid "Enable Shorten Name"
+msgstr "Verkürzte Namen aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1505
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1548
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2652
+msgid "Enable Tinfoil Download"
+msgstr "Tinfoil Download aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1506
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1552
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2855
+msgid "Enable SysVer 0 Patch"
+msgstr "SysVer 0 Patch aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1510
+msgid "Save Windows Location and Size"
+msgstr "Fensterposition/-größen speichern"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1515
+msgid "Scan for existing games"
+msgstr "Nach vorhandenen Spielen suchen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1516
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2786
+msgid "Base64 Decoder"
+msgstr "Base64 Dekodierer"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1519
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1684
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1713
+msgid "Download"
+msgstr "Download"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1520
+msgid "Options"
+msgstr "Optionen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1521
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1528
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2341
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2516
+msgid "Enable NSP Repack"
+msgstr "NSP Neuverpacken aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1530
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2496
+msgid "Unmute All Pop-ups"
+msgstr "Pop-ups Stummschaltung aufheben"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1536
+msgid "Enable Titlekey check"
+msgstr "Titlekey Überprüfung aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1538
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2541
+msgid "ENABLE GAME IMAGE"
+msgstr "SPIEL ABBILDER AKTIVIEREN"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1542
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2639
+msgid "Disable Shorten Name"
+msgstr "Verkürzte Dateinamen deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1546
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2649
+msgid "Disable Tinfoil Download"
+msgstr "Tinfoil Download deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1550
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2852
+msgid "Disable SysVer 0 Patch"
+msgstr "SysVer 0 Patch deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1555
+msgid "Status:"
+msgstr "Status:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1589
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1904
+msgid "Game"
+msgstr "Spiel"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1591
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1905
+msgid "State"
+msgstr "Status"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1603
+msgid "Game Image:"
+msgstr "Spiel Abbild:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1615
+msgid ""
+"Click the game image above \n"
+"to open the game in the eShop!"
+msgstr ""
+"Klicke auf das Spiel Abbild oberhalb \n"
+"um das Spiel im eShop zu öffnen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1626
+msgid "No Demo"
+msgstr "Demos ausschließen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1631
+msgid "Title ID:"
+msgstr "Titel ID:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1639
+msgid "Title Key:"
+msgstr "Titel Key:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1647
+msgid "Select update version:"
+msgstr "Wähle eine Updateversion:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1657
+msgid "Download options:"
+msgstr "Download Optionen:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1661
+msgid "Base game + Update + DLC"
+msgstr "Basisspiel + Update + DLC"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1662
+msgid "Base game + Update"
+msgstr "Basisspiel + Update"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1663
+msgid "Update + DLC"
+msgstr "Update + DLC"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1664
+msgid "Base game only"
+msgstr "Nur Basisspiel"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1665
+msgid "Update only"
+msgstr "Nur Update"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1666
+msgid "All DLC"
+msgstr "Alle DLCs"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1682
+msgid "Add to queue"
+msgstr "Zur Warteschlange hinzufügen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1687
+msgid "Update Titlekeys"
+msgstr "Titlekeys aktualisieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1700
+msgid "Queue Menu"
+msgstr "Warteschlange"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1728
+msgid "Remove selected game"
+msgstr "Gewähltes Spiel löschen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1729
+msgid "Remove all"
+msgstr "Alles Löschen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1730
+msgid "Download all"
+msgstr "Alles Herunterladen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1731
+msgid "Click download all to download all games in queue!"
+msgstr "Klicke auf Alles Herunterladen um alle Spiele in der Warteschlange herunterzuladen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1795
+msgid "Status: Getting game status... Please wait"
+msgstr "Status: Spielstatus wird abgefragt... Bitte warten!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1803
+msgid ""
+"\n"
+"Building the current state file... Please wait, this may take some time depending on how many games you have."
+msgstr ""
+"\n"
+"Aktuelle Statusdatei wird erstellt... Bitte warten. Dies kann einige Zeit in Anspruch nehmen, abhängig davon wieviele Spiele in Besitz sind."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1899
+msgid "Error, Current_status.txt doesn't exist"
+msgstr "Fehler, die Datei Current_status.txt existiert nicht!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1919
+msgid "Status: Done!"
+msgstr "Status: Erledigt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1996
+msgid ""
+"\n"
+"\n"
+"\n"
+"Downloading game image..."
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Spiel Abbild wird heruntergeladen..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+msgid "Error"
+msgstr "Fehler"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
+msgid "Titlekey {} is not a 32-digits hexadecimal number!"
+msgstr "Titlekey {} ist keine 32-stellige Hexadezimalzahl!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
+msgid "TitleID {} is not a 16-digits hexadecimal number!"
+msgstr "TitleID {} ist keine 16-stellige Hexadezimalzahl!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2034
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2042
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2062
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2077
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
+msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+msgstr "Download wird gestartet! Bitte um etwas Geduld, dies kann einige Zeit in Anspruch nehmen. Überprüfe die Eingabeaufforderung (CMD) im Hintergrund um den Downloadfortschritt zu sehen."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2073
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2087
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2095
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2105
+msgid "Download finished!"
+msgstr "Download abgeschlossen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2038
+msgid "No updates available for the game"
+msgstr "Keine Updates für das Spiel verfügbar."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2107
+msgid "No updates available for the game, base game downloaded!"
+msgstr "Keine Updates für das Spiel verfügbar, Basisspiel wurde heruntergeladen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2124
+msgid ""
+"\n"
+"You didn't choose a location to save the file!"
+msgstr ""
+"\n"
+"Kein Speicherort zum Sichern der Datei gewählt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2143
+msgid "Persistent queue not found, skipping..."
+msgstr "Keine gespeicherte Warteschlange gefunden, überspringe..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2149
+msgid "Item not found in queue"
+msgstr "Gegenstand in der Warteschlange nicht gefunden."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2198
+msgid "Name for titleID not found in the list"
+msgstr "Der Name für die Titel ID wurde in der Liste nicht gefunden."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2224
+msgid "No game selected to remove!"
+msgstr "Kein Spiel zum Löschen ausgewählt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2235
+msgid "Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"
+msgstr "Der Download für alle Spiele in der Warteschlange beginnt jetzt! Es erfolgt eine Meldung sobald alle Downloads abgeschlossen sind. Bitte um etwas Geduld, dies kann einige Zeit in Anspruch nehmen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2236
+msgid "Downloading games..."
+msgstr "Spiele werden heruntergeladen..."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2247
+msgid "No updates available for titleID: {}"
+msgstr "Keine Updates für die Titel ID {} verfügbar!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2306
+msgid "No updates available for titleID: {}, base game downloaded!"
+msgstr "Keine Updates für die Titel ID {} verfügbar, Basisspiel heruntergeladen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2312
+msgid "Download complete!"
+msgstr "Download abgeschlossen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2313
+msgid "Download Complete!"
+msgstr "Download abgeschlossen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2349
+msgid "Status: Updating titlekeys"
+msgstr "Status: Aktualisiere titlekeys"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2385
+msgid "Finished update!"
+msgstr "Aktualisierung abgeschlossen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2412
+msgid "Total of new games added: {}"
+msgstr "Anzahl der neu hinzugefügten Spiele: {}"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2413
+msgid "Close"
+msgstr "Schließen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2434
+msgid "Status: Finished update, There were no new games to update!"
+msgstr "Status: Aktualisierung abgeschlossen, es wurden keine neuen Spiele hinzugefügt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2435
+msgid ""
+"\n"
+"Status: Finished update, There were no new games to update!"
+msgstr ""
+"\n"
+"Status: Aktualisierung abgeschlossen, es wurden keine neuen Spiele hinzugefügt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2450
+msgid "Status: Finished update, Database rebuilt from scratch"
+msgstr "Status: Aktualisierung abgeschlossen, Datenbank wurde neu aufgebaut"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
+msgid "The database server {} might be down or unavailable"
+msgstr "Der Datenbankserver {} ist möglicherweise außer Betrieb oder nicht verfügbar"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2507
+msgid ""
+"\n"
+"{}\n"
+msgstr ""
+"\n"
+"{}\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2514
+msgid "Enable Titlekey Check"
+msgstr "Titlekey Überprüfung aktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2520
+msgid "Disable Titlekey Check"
+msgstr "Titlekey Überprüfung deaktivieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2593
+msgid ""
+"\n"
+"It took {} seconds for you to get all images!\n"
+msgstr ""
+"\n"
+"Es wurden {} Sekunden benötigt um alle Bilder zu laden!\n"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2594
+msgid "Done getting all game images!"
+msgstr "Alle Spiel Abbilder wurden geladen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2631
+msgid "Failed to get version"
+msgstr "Fehler beim Abrufen der Version!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2633
+msgid "No TitleID or TitleID not 16 characters!"
+msgstr "Titel ID nicht vorhanden oder keine 16 Zeichen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2677
+msgid "Windows size and position saved!"
+msgstr "Fensterposition/-größen gespeichert!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2682
+msgid "Search for existing games"
+msgstr "Nach vorhandenen Spielen suchen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2694
+msgid "Browse"
+msgstr "Durchsuchen"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2696
+msgid "Scan"
+msgstr "Suche starten"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
+msgid "You didn't choose a directory!"
+msgstr "Kein Ordner ausgewählt!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+msgid "The chosen directory doesn't exist!"
+msgstr "Der ausgewählte Ordner existiert nicht!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2778
+msgid "Finished scanning your games!"
+msgstr "Die Suche nach vorhandenen Spiele wurde abgeschlossen!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2779
+msgid "Status: Building the current state file... Please wait, this may take some time depending on how many games you have."
+msgstr "Aktuelle Statusdatei wird erstellt... Bitte warten. Dies kann einige Zeit in Anspruch nehmen, abhängig davon wieviele Spiele in Besitz sind."
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2791
+msgid "Base64 text:"
+msgstr "Base64 Text:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2796
+msgid "Decode"
+msgstr "Dekodieren"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2799
+msgid "Decoded text:"
+msgstr "Dekodierter Text:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2804
+msgid "Open"
+msgstr "Öffne"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2885
+msgid "Game Info:"
+msgstr "Spiel Info:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2886
+msgid "Game Price:"
+msgstr "Spielpreis:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2887
+msgid "Game Description:"
+msgstr "Spielbeschreibung:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2888
+msgid "Publisher:"
+msgstr "Herausgeber:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2889
+msgid "Developer"
+msgstr "Entwickler"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2890
+msgid "Release Date:"
+msgstr "Erscheinungsdatum:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2891
+msgid "Category:"
+msgstr "Kategorie:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2892
+msgid "Number of Players:"
+msgstr "Anzahl der Spieler:"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2893
+msgid "Game Info not avaiable for this game at the moment!"
+msgstr "Spielinformationen für dieses Spiel sind derzeit nicht verfügbar!"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2894
+msgid "About"
+msgstr "Über"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2895
+msgid "Credits"
+msgstr "Credits"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2896
+msgid "Language"
+msgstr "Sprache"
+
+#:
+#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2897
+msgid "Please restart the GUI for the new language to apply!"
+msgstr "Bitte starte die GUI neu um die neu gewählte Sprache anzuwenden!"
+
+
+msgid 'New'
+msgstr 'Neu'
+
+msgid 'Own'
+msgstr 'In Besitz'
+
+msgid 'Update'
+msgstr 'Veraltet'
+
+msgid 'Latest'
+msgstr 'Neueste'
+
+msgid 'Update Version List'
+msgstr 'Aktualisiere Versionsliste'
+
+msgid 'No Japanese Game'
+msgstr 'Keine japanischen Spiele'
