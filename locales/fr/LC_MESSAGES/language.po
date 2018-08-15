@@ -26,7 +26,7 @@ msgstr "Erreur! Application lancée avec Python 2, veuillez installer Python 3 e
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:49
 msgid "Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}"
-msgstr "Erreur lors de l'installation de {0}, fermez l'application et vous pouvez installer le module manuellement du CMD (fenêtre de commande): pip3 install {0}"
+msgstr "Erreur lors de l'installation de {0}, fermez l'application et vous pourrez installer le module manuellement via le CMD : pip3 install {0}"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:51
@@ -39,7 +39,7 @@ msgstr "Vérification si tous les modules requis sont installés! \n"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:86
 msgid "Everything looks good!"
-msgstr "Tout a l'air bien!"
+msgstr "Tout semble correct!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:88
@@ -55,7 +55,7 @@ msgstr "Vérifiez s'il y a des espaces supplémentaires à la fin de votre fichi
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1355
 msgid "Error!, Missing CDNSP-GUI-config.json file"
-msgstr "Erreur! Le fichier CDNSP-GUI-config.json manque"
+msgstr "Erreur! Le fichier CDNSP-GUI-config.json est manquant"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1485
@@ -131,7 +131,7 @@ msgstr "Activer le téléchargement Tinfoil"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1552
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2855
 msgid "Enable SysVer 0 Patch"
-msgstr "Activer SysVer 0 Patch"
+msgstr "Activer le patch SysVer 0"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1510
@@ -206,7 +206,7 @@ msgstr "Désactiver le téléchargement Tinfoil"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1550
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2852
 msgid "Disable SysVer 0 Patch"
-msgstr "Désactiver SysVer 0 Patch"
+msgstr "Désactiver le patch SysVer 0"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1555
@@ -245,17 +245,17 @@ msgstr "Ignorer les démos"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1631
 msgid "Title ID:"
-msgstr "Numéro de titre:"
+msgstr "Title ID:"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1639
 msgid "Title Key:"
-msgstr "Title key (Clé):"
+msgstr "Title key:"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1647
 msgid "Select update version:"
-msgstr "Sélectionnez la version de mise à jour:"
+msgstr "Sélectionnez la version de la mise à jour:"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1657
@@ -330,7 +330,7 @@ msgstr "Cliquez sur télécharger tout pour télécharger tous les jeux présent
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1795
 msgid "Status: Getting game status... Please wait"
-msgstr "Statut: Obtention des status des jeux ... Veuillez patienter"
+msgstr "Statut: Obtention des statuts des jeux ... Veuillez patienter"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1803
@@ -342,7 +342,7 @@ msgstr "Statut: Construction du fichier d'état actuel... Veuillez patienter, ce
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1899
 msgid "Error, Current_status.txt doesn't exist"
-msgstr "Erreur! Le fichier Current_status.txt n'existe pas"
+msgstr "Erreur, le fichier Current_status.txt n'existe pas"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1919
@@ -389,7 +389,7 @@ msgstr "TitleID {} ​​n'est pas un nombre hexadécimal à 16 chiffres!"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
 msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
-msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD (fenêtre de commande) à l'arrière pour voir la progression du téléchargement."
+msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD à l'arrière pour voir la progression du téléchargement."
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
@@ -435,7 +435,7 @@ msgstr "Nom pour titleID introuvable dans la liste"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2224
 msgid "No game selected to remove!"
-msgstr "Aucun jeu sélectionné à supprimé!"
+msgstr "Aucun jeu sélectionné pour supression!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2235
@@ -536,7 +536,7 @@ msgstr "Il a fallu {} secondes pour obtenir toutes les images!"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2594
 msgid "Done getting all game images!"
-msgstr "Toutes les images de jeu ont été telechargé!"
+msgstr "Toutes les images de jeu ont été récupéré!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2631
