@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-08-01 00:27+1200\n"
-"PO-Revision-Date: 2018-08-15 08:56+0200\n"
+"PO-Revision-Date: 2018-08-15 10:23+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -438,7 +438,7 @@ msgstr ""
 #: C:\Users\Bob\Google
 #: Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2143
 msgid "Persistent queue not found, skipping..."
-msgstr "Coda persistente non trovata , saltare..."
+msgstr "Coda persistente non trovata, salto..."
 
 #: C:\Users\Bob\Google
 #: Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2149
@@ -696,3 +696,27 @@ msgstr "Lingua"
 #: Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2897
 msgid "Please restart the GUI for the new language to apply!"
 msgstr "Per favore, riavvia la GUI per applicare la nuova lingua!"
+
+msgid "New"
+msgstr "Nuovo"
+
+msgid "Update"
+msgstr "Aggiornamento"
+
+msgid "Latest"
+msgstr "Ultimo"
+
+msgid "Own"
+msgstr "Posseduto"
+
+msgid "No Japanese Game"
+msgstr "Nascondi giochi Giapponesi"
+
+msgid "Update Version List"
+msgstr "Aggiorna Lista Versioni"
+
+msgid "Updating version list..."
+msgstr "Aggiorno la lista versioni..."
+
+msgid "Current language:"
+msgstr "Lingua corrente:"
