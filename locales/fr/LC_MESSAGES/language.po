@@ -389,8 +389,7 @@ msgstr "TitleID {} ​​n'est pas un nombre hexadécimal à 16 chiffres!"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
 msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
-msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD (fenêtre de commande) à lhargement."
-'arrière pour voir la progression de votre téléc
+msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD (fenêtre de commande) à l'arrière pour voir la progression du téléchargement."
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
