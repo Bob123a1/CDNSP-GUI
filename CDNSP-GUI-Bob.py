@@ -2013,10 +2013,13 @@ depending on how many games you have."))
                     tid = info.split(",")[0].strip()
                     ver = info.split(",")[1].strip()
                     if tid in known_ver:
-                        if int(known_ver[tid]) > int(ver):
-                            if tid.endswith("00"):
-                                tid = "{}000".format(tid[0:13])
-                            updates_tid.append(tid)
+                        try:
+                            if int(known_ver[tid]) > int(ver):
+                                if tid.endswith("00"):
+                                    tid = "{}000".format(tid[0:13])
+                                updates_tid.append(tid)
+                        except Exception as e:
+                            print("Tid: {} has caused an error, it has the version of {}.\nError: {}".format(tid, ver, e))
             else:
                 file = open(file_path, "w")
                 file.close()
