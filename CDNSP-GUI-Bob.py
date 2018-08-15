@@ -5,7 +5,7 @@
 # Design inspiration: Lucas Rey's GUI (https://darkumbra.net/forums/topic/174470-app-cdnsp-gui-v105-download-nsp-gamez-using-a-gui/)
 # Thanks to the developer(s) that worked on CDNSP_Next for the cert fix!
 # Thanks to the help of devloper NighTime, kvn1351, gizmomelb, theLorknessMonster
-# CDNSP - GUI - Bob - v4.1
+# CDNSP - GUI - Bob - v4.1.1
 import sys
 import time
 import random
@@ -176,17 +176,20 @@ except ImportError:
     from bs4 import BeautifulSoup
 
 try:
-    import pyopenssl
+    import ssl
 except:
-    pass
+    install_module("pyopenssl")
+    import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context # Thanks to user rdmrocha on Github
 
 req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt", "titlekeys_overwrite.txt"]
 try:
     for file in req_file:
         check_req_file(file)
     print(_("Everything looks good!"))
-except:
-    print(_("Unable to get required files! Check your internet connection"))
+except Exception as e:
+    print(_("Unable to get required files! Check your internet connection: [{}]".format(str(e))))
     
 # CDNSP script
 
@@ -3508,8 +3511,14 @@ Malaysian: fadzly#4390"""
                 file.close()
             print("\nUpdating version list...")
             for tid in installed:
-                print(tid)
-                known_ver[tid] = str(get_versions(tid)[-1])
+                if tid.endswith("00"):
+                    updateTid = "{}800".format(tid[:13])
+                else:
+                    updateTid = tid
+                latest_ver = str(get_versions(updateTid)[-1])
+
+                print("Tid: {}, latest version: {}".format(updateTid, latest_ver))
+                known_ver[tid] = latest_ver
                 
             ver_file = open("Config/Version_info.json", "w", encoding="utf8")
             json.dump(known_ver, ver_file, indent=4)
@@ -3586,7 +3595,7 @@ def main():
                             titleKey_list[titleID_list.index(_tid)] = _tkey
 
     root = Tk()
-    root.title("CDNSP GUI - Bobv4.1")
+    root.title("CDNSP GUI - Bobv4.1.1")
     Application(root, titleID_list, titleKey_list, title_list, dbURL)
 
     root.mainloop()
