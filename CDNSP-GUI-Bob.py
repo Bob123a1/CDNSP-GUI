@@ -5,7 +5,7 @@
 # Design inspiration: Lucas Rey's GUI (https://darkumbra.net/forums/topic/174470-app-cdnsp-gui-v105-download-nsp-gamez-using-a-gui/)
 # Thanks to the developer(s) that worked on CDNSP_Next for the cert fix!
 # Thanks to the help of devloper NighTime, kvn1351, gizmomelb, theLorknessMonster
-# CDNSP - GUI - Bob - v4.1
+# CDNSP - GUI - Bob - v4.1.1
 import sys
 import time
 import random
@@ -181,7 +181,7 @@ except:
     install_module("pyopenssl")
     import ssl
 
-ssl._create_default_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = ssl._create_unverified_context # Thanks to user rdmrocha on Github
 
 req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt", "titlekeys_overwrite.txt"]
 try:
@@ -2013,10 +2013,13 @@ depending on how many games you have."))
                     tid = info.split(",")[0].strip()
                     ver = info.split(",")[1].strip()
                     if tid in known_ver:
-                        if int(known_ver[tid]) > int(ver):
-                            if tid.endswith("00"):
-                                tid = "{}000".format(tid[0:13])
-                            updates_tid.append(tid)
+                        try:
+                            if int(known_ver[tid]) > int(ver):
+                                if tid.endswith("00"):
+                                    tid = "{}000".format(tid[0:13])
+                                updates_tid.append(tid)
+                        except Exception as e:
+                            print("Tid: {} has caused an error, it has the version of {}.\nError: {}".format(tid, ver, e))
             else:
                 file = open(file_path, "w")
                 file.close()
@@ -3511,8 +3514,14 @@ Malaysian: fadzly#4390"""
                 file.close()
             print("\nUpdating version list...")
             for tid in installed:
-                print(tid)
-                known_ver[tid] = str(get_versions(tid)[-1])
+                if tid.endswith("00"):
+                    updateTid = "{}800".format(tid[:13])
+                else:
+                    updateTid = tid
+                latest_ver = str(get_versions(updateTid)[-1])
+
+                print("Tid: {}, latest version: {}".format(updateTid, latest_ver))
+                known_ver[tid] = latest_ver
                 
             ver_file = open("Config/Version_info.json", "w", encoding="utf8")
             json.dump(known_ver, ver_file, indent=4)
@@ -3589,7 +3598,7 @@ def main():
                             titleKey_list[titleID_list.index(_tid)] = _tkey
 
     root = Tk()
-    root.title("CDNSP GUI - Bobv4.1")
+    root.title("CDNSP GUI - Bobv4.1.1")
     Application(root, titleID_list, titleKey_list, title_list, dbURL)
 
     root.mainloop()
