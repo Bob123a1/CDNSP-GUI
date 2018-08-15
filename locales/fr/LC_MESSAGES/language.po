@@ -104,7 +104,7 @@ msgstr "Désactiver les pop-ups"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2344
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2522
 msgid "Disable NSP Repack"
-msgstr "Désactiver remballer NSP"
+msgstr "Désactiver le Repack NSP"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1500
@@ -141,7 +141,7 @@ msgstr "Enregistrer l'emplacement et la taille des fenêtres"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1515
 msgid "Scan for existing games"
-msgstr "Balayer les jeux existants"
+msgstr "Scanner les jeux existants"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1516
@@ -171,7 +171,7 @@ msgstr "Outils"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2341
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2516
 msgid "Enable NSP Repack"
-msgstr "Activer remballer NSP"
+msgstr "Activer le Repack NSP"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1530
@@ -300,7 +300,7 @@ msgstr "Ajouter à la file d'attente"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1687
 msgid "Update Titlekeys"
-msgstr "Mettre à jour Titlekeys"
+msgstr "Mettre à jour les Titlekeys"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1700
@@ -315,29 +315,29 @@ msgstr "Supprimer le jeu sélectionné"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1729
 msgid "Remove all"
-msgstr "Supprimer tout"
+msgstr "Tout supprimer"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1730
 msgid "Download all"
-msgstr "Télécharger tout"
+msgstr "Tout Télécharger"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1731
 msgid "Click download all to download all games in queue!"
-msgstr "Cliquez sur télécharger tout pour télécharger tous les jeux dans la file d'attente!"
+msgstr "Cliquez sur télécharger tout pour télécharger tous les jeux présents dans la file d'attente!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1795
 msgid "Status: Getting game status... Please wait"
-msgstr "Statut: Obtenir les statuts des jeux ... Veuillez patienter"
+msgstr "Statut: Obtention des status des jeux ... Veuillez patienter"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1803
 msgid ""
 "\n"
 "Building the current state file... Please wait, this may take some time depending on how many games you have."
-msgstr "Statut: Le fichier d'état actuel en construction... Veuillez patienter, cela peut prendre du temps selon le nombre de jeux que vous avez."
+msgstr "Statut: Construction du fichier d'état actuel... Veuillez patienter, cela peut prendre du temps selon le nombre de jeux que vous avez."
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1899
@@ -347,7 +347,7 @@ msgstr "Erreur! Le fichier Current_status.txt n'existe pas"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1919
 msgid "Status: Done!"
-msgstr "Statut: Terminer!"
+msgstr "Statut: Terminé!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1996
@@ -389,8 +389,8 @@ msgstr "TitleID {} ​​n'est pas un nombre hexadécimal à 16 chiffres!"
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
 msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
-msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD (fenêtre de commande) à l'arrière pour voir la progression de votre téléchargement."
-
+msgstr "Téléchargement en cours! Cela prendra un peu de temps, soyez patient. Vous pouvez vérifier le CMD (fenêtre de commande) à lhargement."
+'arrière pour voir la progression de votre téléc
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
@@ -436,12 +436,12 @@ msgstr "Nom pour titleID introuvable dans la liste"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2224
 msgid "No game selected to remove!"
-msgstr "Aucun jeu sélectionné pour souprimer!"
+msgstr "Aucun jeu sélectionné à supprimé!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2235
 msgid "Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"
-msgstr "Le téléchargement des jeux dans la file d'attente va maintenant commencer! Vous serez informé une fois que tout le téléchargement est terminé, s.v.p. attendez et soyez patient!"
+msgstr "Le téléchargement des jeux dans la file d'attente va maintenant commencer! Vous serez informé une fois que tout les téléchargements seront complétés. Soyez patient!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2236
@@ -461,12 +461,12 @@ msgstr "Aucune mise à jour disponible pour titleID: {}, jeu de base télécharg
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2312
 msgid "Download complete!"
-msgstr "Téléchargement complet!"
+msgstr "Téléchargement complété!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2313
 msgid "Download Complete!"
-msgstr "Téléchargement complet!"
+msgstr "Téléchargement complété!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2349
@@ -557,7 +557,7 @@ msgstr "Taille et position des fenêtres enregistrées"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2682
 msgid "Search for existing games"
-msgstr "Balayer les jeux existants"
+msgstr "Scanner les jeux existants"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2694
@@ -567,7 +567,7 @@ msgstr "Naviguer"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2696
 msgid "Scan"
-msgstr "Balayage"
+msgstr "Scan"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
@@ -582,12 +582,12 @@ msgstr "Le répertoire choisi n'existe pas!"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2778
 msgid "Finished scanning your games!"
-msgstr "Le balayage de vos jeux est terminé!"
+msgstr "Scan de vos jeux terminé!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2779
 msgid "Status: Building the current state file... Please wait, this may take some time depending on how many games you have."
-msgstr "Statut: Le fichier d'état actuel en construction... Veuillez patienter, cela peut prendre du temps selon le nombre de jeux que vous avez."
+msgstr "Statut: Construction du fichier d'état actuel... Veuillez patienter, cela peut prendre du temps selon le nombre de jeux que vous avez."
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2791
@@ -667,7 +667,7 @@ msgstr "Crédits"
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2896
 msgid "Language"
-msgstr "La langue"
+msgstr "Langue"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2897
