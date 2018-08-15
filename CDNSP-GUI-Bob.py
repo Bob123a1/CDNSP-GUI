@@ -190,7 +190,7 @@ try:
     print(_("Everything looks good!"))
 except Exception as e:
     print(_("Unable to get required files! Check your internet connection: [{}]".format(str(e))))
-    
+
 # CDNSP script
 
 import argparse
