@@ -705,3 +705,9 @@ msgstr '升级'
 
 msgid 'Latest'
 msgstr '最新'
+
+msgid 'Update Version List'
+msgstr '更新版本清单'
+
+msgid 'No Japanese Game'
+msgstr '不显示日文游戏'
