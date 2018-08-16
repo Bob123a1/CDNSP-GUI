@@ -18,7 +18,8 @@ import os
 global sys_locale
 
 if platform.system() != 'Darwin':
-    sys_locale = locale.getdefaultlocale() # Detect system locale to fix Window size on Chinese Windows Computer
+    sys_locale = locale.getdefaultlocale(
+    )  # Detect system locale to fix Window size on Chinese Windows Computer
     sys_locale = sys_locale[0]
 else:
     sys_locale = "Mac"
@@ -33,25 +34,27 @@ else:
     queue_win = "720x300+770+100"
     scan_win = "420x85+100+100"
     base64_win = "500x105+100+100"
-        
-config = {"Options": {
-            "Download_location":  "",
-            "Game_location": "",
-            "NSP_repack":         "True",
-            "Mute":               "False",
-            "Titlekey_check":     "True",
-            "noaria":             "True",
-            "Disable_game_image": "False",
-            "Shorten": "False",
-            "Tinfoil": "False",
-            "SysVerZero": "False",
-            "Main_win": main_win,
-            "Queue_win": queue_win,
-            "Update_win": "600x400+120+200",
-            "Scan_win": scan_win,
-            "Base64_win": base64_win,
-            "Language": "en"}
-          }
+
+config = {
+    "Options": {
+        "Download_location": "",
+        "Game_location": "",
+        "NSP_repack": "True",
+        "Mute": "False",
+        "Titlekey_check": "True",
+        "noaria": "True",
+        "Disable_game_image": "False",
+        "Shorten": "False",
+        "Tinfoil": "False",
+        "SysVerZero": "False",
+        "Main_win": main_win,
+        "Queue_win": queue_win,
+        "Update_win": "600x400+120+200",
+        "Scan_win": scan_win,
+        "Base64_win": base64_win,
+        "Language": "en"
+    }
+}
 
 try:
     f = open("CDNSP-GUI-config.json", 'r')
@@ -67,27 +70,33 @@ try:
     chosen_lang = j["Options"]["Language"]
 except:
     f.close()
-    j["Options"]["Language"] = "en" # Default to English language
+    j["Options"]["Language"] = "en"  # Default to English language
     with open("CDNSP-GUI-config.json", 'w') as f:
         json.dump(j, f, indent=4)
     f.close()
     chosen_lang = "en"
 
-def set_lang(default_lang = "en"):
+
+def set_lang(default_lang="en"):
     try:
-        lang = gettext.translation('language', localedir='locales', languages=[default_lang])
+        lang = gettext.translation(
+            'language', localedir='locales', languages=[default_lang])
         lang.install()
         print("Current language: {}".format(default_lang))
     except:
-        lang = gettext.translation('language', localedir='locales', languages=["en"])
+        lang = gettext.translation(
+            'language', localedir='locales', languages=["en"])
         lang.install()
         print("Language files not available yet!")
+
+
 set_lang(chosen_lang)
 
 if not os.path.isdir("Config"):
     os.mkdir("Config")
 
-build_text = _("\nBuilding the current state file... Please wait, this may take some time \
+build_text = _(
+    "\nBuilding the current state file... Please wait, this may take some time \
 depending on how many games you have.")
 
 # Check that user is using Python 3
@@ -96,7 +105,9 @@ if (sys.version_info > (3, 0)):
     pass
 else:
     # Python 2 code in this block
-    print(_("\n\nError - Application launched with Python 2, please install Python 3 and delete Python 2\n"))
+    print(
+        _("\n\nError - Application launched with Python 2, please install Python 3 and delete Python 2\n"
+          ))
     time.sleep(1000)
     sys.exit()
 
@@ -110,21 +121,27 @@ import urllib.request
 import pip
 from pathlib import Path
 
+
 def check_req_file(file):
     if not os.path.exists(file):
-        url = 'https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/{}'.format(file)  
+        url = 'https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/{}'.format(
+            file)
         urllib.request.urlretrieve(url, file)
+
 
 def install_module(module):
     try:
         subprocess.check_output("pip3 install {}".format(module), shell=True)
     except:
-        print(_("Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}").format(module))
+        print(
+            _("Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}"
+              ).format(module))
+
 
 def add_to_installed(tid, ver):
     installed_tid = []
     installed_ver = []
-    
+
     if os.path.isfile("Config/installed.txt"):
         file = open("Config/installed.txt", "r", encoding="utf8")
         for game in file.readlines():
@@ -134,7 +151,7 @@ def add_to_installed(tid, ver):
         if tid in installed_tid:
             if int(ver) > int(installed_ver[installed_tid.index(tid)]):
                 installed_ver[installed_tid.index(tid)] = ver
-                
+
         else:
             installed_tid.append(tid)
             installed_ver.append(ver)
@@ -142,29 +159,29 @@ def add_to_installed(tid, ver):
         for i in range(len(installed_tid)):
             file.write("{}, {}\n".format(installed_tid[i], installed_ver[i]))
         file.close()
-    
-    
+
+
 print(_("\nChecking if all required modules are installed!\n\n"))
 try:
     import requests
 except ImportError:
     install_module("requests")
-    import requests       
+    import requests
 
 try:
     from tqdm import tqdm
 except ImportError:
     install_module("tqdm")
-    from tqdm import tqdm  
+    from tqdm import tqdm
 
 try:
-    import unidecode   
+    import unidecode
 except ImportError:
     install_module("unidecode")
-    import unidecode    
+    import unidecode
 
 try:
-    from PIL import Image, ImageTk   
+    from PIL import Image, ImageTk
 except ImportError:
     install_module("Pillow")
     from PIL import Image, ImageTk
@@ -181,16 +198,21 @@ except:
     install_module("pyopenssl")
     import ssl
 
-ssl._create_default_https_context = ssl._create_unverified_context # Thanks to user rdmrocha on Github
+ssl._create_default_https_context = ssl._create_unverified_context  # Thanks to user rdmrocha on Github
 
-req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt", "titlekeys_overwrite.txt"]
+req_file = [
+    "CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt",
+    "titlekeys_overwrite.txt"
+]
 try:
     for file in req_file:
         check_req_file(file)
     print(_("Everything looks good!"))
 except Exception as e:
-    print(_("Unable to get required files! Check your internet connection: [{}]".format(str(e))))
-    
+    print(
+        _("Unable to get required files! Check your internet connection: [{}]".
+          format(str(e))))
+
 # CDNSP script
 
 import argparse
@@ -212,7 +234,7 @@ import configparser
 from hashlib import sha256
 from struct import pack as pk, unpack as upk
 from binascii import hexlify as hx, unhexlify as uhx
-import xml.etree.ElementTree as ET, xml.dom.minidom as minidom    
+import xml.etree.ElementTree as ET, xml.dom.minidom as minidom
 import re
 import datetime
 import calendar
@@ -237,7 +259,7 @@ sysver0 = False
 truncateName = False
 tinfoil = False
 enxhop = False
-    
+
 import os, sys
 import re
 import shutil
@@ -258,29 +280,40 @@ def read_at(f, off, len):
     f.seek(off)
     return f.read(len)
 
+
 def read_u8(f, off):
     return upk('<B', read_at(f, off, 1))[0]
+
 
 def read_u16(f, off):
     return upk('<H', read_at(f, off, 2))[0]
 
+
 def read_u32(f, off):
     return upk('<I', read_at(f, off, 4))[0]
-    
+
+
 def read_u48(f, off):
     s = upk('<HI', read_at(f, off, 6))
     return s[1] << 16 | s[0]
 
+
 def read_u64(f, off):
     return upk('<Q', read_at(f, off, 8))[0]
-    
+
+
 def sha256_file(fPath):
     f = open(fPath, 'rb')
     fSize = os.path.getsize(fPath)
     hash = sha256()
-    
+
     if fSize >= 10000:
-        t = tqdm(total=fSize, unit='B', unit_scale=True, desc=os.path.basename(fPath), leave=False)
+        t = tqdm(
+            total=fSize,
+            unit='B',
+            unit_scale=True,
+            desc=os.path.basename(fPath),
+            leave=False)
         while True:
             buf = f.read(4096)
             if not buf:
@@ -292,7 +325,8 @@ def sha256_file(fPath):
         hash.update(f.read())
     f.close()
     return hash.hexdigest()
-    
+
+
 def bytes2human(n, f='%(value).3f %(symbol)s'):
     n = int(n)
     if n < 0:
@@ -307,9 +341,10 @@ def bytes2human(n, f='%(value).3f %(symbol)s'):
             return f % locals()
     return f % dict(symbol=symbols[0], value=n)
 
+
 def get_name(tid):
     try:
-        with open('titlekeys.txt',encoding="utf8") as f:
+        with open('titlekeys.txt', encoding="utf8") as f:
             lines = f.readlines()
     except Exception as e:
         print("Error:", e)
@@ -321,29 +356,37 @@ def get_name(tid):
         if tid.endswith('800'):
             tid = '%s000' % tid[:-3]
         if tid.strip() == temp[0].strip()[:16]:
-            return re.sub(r'[/\\:*?!"|™©®()]+', "", unidecode.unidecode(temp[2].strip()))
+            return re.sub(r'[/\\:*?!"|™©®()]+', "",
+                          unidecode.unidecode(temp[2].strip()))
     return "UNKNOWN TITLE"
-    
+
+
 def safe_name(name):
     return re.sub('[^\x00-\x7f]', '', ud.normalize('NFD', name))
-    
+
+
 def safe_filename(safe_name):
     return re.sub('[<>.:"/\\|?*]+', '', safe_name)
-    
+
+
 def check_tid(tid):
     return re.match('0100[0-9a-fA-F]{12}', tid)
-    
+
+
 def check_tkey(tkey):
     return re.match('[0-9a-fA-F]{32}', tkey)
-    
+
+
 def load_config(fPath):
     dir = os.path.dirname(__file__)
 
-    config = {'Paths': {
-        'hactoolPath': 'hactool',
-        'keysPath': 'keys.txt',
-        'NXclientPath': 'nx_tls_client_cert.pem',
-        'ShopNPath': 'ShopN.pem'},
+    config = {
+        'Paths': {
+            'hactoolPath': 'hactool',
+            'keysPath': 'keys.txt',
+            'NXclientPath': 'nx_tls_client_cert.pem',
+            'ShopNPath': 'ShopN.pem'
+        },
         'Values': {
             'Region': 'US',
             'Firmware': '5.1.0-3',
@@ -351,7 +394,9 @@ def load_config(fPath):
             'Environment': 'lp1',
             'TitleKeysURL': 'http://snip.li/newkeydb',
             'NspOut': '_NSPOUT',
-            'AutoUpdatedb': 'False'}}
+            'AutoUpdatedb': 'False'
+        }
+    }
     try:
         f = open(fPath, 'r')
     except FileNotFoundError:
@@ -381,35 +426,38 @@ def load_config(fPath):
         hactoolPath = './' + hactoolPath + '_mac'
 
     return hactoolPath, keysPath, NXclientPath, ShopNPath, reg, fw, did, env, dbURL, nspout
-    
+
+
 def gen_tik(fPath, rightsID, tkey, mkeyrev):
     f = open(fPath, 'wb')
 
     f.write(b'\x04\x00\x01\x00')
     f.write(0x100 * b'\xFF')
-    f.write(0x3C  * b'\x00')
+    f.write(0x3C * b'\x00')
     f.write(b'Root-CA00000003-XS00000020')
-    f.write(0x6   * b'\x00')
-    f.write(0x20  * b'\x00')
+    f.write(0x6 * b'\x00')
+    f.write(0x20 * b'\x00')
     if tkey:
         f.write(uhx(tkey))
     else:
         f.write(0x10 * b'\x00')
-    f.write(0xF0  * b'\x00')
+    f.write(0xF0 * b'\x00')
     f.write(b'\x02\x00\x00\x00\x00')
     f.write(pk('<B', int(mkeyrev)))
-    f.write(0xA   * b'\x00')
-    f.write(0x10  * b'\x00')
+    f.write(0xA * b'\x00')
+    f.write(0x10 * b'\x00')
     f.write(uhx(rightsID))
-    f.write(0x8   * b'\x00')
+    f.write(0x8 * b'\x00')
     f.write(b'\xC0\x02\x00\x00\x00\x00\x00\x00')
 
     f.close()
     return fPath
-    
+
+
 def gen_cert(fPath):
     f = open(fPath, 'wb')
-    f.write(uhx(b'''\
+    f.write(
+        uhx(b'''\
 00010003704138efbbbda16a987dd901
 326d1c9459484c88a2861b91a312587a
 e70ef6237ec50e1032dc39dde89a96a8
@@ -524,12 +572,13 @@ de3e5998895efa7deea060be9575668f
 00000000000000000000000000000000'''.replace(b'\n', b'')))
     f.close()
     return fPath
-    
+
+
 def decrypt_NCA(fPath, outDir=''):
     if not outDir:
         outDir = os.path.splitext(fPath)[0]
     os.makedirs(outDir, exist_ok=True)
-    
+
     commandLine = hactoolPath + ' "' + fPath + '"' + keysArg\
                   + ' --exefsdir="'    + outDir + '/exefs"'\
                   + ' --romfsdir="'    + outDir + '/romfs"'\
@@ -538,8 +587,12 @@ def decrypt_NCA(fPath, outDir=''):
                   + ' --section2dir="' + outDir + '/section2"'\
                   + ' --section3dir="' + outDir + '/section3"'\
                   + ' --header="'      + outDir + '/Header.bin"'
-                  
-    pipes = subprocess.Popen(commandLine, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+
+    pipes = subprocess.Popen(
+        commandLine,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=True)
     _, std_err = pipes.communicate()
 
     if pipes.returncode != 0:
@@ -547,13 +600,14 @@ def decrypt_NCA(fPath, outDir=''):
         raise Exception(err_msg)
     elif len(std_err):
         raise Exception(std_err)
-        
+
     return outDir
-    
+
+
 def get_name_from_nacp(fPath):
     dir = decrypt_NCA(fPath)
     nacpPath = os.path.join(dir, 'romfs', 'control.nacp')
-    try: 
+    try:
         f = open(nacpPath, 'rb')
         name = f.read(0x200).strip(b'\x00').decode()
         f.close()
@@ -561,76 +615,101 @@ def get_name_from_nacp(fPath):
     except FileNotFoundError:
         return ''
 
+
 def make_request(method, url, certificate='', hdArgs={}):
-    if not certificate: # Workaround for defining errors
+    if not certificate:  # Workaround for defining errors
         certificate = NXclientPath
-    
-    reqHd = {'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; did:%s; eid:%s)' % (fw, did, env),
-             'Accept-Encoding': 'gzip, deflate',
-             'Accept': '*/*',
-             'Connection': 'keep-alive'}
+
+    reqHd = {
+        'User-Agent':
+        'NintendoSDK Firmware/%s (platform:NX; did:%s; eid:%s)' % (fw, did,
+                                                                   env),
+        'Accept-Encoding':
+        'gzip, deflate',
+        'Accept':
+        '*/*',
+        'Connection':
+        'keep-alive'
+    }
     reqHd.update(hdArgs)
-    
-    r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
-    
+
+    r = requests.request(
+        method,
+        url,
+        cert=certificate,
+        headers=reqHd,
+        verify=False,
+        stream=True)
+
     if r.status_code == 403:
         raise requests.exceptions.SSLError('Request rejected!')
     if r.status_code == 404:
         raise requests.exceptions.HTTPError('File doesn\'t exist!')
-    
+
     return r
+
 
 def make_request_new(method, url, certificate='', hdArgs={}):
     if certificate == '':  # Workaround for defining errors
         certificate = NXclientPath
 
-    reqHd = {'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; eid:%s)' % (fw, env),
-             'Accept-Encoding': 'gzip, deflate',
-             'Accept': '*/*',
-             'Connection': 'keep-alive'}
+    reqHd = {
+        'User-Agent':
+        'NintendoSDK Firmware/%s (platform:NX; eid:%s)' % (fw, env),
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept': '*/*',
+        'Connection': 'keep-alive'
+    }
     reqHd.update(hdArgs)
-    r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
-    
+    r = requests.request(
+        method,
+        url,
+        cert=certificate,
+        headers=reqHd,
+        verify=False,
+        stream=True)
+
     if r.status_code == 403:
         print('Request rejected by server! Check your cert.')
         return r
 
     return r
-    
+
+
 def print_info(tid):
     print('\n%s:' % tid)
     if tid.endswith('000'):
-        basetid   = tid
+        basetid = tid
         updatetid = '%016x' % (int(tid, 16) + 0x800)
     elif tid.endswith('800'):
-        basetid   = '%016x' % (int(tid, 16) & 0xFFFFFFFFFFFFF000)
+        basetid = '%016x' % (int(tid, 16) & 0xFFFFFFFFFFFFF000)
         updatetid = tid
     else:
-        basetid     = '%016x' % (int(tid, 16) - 0x1000 & 0xFFFFFFFFFFFFF000)
-        updatetid   = basetid[:-3] + '800'
-        
+        basetid = '%016x' % (int(tid, 16) - 0x1000 & 0xFFFFFFFFFFFFF000)
+        updatetid = basetid[:-3] + '800'
+
     try:
         _, name, size = get_info(tid=basetid)
     except requests.exceptions.SSLError:
         print('\tCould not get info from Shogun')
         name = ''
         size = 0
-        
+
     if name:
         print('\tName: %s' % name)
     if size:
         print('\tSize: %s' % bytes2human(size))
-        
-    if tid != basetid:    
+
+    if tid != basetid:
         versions = get_versions(tid)
         print('\n\tAvailable versions for %s:' % tid)
         print('\t\tv' + ' v'.join(versions))
-    
+
     print('\n\tBase TID:   %s' % basetid)
     versions = get_versions(basetid)
     print('\tAvailable versions for %s:' % basetid)
     print('\t\tv' + ' v'.join(versions))
-    
+
     print('\n\tUpdate TID: %s' % updatetid)
     versions = get_versions(updatetid)
     print('\tAvailable versions for %s:' % updatetid)
@@ -638,7 +717,8 @@ def print_info(tid):
         print('\t\tv' + ' v'.join(versions))
     else:
         print('\t\t%s has no version available' % updatetid)
-    
+
+
 def get_info(tid='', freeword=''):
     print(tid)
     print("HEEELOOO")
@@ -655,38 +735,40 @@ def get_info(tid='', freeword=''):
         r = make_request('GET', url, certificate=ShopNPath)
         j = r.json()
         nsuid = j['contents'][0]['id']
-    
+
     try:
-        url = 'https://bugyo.hac.%s.eshop.nintendo.net/shogun/v1/titles/%s?shop_id=4&lang=en&country=%s' % (env, nsuid, reg)
+        url = 'https://bugyo.hac.%s.eshop.nintendo.net/shogun/v1/titles/%s?shop_id=4&lang=en&country=%s' % (
+            env, nsuid, reg)
         r = make_request('GET', url, certificate=ShopNPath)
         j = r.json()
-        
+
         if freeword:
             try:
                 tid = j['applications'][0]['id']
             except KeyError:
                 print('Found no result for %s on Shogun' % freeword)
                 raise
-        
+
         try:
             name = j['formal_name']
             name = safe_name(name)
         except IndexError:
             name = ''
-        
+
         try:
             size = j['total_rom_size']
         except IndexError:
             size = 0
-            
+
     except IndexError:
         print('\tTitleID not found on Shogun!')
-        
+
     return tid, name, size
-    
+
+
 def get_versions(tid):
     #url = 'https://tagaya.hac.%s.eshop.nintendo.net/tagaya/hac_versionlist' % env
-    url = 'https://superfly.hac.%s.d4c.nintendo.net/v1/t/%s/dv' % (env,tid)
+    url = 'https://superfly.hac.%s.d4c.nintendo.net/v1/t/%s/dv' % (env, tid)
     r = make_request_new('GET', url)
     j = r.json()
 
@@ -700,28 +782,32 @@ def get_versions(tid):
         if lastestVer < 65536:
             return ['%s' % lastestVer]
         else:
-            versionList = ('%s' % "-".join(str(i) for i in range(0x10000, lastestVer+1, 0x10000))).split('-')
+            versionList = ('%s' % "-".join(
+                str(i)
+                for i in range(0x10000, lastestVer + 1, 0x10000))).split('-')
             return versionList
     except Exception as e:
         return ['none']
-       
+
+
 def check_versions(fPath):
     f = open(fPath, 'r')
 
     old = {}
     for line in f.readlines():
-            tid, ver = line.strip().split('-')
-            old[tid] = ver
-    
+        tid, ver = line.strip().split('-')
+        old[tid] = ver
+
     n = 1
     new = {}
     for tid in old:
-        sys.stdout.write('\rChecking for updates for title %s of %s...' % (n, len(old)))
+        sys.stdout.write(
+            '\rChecking for updates for title %s of %s...' % (n, len(old)))
         sys.stdout.flush()
         n += 1
-        
+
         latestVer = get_versions(tid)[-1]
-        
+
         if latestVer and int(latestVer) > int(old[tid]):
             new[tid] = latestVer
 
@@ -732,26 +818,27 @@ def check_versions(fPath):
                 if updateVer:
                     new[updatetid] = updateVer[-1]
     sys.stdout.write('\r\033[F')
-    
+
     if new:
         for tid in new:
             print('New update available for %s: v%s' % (tid, new[tid]))
-        
+
         dl = input('\nType anything to download the new updates: ')
         if dl:
             for tid in new:
                 download_game(tid, new[tid], nspRepack=True, verify=True)
     else:
         print('No new update was found for any of the downloaded titles!')
-            
+
     f.close()
+
 
 def download_file(url, fPath, fSize=0):
     fName = os.path.basename(fPath).split()[0]
-    
+
     if os.path.exists(fPath) and fSize != 0:
         dlded = os.path.getsize(fPath)
-            
+
         if dlded == fSize:
             print('\t\tDownload is already complete, skipping!')
             return fPath
@@ -760,7 +847,9 @@ def download_file(url, fPath, fSize=0):
             r = make_request('GET', url, hdArgs={'Range': 'bytes=%s-' % dlded})
             f = open(fPath, 'ab')
         else:
-            print('\t\tExisting file is bigger than expected (%s/%s), restarting download...' % (dlded, fSize))
+            print(
+                '\t\tExisting file is bigger than expected (%s/%s), restarting download...'
+                % (dlded, fSize))
             dlded = 0
             r = make_request('GET', url)
             f = open(fPath, "wb")
@@ -769,9 +858,16 @@ def download_file(url, fPath, fSize=0):
         r = make_request('GET', url)
         fSize = int(r.headers.get('Content-Length'))
         f = open(fPath, 'wb')
-        
+
     if fSize >= 10000:
-        t = tqdm(initial=dlded, total=int(fSize), desc=fName, unit='B', unit_scale=True, leave=False, mininterval=0.5)
+        t = tqdm(
+            initial=dlded,
+            total=int(fSize),
+            desc=fName,
+            unit='B',
+            unit_scale=True,
+            leave=False,
+            mininterval=0.5)
         for chunk in r.iter_content(4096):
             f.write(chunk)
             dlded += len(chunk)
@@ -780,73 +876,94 @@ def download_file(url, fPath, fSize=0):
     else:
         f.write(r.content)
         dlded += len(r.content)
-    
+
     if fSize != 0 and dlded != fSize:
-        raise ValueError('Downloaded data is not as big as expected (%s/%s)!' % (dlded, fSize))
-        
-    f.close()    
+        raise ValueError('Downloaded data is not as big as expected (%s/%s)!' %
+                         (dlded, fSize))
+
+    f.close()
     print('\r\t\tSaved to %s!' % os.path.basename(f.name))
     return fPath
-    
+
+
 def download_cetk(rightsID, fPath):
-    url = 'https://atum.hac.%s.d4c.nintendo.net/r/t/%s?device_id=%s' % (env, rightsID, did)
+    url = 'https://atum.hac.%s.d4c.nintendo.net/r/t/%s?device_id=%s' % (
+        env, rightsID, did)
     r = make_request('HEAD', url)
     id = r.headers.get('X-Nintendo-Content-ID')
-    
-    url = 'https://atum.hac.%s.d4c.nintendo.net/c/t/%s?device_id=%s' % (env, id, did)
+
+    url = 'https://atum.hac.%s.d4c.nintendo.net/c/t/%s?device_id=%s' % (
+        env, id, did)
     cetk = download_file(url, fPath, fSize=2496)
-    
+
     return cetk
-        
-def download_title(gameDir, tid, ver, tkey='', nspRepack=False, verify=False, n=''):
+
+
+def download_title(gameDir,
+                   tid,
+                   ver,
+                   tkey='',
+                   nspRepack=False,
+                   verify=False,
+                   n=''):
     print('\n%s v%s:' % (tid, ver))
     if len(tid) != 16:
-        tid = (16-len(tid)) * '0' + tid
-    
-    url = 'https://atum%s.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (n, env, tid, ver, did)
+        tid = (16 - len(tid)) * '0' + tid
+
+    url = 'https://atum%s.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (
+        n, env, tid, ver, did)
     r = make_request('HEAD', url)
     CNMTid = r.headers.get('X-Nintendo-Content-ID')
-    
+
     print('\tDownloading CNMT (%s.cnmt.nca)...' % CNMTid)
-    url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (n, env, CNMTid, did)
+    url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (
+        n, env, CNMTid, did)
     fPath = os.path.join(gameDir, CNMTid + '.cnmt.nca')
     cnmtNCA = download_file(url, fPath)
-    
+
     cnmtDir = decrypt_NCA(cnmtNCA)
-    CNMT = cnmt(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]), 
-                os.path.join(cnmtDir, 'Header.bin'))
-    
+    CNMT = cnmt(
+        os.path.join(cnmtDir, 'section0',
+                     os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
+        os.path.join(cnmtDir, 'Header.bin'))
+
     if nspRepack:
-        outf = os.path.join(gameDir, '%s.xml' % os.path.basename(cnmtNCA).strip('.nca'))
+        outf = os.path.join(gameDir,
+                            '%s.xml' % os.path.basename(cnmtNCA).strip('.nca'))
         cnmtXML = CNMT.gen_xml(cnmtNCA, outf)
-        
+
         rightsID = '%032x' % ((int(tid, 16) << 64) + int(CNMT.mkeyrev))
-        
-        tikPath  = os.path.join(gameDir, rightsID+'.tik')
-        certPath = os.path.join(gameDir, rightsID+'.cert')
+
+        tikPath = os.path.join(gameDir, rightsID + '.tik')
+        certPath = os.path.join(gameDir, rightsID + '.cert')
         if CNMT.type == 'Application' or CNMT.type == 'AddOnContent':
             gen_cert(certPath)
             gen_tik(tikPath, rightsID, tkey, CNMT.mkeyrev)
-            
-            print('\t\tGenerated %s and %s!' % (os.path.basename(certPath), os.path.basename(tikPath)))
+
+            print('\t\tGenerated %s and %s!' % (os.path.basename(certPath),
+                                                os.path.basename(tikPath)))
         elif CNMT.type == 'Patch':
             print('\tDownloading CETK...')
-            
-            with open(download_cetk(rightsID, os.path.join(gameDir, rightsID+'.cetk')), 'rb') as cetk:
+
+            with open(
+                    download_cetk(rightsID,
+                                  os.path.join(gameDir, rightsID + '.cetk')),
+                    'rb') as cetk:
                 cetk.seek(0x180)
                 tkey = hx(cetk.read(0x10)).decode()
                 print('\t\t\tTitlekey: %s' % tkey)
-                
+
                 with open(tikPath, 'wb') as tik:
                     cetk.seek(0x0)
                     tik.write(cetk.read(0x2C0))
-                    
+
                 with open(certPath, 'wb') as cert:
                     cetk.seek(0x2C0)
                     cert.write(cetk.read(0x700))
-                    
-            print('\t\tExtracted %s and %s from CETK!' % (os.path.basename(certPath), os.path.basename(tikPath)))
-            
+
+            print('\t\tExtracted %s and %s from CETK!' %
+                  (os.path.basename(certPath), os.path.basename(tikPath)))
+
     NCAs = {
         0: [],
         1: [],
@@ -856,31 +973,34 @@ def download_title(gameDir, tid, ver, tkey='', nspRepack=False, verify=False, n=
         5: [],
         6: [],
     }
-    
+
     name = ''
-    for type in [0, 3, 4, 5, 1, 2, 6]: # Download smaller files first
+    for type in [0, 3, 4, 5, 1, 2, 6]:  # Download smaller files first
         list = CNMT.parse(CNMT.contentTypes[type])
         for ncaID in list:
-            print('\tDownloading %s entry (%s.nca)...' % (CNMT.contentTypes[type], ncaID))
-            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (n, env, ncaID, did)
+            print('\tDownloading %s entry (%s.nca)...' %
+                  (CNMT.contentTypes[type], ncaID))
+            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (
+                n, env, ncaID, did)
             fPath = os.path.join(gameDir, ncaID + '.nca')
             fSize = list[ncaID][1]
-            
+
             NCAs[type].append(download_file(url, fPath, fSize))
-            
+
             if verify:
                 print('\t\tVerifying file...')
                 if sha256_file(fPath) == list[ncaID][2]:
                     print('\t\t\tHashes match, file is correct!')
                 else:
-                    print('\t\t\t%s is corrupted, hashes don\'t match!' % os.path.basename(fPath))
-           
+                    print('\t\t\t%s is corrupted, hashes don\'t match!' %
+                          os.path.basename(fPath))
+
             if type == 3:
                 name = get_name_from_nacp(NCAs[type][-1])
-    
+
     if not name:
         name = ''
-        
+
     if nspRepack:
         files = []
         if tkey:
@@ -893,24 +1013,33 @@ def download_title(gameDir, tid, ver, tkey='', nspRepack=False, verify=False, n=
         files.append(cnmtXML)
         if NCAs[3]:
             files.extend(NCAs[3])
-        
+
         return files, name
     else:
         return gameDir, name
 
-def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', verify=False):
+
+def download_title_tinfoil(gameDir,
+                           tid,
+                           ver,
+                           tkey='',
+                           nspRepack=False,
+                           n='',
+                           verify=False):
     print('\n%s v%s:' % (tid, ver))
-    tid = tid.lower();
-    tkey = tkey.lower();
+    tid = tid.lower()
+    tkey = tkey.lower()
     if len(tid) != 16:
         tid = (16 - len(tid)) * '0' + tid
 
-    url = 'https://atum.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (env, tid, ver, did)
+    url = 'https://atum.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (
+        env, tid, ver, did)
     print(url)
     try:
         r = make_request_new('HEAD', url)
     except Exception as e:
-        print("Error downloading title. Check for incorrect titleid or version.")
+        print(
+            "Error downloading title. Check for incorrect titleid or version.")
         return
     CNMTid = r.headers.get('X-Nintendo-Content-ID')
 
@@ -919,26 +1048,35 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
         return
 
     print('\nDownloading CNMT (%s.cnmt.nca)...' % CNMTid)
-    url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (n, env, CNMTid, did)
+    url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (
+        n, env, CNMTid, did)
     fPath = os.path.join(gameDir, CNMTid + '.cnmt.nca')
     cnmtNCA = download_file(url, fPath)
     cnmtDir = decrypt_NCA(cnmtNCA)
-    CNMT = cnmt(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
-                os.path.join(cnmtDir, 'Header.bin'))
+    CNMT = cnmt(
+        os.path.join(cnmtDir, 'section0',
+                     os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
+        os.path.join(cnmtDir, 'Header.bin'))
 
     if nspRepack == True:
-        outf = os.path.join(gameDir, '%s.xml' % os.path.basename(cnmtNCA.strip('.nca')))
+        outf = os.path.join(gameDir,
+                            '%s.xml' % os.path.basename(cnmtNCA.strip('.nca')))
         cnmtXML = CNMT.gen_xml_tinfoil(cnmtNCA, outf)
 
-        rightsID = '%s%s%s' % (tid, (16 - len(CNMT.mkeyrev)) * '0', CNMT.mkeyrev)
+        rightsID = '%s%s%s' % (tid,
+                               (16 - len(CNMT.mkeyrev)) * '0', CNMT.mkeyrev)
 
         tikPath = os.path.join(gameDir, '%s.tik' % rightsID)
         certPath = os.path.join(gameDir, '%s.cert' % rightsID)
         if CNMT.type == 'Application' or CNMT.type == 'AddOnContent':
-            shutil.copy(os.path.join(os.path.dirname(__file__), 'Certificate.cert'), certPath)
+            shutil.copy(
+                os.path.join(os.path.dirname(__file__), 'Certificate.cert'),
+                certPath)
 
             if tkey != '':
-                with open(os.path.join(os.path.dirname(__file__), 'Ticket.tik'), 'rb') as intik:
+                with open(
+                        os.path.join(os.path.dirname(__file__), 'Ticket.tik'),
+                        'rb') as intik:
                     data = bytearray(intik.read())
                     data[0x180:0x190] = uhx(tkey)
                     data[0x286] = int(CNMT.mkeyrev)
@@ -946,13 +1084,17 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
 
                     with open(tikPath, 'wb') as outtik:
                         outtik.write(data)
-                print('\nGenerated %s and %s!' % (os.path.basename(certPath), os.path.basename(tikPath)))
+                print('\nGenerated %s and %s!' % (os.path.basename(certPath),
+                                                  os.path.basename(tikPath)))
             else:
                 print('\nGenerated %s!' % os.path.basename(certPath))
         elif CNMT.type == 'Patch':
             print('\nDownloading cetk...')
 
-            with open(download_cetk(rightsID, os.path.join(gameDir, '%s.cetk' % rightsID)), 'rb') as cetk:
+            with open(
+                    download_cetk(rightsID,
+                                  os.path.join(gameDir, '%s.cetk' % rightsID)),
+                    'rb') as cetk:
                 cetk.seek(0x180)
                 tkey = hx(cetk.read(0x10)).decode()
                 print('\nTitlekey: %s' % tkey)
@@ -965,18 +1107,23 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
                     cetk.seek(0x2C0)
                     cert.write(cetk.read(0x700))
 
-            print('\nExtracted %s and %s from cetk!' % (os.path.basename(certPath), os.path.basename(tikPath)))
+            print('\nExtracted %s and %s from cetk!' %
+                  (os.path.basename(certPath), os.path.basename(tikPath)))
 
     NCAs = {}
     for type in [3]:  # Download smaller files first
         for ncaID in CNMT.parse(CNMT.ncaTypes[type]):
-            print('\nDownloading %s entry (%s.nca)...' % (CNMT.ncaTypes[type], ncaID))
-            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (n, env, ncaID, did)
+            print('\nDownloading %s entry (%s.nca)...' % (CNMT.ncaTypes[type],
+                                                          ncaID))
+            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (
+                n, env, ncaID, did)
             fPath = os.path.join(gameDir, ncaID + '.nca')
             NCAs.update({type: download_file(url, fPath)})
             if verify:
-                if calc_sha256(fPath) != CNMT.parse(CNMT.ncaTypes[type])[ncaID][2]:
-                    print('\n\n%s is corrupted, hashes don\'t match!' % os.path.basename(fPath))
+                if calc_sha256(fPath) != CNMT.parse(
+                        CNMT.ncaTypes[type])[ncaID][2]:
+                    print('\n\n%s is corrupted, hashes don\'t match!' %
+                          os.path.basename(fPath))
                 else:
                     print('\nVerified %s...' % os.path.basename(fPath))
 
@@ -992,13 +1139,20 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
             pass
 
         return files
-    
-def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False, path_Dir=""):
+
+
+def download_game(tid,
+                  ver,
+                  tkey='',
+                  nspRepack=False,
+                  verify=False,
+                  clean=False,
+                  path_Dir=""):
     name = get_name(tid)
     global titlekey_check
     gameType = ''
     basetid = ''
-    
+
     if name == 'Unknown Title':
         temp = "[" + tid + "]"
     else:
@@ -1012,40 +1166,41 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
     else:  # DLC
         basetid = '%s%s000' % (tid[:-4], str(int(tid[-4], 16) - 1))
         gameType = 'DLC'
-        
+
     if path_Dir == "":
         path_Dir = os.path.join(os.path.dirname(__file__), "_NSPOUT")
-    
+
     gameDir = os.path.join(path_Dir, tid)
 
     if not os.path.exists(gameDir):
         os.makedirs(gameDir, exist_ok=True)
-        
+
     outputDir = path_Dir
 
     if not os.path.exists(outputDir):
         os.makedirs(outputDir, exist_ok=True)
 
-   
     if name != "":
         if gameType == "DLC":
-            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name,tid,ver))
+            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name, tid, ver))
         elif gameType == 'BASE':
-            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name,tid,ver))
+            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name, tid, ver))
         else:
-            outf = os.path.join(outputDir, '%s [%s][%s][v%s]' % (name,gameType,tid,ver))
+            outf = os.path.join(
+                outputDir, '%s [%s][%s][v%s]' % (name, gameType, tid, ver))
     else:
         if gameType == "DLC":
-            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name,tid,ver))
+            outf = os.path.join(outputDir, '%s [%s][v%s]' % (name, tid, ver))
         elif gameType == 'BASE':
-            outf = os.path.join(outputDir, '%s [v%s]' % (tid,ver))
+            outf = os.path.join(outputDir, '%s [v%s]' % (tid, ver))
         else:
-            outf = os.path.join(outputDir, '%s [%s][v%s]' % (tid,gameType,ver))
+            outf = os.path.join(outputDir,
+                                '%s [%s][v%s]' % (tid, gameType, ver))
     outname = outf.split(outputDir)[1][1:]
 
     if truncateName:
-        name = name.replace(' ','')[0:20]
-        outf = os.path.join(outputDir, '%s%sv%s' % (name,tid,ver))
+        name = name.replace(' ', '')[0:20]
+        outf = os.path.join(outputDir, '%s%sv%s' % (name, tid, ver))
 
     if tinfoil:
         outf = outf + '[tf]'
@@ -1060,7 +1215,7 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
                     shutil.rmtree(gameDir)
                     return
     os.makedirs(gameDir, exist_ok=True)
-    
+
     if tid.endswith('800'):
         basetid = '%016x' % (int(tid, 16) & 0xFFFFFFFFFFFFF000)
     elif not tid.endswith('000'):
@@ -1068,11 +1223,12 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
     else:
         basetid = tid
     if tinfoil:
-        files = download_title_tinfoil(gameDir, tid, ver, tkey, nspRepack, verify=verify)
+        files = download_title_tinfoil(
+            gameDir, tid, ver, tkey, nspRepack, verify=verify)
     else:
-        files, name = download_title(gameDir, tid, ver, tkey, nspRepack, verify)
+        files, name = download_title(gameDir, tid, ver, tkey, nspRepack,
+                                     verify)
 
-    
     if nspRepack:
         os.makedirs(path_Dir, exist_ok=True)
         NSP = nsp(outf, files)
@@ -1081,38 +1237,46 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
 
     add_to_installed(tid, ver)
     return gameDir
-    
+
+
 def download_sysupdate(ver):
     if ver == 'LTST':
-        url = 'https://sun.hac.%s.d4c.nintendo.net/v1/system_update_meta?device_id=%s' % (env, did)
+        url = 'https://sun.hac.%s.d4c.nintendo.net/v1/system_update_meta?device_id=%s' % (
+            env, did)
         r = make_request('GET', url)
         j = r.json()
         ver = str(j['system_update_metas'][0]['title_version'])
-    
-    sysupdateDir = os.path.join(os.path.dirname(__file__), '0100000000000816-SysUpdate', ver)
+
+    sysupdateDir = os.path.join(
+        os.path.dirname(__file__), '0100000000000816-SysUpdate', ver)
     os.makedirs(sysupdateDir, exist_ok=True)
-    
-    url = 'https://atumn.hac.%s.d4c.nintendo.net/t/s/0100000000000816/%s?device_id=%s' % (env, ver, did)
+
+    url = 'https://atumn.hac.%s.d4c.nintendo.net/t/s/0100000000000816/%s?device_id=%s' % (
+        env, ver, did)
     r = make_request('HEAD', url)
     cnmtID = r.headers.get('X-Nintendo-Content-ID')
-    
+
     print('\nDownloading CNMT (%s)...' % cnmtID)
-    url = 'https://atumn.hac.%s.d4c.nintendo.net/c/s/%s?device_id=%s' % (env, cnmtID, did)
+    url = 'https://atumn.hac.%s.d4c.nintendo.net/c/s/%s?device_id=%s' % (
+        env, cnmtID, did)
     fPath = os.path.join(sysupdateDir, '%s.cnmt.nca' % cnmtID)
     cnmtNCA = download_file(url, fPath)
-    
+
     cnmtDir = decrypt_NCA(cnmtNCA)
-    CNMT = cnmt(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]), 
-                os.path.join(cnmtDir, 'Header.bin'))
-    
+    CNMT = cnmt(
+        os.path.join(cnmtDir, 'section0',
+                     os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
+        os.path.join(cnmtDir, 'Header.bin'))
+
     titles = CNMT.parse()
     for title in titles:
         dir = os.path.join(sysupdateDir, title)
         os.makedirs(dir, exist_ok=True)
         download_title(dir, title, titles[title][0], n='n')
-        
-    return sysupdateDir    
-    
+
+    return sysupdateDir
+
+
 class cnmt:
     titleTypes = {
         0x1: 'SystemProgram',
@@ -1120,130 +1284,151 @@ class cnmt:
         0x3: 'SystemUpdate',
         0x4: 'BootImagePackage',
         0x5: 'BootImagePackageSafe',
-        0x80:'Application',
-        0x81:'Patch',
-        0x82:'AddOnContent',
-        0x83:'Delta'
+        0x80: 'Application',
+        0x81: 'Patch',
+        0x82: 'AddOnContent',
+        0x83: 'Delta'
     }
-    contentTypes  = {
-        0:'Meta', 
-        1:'Program', 
-        2:'Data', 
-        3:'Control', 
-        4:'HtmlDocument', 
-        5:'LegalInformation', 
-        6:'DeltaFragment'
+    contentTypes = {
+        0: 'Meta',
+        1: 'Program',
+        2: 'Data',
+        3: 'Control',
+        4: 'HtmlDocument',
+        5: 'LegalInformation',
+        6: 'DeltaFragment'
     }
 
-    def __init__(self, fPath, hdPath):                    
+    def __init__(self, fPath, hdPath):
         f = open(fPath, 'rb')
-        
-        self.path     = fPath
-        self.type     = self.titleTypes[read_u8(f, 0xC)]
-        self.id       = '%016x' % read_u64(f, 0x0)
-        self.ver      = str(read_u32(f, 0x8))
-        self.sysver   = str(read_u64(f, 0x28))
+
+        self.path = fPath
+        self.type = self.titleTypes[read_u8(f, 0xC)]
+        self.id = '%016x' % read_u64(f, 0x0)
+        self.ver = str(read_u32(f, 0x8))
+        self.sysver = str(read_u64(f, 0x28))
         self.dlsysver = str(read_u64(f, 0x18))
-        self.digest   = hx(read_at(f, f.seek(0, 2)-0x20, f.seek(0, 2))).decode()
+        self.digest = hx(read_at(f,
+                                 f.seek(0, 2) - 0x20, f.seek(0, 2))).decode()
 
-        self.packTypes = {0x1: 'SystemProgram',
-                          0x2: 'SystemData',
-                          0x3: 'SystemUpdate',
-                          0x4: 'BootImagePackage',
-                          0x5: 'BootImagePackageSafe',
-                          0x80: 'Application',
-                          0x81: 'Patch',
-                          0x82: 'AddOnContent',
-                          0x83: 'Delta'}
+        self.packTypes = {
+            0x1: 'SystemProgram',
+            0x2: 'SystemData',
+            0x3: 'SystemUpdate',
+            0x4: 'BootImagePackage',
+            0x5: 'BootImagePackageSafe',
+            0x80: 'Application',
+            0x81: 'Patch',
+            0x82: 'AddOnContent',
+            0x83: 'Delta'
+        }
 
-        self.ncaTypes = {0: 'Meta', 1: 'Program', 2: 'Data', 3: 'Control',
-                         4: 'HtmlDocument', 5: 'LegalInformation', 6: 'DeltaFragment'}
+        self.ncaTypes = {
+            0: 'Meta',
+            1: 'Program',
+            2: 'Data',
+            3: 'Control',
+            4: 'HtmlDocument',
+            5: 'LegalInformation',
+            6: 'DeltaFragment'
+        }
 
-        
         with open(hdPath, 'rb') as ncaHd:
             self.mkeyrev = str(read_u8(ncaHd, 0x220))
-        
+
         f.close()
 
     def parse(self, contentType=''):
         f = open(self.path, 'rb')
-        
+
         data = {}
         if self.type == 'SystemUpdate':
             metaEntriesNB = read_u16(f, 0x12)
             for n in range(metaEntriesNB):
-                offset = 0x20 + 0x10*n
-                tid  = '%016x' % read_u64(f, offset)
-                ver  = str(read_u32(f, offset+0x8))
-                titleType = self.titleTypes[read_u8(f, offset+0xC)]
-                
+                offset = 0x20 + 0x10 * n
+                tid = '%016x' % read_u64(f, offset)
+                ver = str(read_u32(f, offset + 0x8))
+                titleType = self.titleTypes[read_u8(f, offset + 0xC)]
+
                 data[tid] = ver, titleType
         else:
-            tableOffset = read_u16(f,0xE)
+            tableOffset = read_u16(f, 0xE)
             contentEntriesNB = read_u16(f, 0x10)
             for n in range(contentEntriesNB):
-                offset = 0x20 + tableOffset + 0x38*n
+                offset = 0x20 + tableOffset + 0x38 * n
                 hash = hx(read_at(f, offset, 0x20)).decode()
-                tid  = hx(read_at(f, offset+0x20, 0x10)).decode()
-                size = read_u48(f, offset+0x30)
-                type = self.contentTypes[read_u16(f, offset+0x36)]
-                
+                tid = hx(read_at(f, offset + 0x20, 0x10)).decode()
+                size = read_u48(f, offset + 0x30)
+                type = self.contentTypes[read_u16(f, offset + 0x36)]
+
                 if type == contentType or contentType == '':
                     data[tid] = type, size, hash
-    
+
         f.close()
         return data
-     
+
     def gen_xml(self, ncaPath, outf):
         data = self.parse()
-            
+
         ContentMeta = ET.Element('ContentMeta')
-        
-        ET.SubElement(ContentMeta, 'Type').text                          = self.type
-        ET.SubElement(ContentMeta, 'Id').text                            = '0x' + self.id
-        ET.SubElement(ContentMeta, 'Version').text                       = self.ver
-        ET.SubElement(ContentMeta, 'RequiredDownloadSystemVersion').text = self.dlsysver
-        
+
+        ET.SubElement(ContentMeta, 'Type').text = self.type
+        ET.SubElement(ContentMeta, 'Id').text = '0x' + self.id
+        ET.SubElement(ContentMeta, 'Version').text = self.ver
+        ET.SubElement(ContentMeta,
+                      'RequiredDownloadSystemVersion').text = self.dlsysver
+
         n = 1
         for tid in data:
-            locals()["Content"+str(n)] = ET.SubElement(ContentMeta, 'Content')
-            ET.SubElement(locals()["Content"+str(n)], 'Type').text          = data[tid][0]
-            ET.SubElement(locals()["Content"+str(n)], 'Id').text            = tid
-            ET.SubElement(locals()["Content"+str(n)], 'Size').text          = str(data[tid][1])
-            ET.SubElement(locals()["Content"+str(n)], 'Hash').text          = data[tid][2]
-            ET.SubElement(locals()["Content"+str(n)], 'KeyGeneration').text = self.mkeyrev
+            locals()["Content" + str(n)] = ET.SubElement(
+                ContentMeta, 'Content')
+            ET.SubElement(locals()["Content" + str(n)],
+                          'Type').text = data[tid][0]
+            ET.SubElement(locals()["Content" + str(n)], 'Id').text = tid
+            ET.SubElement(locals()["Content" + str(n)],
+                          'Size').text = str(data[tid][1])
+            ET.SubElement(locals()["Content" + str(n)],
+                          'Hash').text = data[tid][2]
+            ET.SubElement(locals()["Content" + str(n)],
+                          'KeyGeneration').text = self.mkeyrev
             n += 1
-            
+
         # cnmt.nca itself
         cnmt = ET.SubElement(ContentMeta, 'Content')
-        ET.SubElement(cnmt, 'Type').text          = 'Meta'
-        ET.SubElement(cnmt, 'Id').text            = os.path.basename(ncaPath).split('.')[0]
-        ET.SubElement(cnmt, 'Size').text          = str(os.path.getsize(ncaPath))
-        ET.SubElement(cnmt, 'Hash').text          = sha256_file(ncaPath)
+        ET.SubElement(cnmt, 'Type').text = 'Meta'
+        ET.SubElement(cnmt,
+                      'Id').text = os.path.basename(ncaPath).split('.')[0]
+        ET.SubElement(cnmt, 'Size').text = str(os.path.getsize(ncaPath))
+        ET.SubElement(cnmt, 'Hash').text = sha256_file(ncaPath)
         ET.SubElement(cnmt, 'KeyGeneration').text = self.mkeyrev
-            
-        ET.SubElement(ContentMeta, 'Digest').text                = self.digest
-        ET.SubElement(ContentMeta, 'KeyGenerationMin').text      = self.mkeyrev
+
+        ET.SubElement(ContentMeta, 'Digest').text = self.digest
+        ET.SubElement(ContentMeta, 'KeyGenerationMin').text = self.mkeyrev
         ET.SubElement(ContentMeta, 'RequiredSystemVersion').text = self.sysver
         if self.type == 'Application':
-            ET.SubElement(ContentMeta, 'PatchId').text       = '0x%016x' % (int(self.id, 16) + 0x800)
+            ET.SubElement(
+                ContentMeta,
+                'PatchId').text = '0x%016x' % (int(self.id, 16) + 0x800)
         elif self.type == 'Patch':
-            ET.SubElement(ContentMeta, 'OriginalId').text    = '0x%016x' % (int(self.id, 16) & 0xFFFFFFFFFFFFF000)
-        elif self.type == 'AddOnContent':    
-            ET.SubElement(ContentMeta, 'ApplicationId').text = '0x%016x' % (int(self.id, 16) - 0x1000 & 0xFFFFFFFFFFFFF000)
-        
+            ET.SubElement(ContentMeta, 'OriginalId').text = '0x%016x' % (
+                int(self.id, 16) & 0xFFFFFFFFFFFFF000)
+        elif self.type == 'AddOnContent':
+            ET.SubElement(ContentMeta, 'ApplicationId').text = '0x%016x' % (
+                int(self.id, 16) - 0x1000 & 0xFFFFFFFFFFFFF000)
+
         string = ET.tostring(ContentMeta, encoding='utf-8')
         reparsed = minidom.parseString(string)
         with open(outf, 'wb') as f:
             f.write(reparsed.toprettyxml(encoding='utf-8', indent='  ')[:-1])
-            
+
         print('\t\tGenerated %s!' % os.path.basename(outf))
         return outf
 
     def gen_xml_tinfoil(self, ncaPath, outf):
         data = self.parse()
-        hdPath = os.path.join(os.path.dirname(ncaPath),
-                              '%s.cnmt' % os.path.basename(ncaPath).split('.')[0], 'Header.bin')
+        hdPath = os.path.join(
+            os.path.dirname(ncaPath),
+            '%s.cnmt' % os.path.basename(ncaPath).split('.')[0], 'Header.bin')
         print(hdPath)
         with open(hdPath, 'rb') as ncaHd:
             mKeyRev = str(read_u8(ncaHd, 0x220))
@@ -1253,17 +1438,23 @@ class cnmt:
         ET.SubElement(ContentMeta, 'Type').text = self.type
         ET.SubElement(ContentMeta, 'Id').text = '0x%s' % self.id
         ET.SubElement(ContentMeta, 'Version').text = self.ver
-        ET.SubElement(ContentMeta, 'RequiredDownloadSystemVersion').text = self.dlsysver
+        ET.SubElement(ContentMeta,
+                      'RequiredDownloadSystemVersion').text = self.dlsysver
 
         n = 1
         for tid in data:
             if data[tid][0] == 'Control':
-                locals()["Content" + str(n)] = ET.SubElement(ContentMeta, 'Content')
-                ET.SubElement(locals()["Content" + str(n)], 'Type').text = data[tid][0]
+                locals()["Content" + str(n)] = ET.SubElement(
+                    ContentMeta, 'Content')
+                ET.SubElement(locals()["Content" + str(n)],
+                              'Type').text = data[tid][0]
                 ET.SubElement(locals()["Content" + str(n)], 'Id').text = tid
-                ET.SubElement(locals()["Content" + str(n)], 'Size').text = str(data[tid][1])
-                ET.SubElement(locals()["Content" + str(n)], 'Hash').text = str(data[tid][2])
-                ET.SubElement(locals()["Content" + str(n)], 'KeyGeneration').text = mKeyRev
+                ET.SubElement(locals()["Content" + str(n)],
+                              'Size').text = str(data[tid][1])
+                ET.SubElement(locals()["Content" + str(n)],
+                              'Hash').text = str(data[tid][2])
+                ET.SubElement(locals()["Content" + str(n)],
+                              'KeyGeneration').text = mKeyRev
                 n += 1
 
         # cnmt.nca itself
@@ -1273,41 +1464,53 @@ class cnmt:
         ET.SubElement(ContentMeta, 'Digest').text = self.digest
         ET.SubElement(ContentMeta, 'KeyGenerationMin').text = self.mkeyrev
         global sysver0
-        ET.SubElement(ContentMeta, 'RequiredSystemVersion').text = ('0' if sysver0 else self.sysver)
+        ET.SubElement(ContentMeta,
+                      'RequiredSystemVersion').text = ('0' if sysver0 else
+                                                       self.sysver)
         if self.id.endswith('800'):
-            ET.SubElement(ContentMeta, 'PatchId').text = '0x%s000' % self.id[:-3]
+            ET.SubElement(ContentMeta,
+                          'PatchId').text = '0x%s000' % self.id[:-3]
         else:
-            ET.SubElement(ContentMeta, 'PatchId').text = '0x%s800' % self.id[:-3]
+            ET.SubElement(ContentMeta,
+                          'PatchId').text = '0x%s800' % self.id[:-3]
         string = ET.tostring(ContentMeta, encoding='utf-8')
         reparsed = minidom.parseString(string)
         with open(outf, 'w') as f:
-            f.write(reparsed.toprettyxml(encoding='utf-8', indent='  ').decode()[:-1])
+            f.write(
+                reparsed.toprettyxml(encoding='utf-8',
+                                     indent='  ').decode()[:-1])
 
         print('\nGenerated %s!' % os.path.basename(outf))
         return outf
+
 
 class nsp:
     def __init__(self, outf, files):
         self.path = outf
         self.files = files
-        
+
     def repack(self):
         print('\tRepacking to NSP...')
-        
+
         hd = self._gen_header()
-        
+
         totSize = len(hd) + sum(os.path.getsize(file) for file in self.files)
         if os.path.exists(self.path) and os.path.getsize(self.path) == totSize:
             print('\t\tRepack %s is already complete!' % self.path)
             return
-            
-        t = tqdm(total=totSize, unit='B', unit_scale=True, desc=os.path.basename(self.path), leave=False)
-        
+
+        t = tqdm(
+            total=totSize,
+            unit='B',
+            unit_scale=True,
+            desc=os.path.basename(self.path),
+            leave=False)
+
         t.write('\t\tWriting header...')
         outf = open(self.path, 'wb')
         outf.write(hd)
         t.update(len(hd))
-        
+
         for file in self.files:
             t.write('\t\tAppending %s...' % os.path.basename(file))
             with open(file, 'rb') as inf:
@@ -1318,27 +1521,32 @@ class nsp:
                     outf.write(buf)
                     t.update(len(buf))
         t.close()
-        
+
         outf.close()
         print('\t\tRepacked to %s!' % outf.name)
-        
+
     def _gen_header(self):
         filesNb = len(self.files)
-        stringTable = '\x00'.join(os.path.basename(file) for file in self.files)
-        headerSize = 0x10 + filesNb*0x18 + len(stringTable)
-        remainder = 0x10 - headerSize%0x10
+        stringTable = '\x00'.join(
+            os.path.basename(file) for file in self.files)
+        headerSize = 0x10 + filesNb * 0x18 + len(stringTable)
+        remainder = 0x10 - headerSize % 0x10
         headerSize += remainder
-        
+
         fileSizes = [os.path.getsize(file) for file in self.files]
         fileOffsets = [sum(fileSizes[:n]) for n in range(filesNb)]
-        
-        fileNamesLengths = [len(os.path.basename(file))+1 for file in self.files] # +1 for the \x00
-        stringTableOffsets = [sum(fileNamesLengths[:n]) for n in range(filesNb)]
-        
-        header =  b''
+
+        fileNamesLengths = [
+            len(os.path.basename(file)) + 1 for file in self.files
+        ]  # +1 for the \x00
+        stringTableOffsets = [
+            sum(fileNamesLengths[:n]) for n in range(filesNb)
+        ]
+
+        header = b''
         header += b'PFS0'
         header += pk('<I', filesNb)
-        header += pk('<I', len(stringTable)+remainder)
+        header += pk('<I', len(stringTable) + remainder)
         header += b'\x00\x00\x00\x00'
         for n in range(filesNb):
             header += pk('<Q', fileOffsets[n])
@@ -1347,34 +1555,40 @@ class nsp:
             header += b'\x00\x00\x00\x00'
         header += stringTable.encode()
         header += remainder * b'\x00'
-        
+
         return header
 
-  
+
 # End of CDNSP script
 # --------------------------
 # GUI code begins
 
-def game_image(tid, ver, tkey="", nspRepack=False, n='',verify=False):
+
+def game_image(tid, ver, tkey="", nspRepack=False, n='', verify=False):
     import glob
     if not os.path.isdir("Images"):
         os.mkdir("Images")
     if not os.path.isdir("Images/{}".format(tid)):
         os.mkdir("Images/{}".format(tid))
-    
+
     gameDir = "Images/{}".format(tid)
-    
-    if os.path.isdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid)):
-        for fname in os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid)):
+
+    if os.path.isdir(
+            os.path.dirname(os.path.abspath(__file__)) +
+            '/Images/{}/section0/'.format(tid)):
+        for fname in os.listdir(
+                os.path.dirname(os.path.abspath(__file__)) +
+                '/Images/{}/section0/'.format(tid)):
             if fname.endswith('.jpg'):
                 return (gameDir, "Exist")
-        
-    tid = tid.lower();
-    tkey = tkey.lower();
+
+    tid = tid.lower()
+    tkey = tkey.lower()
     if len(tid) != 16:
-        tid = (16-len(tid)) * '0' + tid
-        
-    url = 'https://atum%s.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (n, env, tid, ver, did)
+        tid = (16 - len(tid)) * '0' + tid
+
+    url = 'https://atum%s.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (
+        n, env, tid, ver, did)
     try:
         r = make_request('HEAD', url)
     except Exception as e:
@@ -1383,16 +1597,18 @@ def game_image(tid, ver, tkey="", nspRepack=False, n='',verify=False):
 
     if CNMTid is None:
         print("not a valid title")
-        
+
     fPath = os.path.join(gameDir, CNMTid + '.cnmt.nca')
     cnmtNCA = download_file(url, fPath)
     cnmtDir = decrypt_NCA(cnmtNCA)
-##    print(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]), 
-##                os.path.join(cnmtDir, 'Header.bin'))
-##    sys.exit()
-    CNMT = cnmt(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]), 
-                os.path.join(cnmtDir, 'Header.bin'))
-    
+    ##    print(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
+    ##                os.path.join(cnmtDir, 'Header.bin'))
+    ##    sys.exit()
+    CNMT = cnmt(
+        os.path.join(cnmtDir, 'section0',
+                     os.listdir(os.path.join(cnmtDir, 'section0'))[0]),
+        os.path.join(cnmtDir, 'Header.bin'))
+
     NCAs = {
         0: [],
         1: [],
@@ -1402,22 +1618,25 @@ def game_image(tid, ver, tkey="", nspRepack=False, n='',verify=False):
         5: [],
         6: [],
     }
-    for type in [3]: # Download smaller files first
+    for type in [3]:  # Download smaller files first
         list = CNMT.parse(CNMT.contentTypes[type])
         for ncaID in list:
-            print('\tDownloading %s entry (%s.nca)...' % (CNMT.contentTypes[type], ncaID))
-            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (n, env, ncaID, did)
+            print('\tDownloading %s entry (%s.nca)...' %
+                  (CNMT.contentTypes[type], ncaID))
+            url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/c/%s?device_id=%s' % (
+                n, env, ncaID, did)
             fPath = os.path.join(gameDir, "control" + '.nca')
             fSize = list[ncaID][1]
-            
+
             NCAs[type].append(download_file(url, fPath, fSize))
-            
+
             if verify:
                 print('\t\tVerifying file...')
                 if sha256_file(fPath) == list[ncaID][2]:
                     print('\t\t\tHashes match, file is correct!')
                 else:
-                    print('\t\t\t%s is corrupted, hashes don\'t match!' % os.path.basename(fPath))
+                    print('\t\t\t%s is corrupted, hashes don\'t match!' %
+                          os.path.basename(fPath))
     return (gameDir, "N")
 
 
@@ -1428,8 +1647,12 @@ def read_game_info():
         game_info_json = json.load(file)
         file.close()
     except:
-        print(_("Missing Game_info.json file in the Config folder, attempting to download one for you"))
-        urllib.request.urlretrieve("https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Game_info.json", "Config/Game_info.json")
+        print(
+            _("Missing Game_info.json file in the Config folder, attempting to download one for you"
+              ))
+        urllib.request.urlretrieve(
+            "https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Game_info.json",
+            "Config/Game_info.json")
 
         if os.path.isfile("Config/Game_info.json"):
             file = open("Config/Game_info.json", "r", encoding="utf8")
@@ -1441,7 +1664,9 @@ def read_game_info():
             file.close()
             read_game_info()
 
+
 read_game_info()
+
 
 def updateJsonFile(key, value, root=""):
     if os.path.isfile("CDNSP-GUI-config.json"):
@@ -1460,6 +1685,7 @@ def updateJsonFile(key, value, root=""):
         set_lang(value)
         main()
 
+
 def GUI_config(fPath):
     if sys_locale != "zh_CN":
         main_win = "650x530+100+100"
@@ -1471,24 +1697,27 @@ def GUI_config(fPath):
         queue_win = "720x300+770+100"
         scan_win = "391x85+100+100"
         base64_win = "467x104+100+100"
-            
-    config = {"Options": {
-                "Download_location":  "",
-                "Game_location": "",
-                "NSP_repack":         "True",
-                "Mute":               "False",
-                "Titlekey_check":     "True",
-                "noaria":             "True",
-                "Disable_game_image": "False",
-                "Shorten": "False",
-                "Tinfoil": "False",
-                "SysVerZero": "False",
-                "Main_win": main_win,
-                "Queue_win": queue_win,
-                "Update_win": "600x400+120+200",
-                "Scan_win": scan_win,
-                "Base64_win": base64_win,
-                "Language": "en"}}
+
+    config = {
+        "Options": {
+            "Download_location": "",
+            "Game_location": "",
+            "NSP_repack": "True",
+            "Mute": "False",
+            "Titlekey_check": "True",
+            "noaria": "True",
+            "Disable_game_image": "False",
+            "Shorten": "False",
+            "Tinfoil": "False",
+            "SysVerZero": "False",
+            "Main_win": main_win,
+            "Queue_win": queue_win,
+            "Update_win": "600x400+120+200",
+            "Scan_win": scan_win,
+            "Base64_win": base64_win,
+            "Language": "en"
+        }
+    }
 
     try:
         f = open(fPath, 'r')
@@ -1502,33 +1731,35 @@ def GUI_config(fPath):
 
     def str2bool(v):
         return v.lower() == "true"
-    
-    download_location  = j['Options']['Download_location']
+
+    download_location = j['Options']['Download_location']
     game_location = j['Options']['Game_location']
-    repack  = str2bool(j['Options']['NSP_repack'])
-    mute  = str2bool(j['Options']['Mute'])
-    titlekey_check  = str2bool(j['Options']['Titlekey_check'])
-    noaria  = str2bool(j['Options']['noaria'])
-    disable_game_image  = str2bool(j['Options']['Disable_game_image'])
+    repack = str2bool(j['Options']['NSP_repack'])
+    mute = str2bool(j['Options']['Mute'])
+    titlekey_check = str2bool(j['Options']['Titlekey_check'])
+    noaria = str2bool(j['Options']['noaria'])
+    disable_game_image = str2bool(j['Options']['Disable_game_image'])
     shorten = str2bool(j['Options']['Shorten'])
     tinfoil = str2bool(j['Options']['Tinfoil'])
     sysver0 = str2bool(j['Options']['SysVerZero'])
-    main_win  = j['Options']['Main_win']
-    queue_win  = j['Options']['Queue_win']
-    update_win  = j['Options']['Update_win']
+    main_win = j['Options']['Main_win']
+    queue_win = j['Options']['Queue_win']
+    update_win = j['Options']['Update_win']
     scan_win = j['Options']['Scan_win']
     base64_win = j['Options']['Base64_win']
     language = j['Options']['Language']
 
-    if not os.path.exists(download_location): # If the custom download directory doesn't exist then use default path
+    if not os.path.exists(
+            download_location
+    ):  # If the custom download directory doesn't exist then use default path
         download_location = ""
         updateJsonFile("Download_location", download_location)
     return download_location, game_location, repack, mute, titlekey_check, noaria, \
            disable_game_image, shorten, tinfoil, sysver0, main_win, queue_win, update_win, \
            scan_win, base64_win, language
 
-class Application():
 
+class Application():
     def __init__(self, root, titleID, titleKey, title, dbURL):
 
         global main_win
@@ -1537,16 +1768,17 @@ class Application():
         global scan_win
         global base64_win
         global langauge
-        
-        configGUIPath = os.path.join(os.path.dirname(__file__), 'CDNSP-GUI-config.json') # Load config file
+
+        configGUIPath = os.path.join(
+            os.path.dirname(__file__),
+            'CDNSP-GUI-config.json')  # Load config file
         self.path, self.game_location, self.repack, self.mute, self.titlekey_check, noaria_temp, \
                    self.game_image_disable, shorten_temp, tinfoil_temp, sysver0_temp, main_win, \
                    queue_win, update_win, scan_win, \
                    base64_win, language = GUI_config(configGUIPath) # Get config values
 
-        
         update_win_size = update_win
-        
+
         self.root = root
         self.root.geometry(main_win)
         self.titleID = titleID
@@ -1557,7 +1789,7 @@ class Application():
         self.persistent_queue = []
         self.db_URL = dbURL
         self.current_status = []
-        self.installed = [] # List of TID already installed
+        self.installed = []  # List of TID already installed
         self.installed_ver = []
         if os.path.exists(r"Config/installed.txt"):
             f = open(r"Config/installed.txt", "r")
@@ -1568,13 +1800,13 @@ class Application():
                     tid = "{}800".format(tid[:13])
                 self.installed.append(tid)
                 self.installed_ver.append(ver)
-        
+
         self.listWidth = 67
         global sys_name
-        
-##        global save_game_folder
-##        save_game_folder = False -- To be worked on in the future
-        
+
+        ##        global save_game_folder
+        ##        save_game_folder = False -- To be worked on in the future
+
         global titlekey_check
         titlekey_check = self.titlekey_check
 
@@ -1591,7 +1823,7 @@ class Application():
 
         global truncateName
         truncateName = shorten_temp
-        
+
         global tinfoil
         tinfoil = tinfoil_temp
 
@@ -1603,73 +1835,141 @@ class Application():
 
         # Download Menu Tab
         self.downloadMenu = Menu(self.menubar, tearoff=0)
-        self.downloadMenu.add_command(label=_("Select Download Location"), command=self.change_dl_path)
-        self.downloadMenu.add_command(label=_("Preload Game Images"), command=self.preload_images)
-        self.downloadMenu.add_command(label=_("Update Version List"), command=self.update_ver_list)
-##        self.downloadMenu.add_command(label=_("Preload Game Descriptions"), command=self.preload_desc)
+        self.downloadMenu.add_command(
+            label=_("Select Download Location"), command=self.change_dl_path)
+        self.downloadMenu.add_command(
+            label=_("Preload Game Images"), command=self.preload_images)
+        self.downloadMenu.add_command(
+            label=_("Update Version List"), command=self.update_ver_list)
+        ##        self.downloadMenu.add_command(label=_("Preload Game Descriptions"), command=self.preload_desc)
         # Not if I want to preload game description, since some games can't be found on the CDN
-        self.downloadMenu.add_separator() # Add separator to the menu dropdown
-        self.downloadMenu.add_command(label=_("Load Saved Queue"), command=self.import_persistent_queue)
-        self.downloadMenu.add_command(label=_("Save Queue"), command=self.export_persistent_queue)
+        self.downloadMenu.add_separator()  # Add separator to the menu dropdown
+        self.downloadMenu.add_command(
+            label=_("Load Saved Queue"), command=self.import_persistent_queue)
+        self.downloadMenu.add_command(
+            label=_("Save Queue"), command=self.export_persistent_queue)
 
         # Options Menu Tab
         self.optionMenu = Menu(self.menubar, tearoff=0)
-        self.optionMenu.add_command(label=_("Aria2c will be missed"), command=self.disable_aria2c)
-        self.optionMenu.add_command(label=_("DISABLE GAME IMAGE"), command=self.disable_game_image)
-        
-        self.optionMenu.add_separator() # Add separator to the menu dropdown
-        
-        self.optionMenu.add_command(label=_("Mute All Pop-ups"), command=self.mute_all)
-        self.optionMenu.add_command(label=_("Disable NSP Repack"), command=self.nsp_repack_option)
-        self.optionMenu.add_command(label=_("Disable Titlekey check"), command=self.titlekey_check_option)
-        
-        self.optionMenu.add_separator() # Add separator to the menu dropdown
-        
-        self.optionMenu.add_command(label=_("Enable Shorten Name"), command=self.shorten)
-        self.optionMenu.add_command(label=_("Enable Tinfoil Download"), command=self.tinfoil_change)
-        self.optionMenu.add_command(label=_("Enable SysVer 0 Patch"), command=self.sysver_zero)
-        
-        self.optionMenu.add_separator() # Add separator to the menu dropdown
-        
-        self.optionMenu.add_command(label=_("Save Windows Location and Size"), command=self.window_save)
+        self.optionMenu.add_command(
+            label=_("Aria2c will be missed"), command=self.disable_aria2c)
+        self.optionMenu.add_command(
+            label=_("DISABLE GAME IMAGE"), command=self.disable_game_image)
 
-        
+        self.optionMenu.add_separator()  # Add separator to the menu dropdown
+
+        self.optionMenu.add_command(
+            label=_("Mute All Pop-ups"), command=self.mute_all)
+        self.optionMenu.add_command(
+            label=_("Disable NSP Repack"), command=self.nsp_repack_option)
+        self.optionMenu.add_command(
+            label=_("Disable Titlekey check"),
+            command=self.titlekey_check_option)
+
+        self.optionMenu.add_separator()  # Add separator to the menu dropdown
+
+        self.optionMenu.add_command(
+            label=_("Enable Shorten Name"), command=self.shorten)
+        self.optionMenu.add_command(
+            label=_("Enable Tinfoil Download"), command=self.tinfoil_change)
+        self.optionMenu.add_command(
+            label=_("Enable SysVer 0 Patch"), command=self.sysver_zero)
+
+        self.optionMenu.add_separator()  # Add separator to the menu dropdown
+
+        self.optionMenu.add_command(
+            label=_("Save Windows Location and Size"),
+            command=self.window_save)
+
         # Tool Menu Tab
         self.toolMenu = Menu(self.menubar, tearoff=0)
-        self.toolMenu.add_command(label=_("Scan for existing games"), command=self.my_game_GUI)
-        self.toolMenu.add_command(label=_("Base64 Decoder"), command=self.base_64_GUI)
+        self.toolMenu.add_command(
+            label=_("Scan for existing games"), command=self.my_game_GUI)
+        self.toolMenu.add_command(
+            label=_("Base64 Decoder"), command=self.base_64_GUI)
 
         # Language Menu Tab
         self.langMenu = Menu(self.menubar, tearoff=0)
-        self.langMenu.add_command(label='Afrikaans (Afrikaans)', command=lambda: updateJsonFile('Language', 'af', root=self.root))
-        self.langMenu.add_command(label='Arabic (العربية)', command=lambda: updateJsonFile('Language', 'ar', root=self.root))
-        self.langMenu.add_command(label='Chinese Simplified (简体中文)', command=lambda: updateJsonFile('Language', 'zh-cn', root=self.root))
-        self.langMenu.add_command(label='Chinese Traditional (繁體中文)', command=lambda: updateJsonFile('Language', 'zh-tw', root=self.root))
-        self.langMenu.add_command(label='Dutch (Nederlands)', command=lambda: updateJsonFile('Language', 'nl', root=self.root))
-        self.langMenu.add_command(label='English', command=lambda: updateJsonFile('Language', 'en', root=self.root))
-        self.langMenu.add_command(label='French (Français)', command=lambda: updateJsonFile('Language', 'fr', root=self.root))
-        self.langMenu.add_command(label='German (Deutsch)', command=lambda: updateJsonFile('Language', 'de', root=self.root))
-        self.langMenu.add_command(label='Greek (Ελληνικά)', command=lambda: updateJsonFile('Language', 'el', root=self.root))
-        self.langMenu.add_command(label='Hebrew (עברית)', command=lambda: updateJsonFile('Language', 'he', root=self.root))
-        self.langMenu.add_command(label='Hungarian (Magyar)', command=lambda: updateJsonFile('Language', 'hu', root=self.root))
-        self.langMenu.add_command(label='Indonesian (Bahasa Indonesia)', command=lambda: updateJsonFile('Language', 'id', root=self.root))
-        self.langMenu.add_command(label='Italian (Italiano)', command=lambda: updateJsonFile('Language', 'it', root=self.root))
-        self.langMenu.add_command(label='Japanese (日本語)', command=lambda: updateJsonFile('Language', 'ja', root=self.root))
-        self.langMenu.add_command(label='Korean (한국어)', command=lambda: updateJsonFile('Language', 'ko', root=self.root))
-        self.langMenu.add_command(label='Malaysian (Bahasa Melayu)', command=lambda: updateJsonFile('Language', 'ms', root=self.root))
-        self.langMenu.add_command(label='Persian (پارسی)', command=lambda: updateJsonFile('Language', 'fa', root=self.root))
-        self.langMenu.add_command(label='Polish (Polski)', command=lambda: updateJsonFile('Language', 'pl', root=self.root))
-        self.langMenu.add_command(label='Portuguese (Português)', command=lambda: updateJsonFile('Language', 'pt', root=self.root))
-        self.langMenu.add_command(label='Russian (Русский)', command=lambda: updateJsonFile('Language', 'ru', root=self.root))
-        self.langMenu.add_command(label='Spanish (Español)', command=lambda: updateJsonFile('Language', 'es', root=self.root))
-        self.langMenu.add_command(label='Thai (ไทย)', command=lambda: updateJsonFile('Language', 'th', root=self.root))
-        self.langMenu.add_command(label='Turkish (Merhaba)', command=lambda: updateJsonFile('Language', 'tr', root=self.root))
-        self.langMenu.add_command(label='Vietnamese (Tiếng Việt)', command=lambda: updateJsonFile('Language', 'vi', root=self.root))
+        self.langMenu.add_command(
+            label='Afrikaans (Afrikaans)',
+            command=lambda: updateJsonFile('Language', 'af', root=self.root))
+        self.langMenu.add_command(
+            label='Arabic (العربية)',
+            command=lambda: updateJsonFile('Language', 'ar', root=self.root))
+        self.langMenu.add_command(
+            label='Chinese Simplified (简体中文)',
+            command=
+            lambda: updateJsonFile('Language', 'zh-cn', root=self.root))
+        self.langMenu.add_command(
+            label='Chinese Traditional (繁體中文)',
+            command=
+            lambda: updateJsonFile('Language', 'zh-tw', root=self.root))
+        self.langMenu.add_command(
+            label='Dutch (Nederlands)',
+            command=lambda: updateJsonFile('Language', 'nl', root=self.root))
+        self.langMenu.add_command(
+            label='English',
+            command=lambda: updateJsonFile('Language', 'en', root=self.root))
+        self.langMenu.add_command(
+            label='French (Français)',
+            command=lambda: updateJsonFile('Language', 'fr', root=self.root))
+        self.langMenu.add_command(
+            label='German (Deutsch)',
+            command=lambda: updateJsonFile('Language', 'de', root=self.root))
+        self.langMenu.add_command(
+            label='Greek (Ελληνικά)',
+            command=lambda: updateJsonFile('Language', 'el', root=self.root))
+        self.langMenu.add_command(
+            label='Hebrew (עברית)',
+            command=lambda: updateJsonFile('Language', 'he', root=self.root))
+        self.langMenu.add_command(
+            label='Hungarian (Magyar)',
+            command=lambda: updateJsonFile('Language', 'hu', root=self.root))
+        self.langMenu.add_command(
+            label='Indonesian (Bahasa Indonesia)',
+            command=lambda: updateJsonFile('Language', 'id', root=self.root))
+        self.langMenu.add_command(
+            label='Italian (Italiano)',
+            command=lambda: updateJsonFile('Language', 'it', root=self.root))
+        self.langMenu.add_command(
+            label='Japanese (日本語)',
+            command=lambda: updateJsonFile('Language', 'ja', root=self.root))
+        self.langMenu.add_command(
+            label='Korean (한국어)',
+            command=lambda: updateJsonFile('Language', 'ko', root=self.root))
+        self.langMenu.add_command(
+            label='Malaysian (Bahasa Melayu)',
+            command=lambda: updateJsonFile('Language', 'ms', root=self.root))
+        self.langMenu.add_command(
+            label='Persian (پارسی)',
+            command=lambda: updateJsonFile('Language', 'fa', root=self.root))
+        self.langMenu.add_command(
+            label='Polish (Polski)',
+            command=lambda: updateJsonFile('Language', 'pl', root=self.root))
+        self.langMenu.add_command(
+            label='Portuguese (Português)',
+            command=lambda: updateJsonFile('Language', 'pt', root=self.root))
+        self.langMenu.add_command(
+            label='Russian (Русский)',
+            command=lambda: updateJsonFile('Language', 'ru', root=self.root))
+        self.langMenu.add_command(
+            label='Spanish (Español)',
+            command=lambda: updateJsonFile('Language', 'es', root=self.root))
+        self.langMenu.add_command(
+            label='Thai (ไทย)',
+            command=lambda: updateJsonFile('Language', 'th', root=self.root))
+        self.langMenu.add_command(
+            label='Turkish (Merhaba)',
+            command=lambda: updateJsonFile('Language', 'tr', root=self.root))
+        self.langMenu.add_command(
+            label='Vietnamese (Tiếng Việt)',
+            command=lambda: updateJsonFile('Language', 'vi', root=self.root))
 
         # About Menu
         self.aboutMenu = Menu(self.menubar, tearoff=0)
-        self.aboutMenu.add_command(label=_('Credits'), command=lambda: self.credit_gui())
-        
+        self.aboutMenu.add_command(
+            label=_('Credits'), command=lambda: self.credit_gui())
+
         # Menubar config
         self.menubar.add_cascade(label=_("Download"), menu=self.downloadMenu)
         self.menubar.add_cascade(label=_("Options"), menu=self.optionMenu)
@@ -1680,41 +1980,42 @@ class Application():
 
         # Change Menu Label Based on loaded values
         if self.repack == True:
-            self.optionMenu.entryconfig(4, label= _("Disable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Disable NSP Repack"))
         else:
-            self.optionMenu.entryconfig(4, label= _("Enable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Enable NSP Repack"))
         if self.mute == True:
-            self.optionMenu.entryconfig(3, label= _("Unmute All Pop-ups"))
+            self.optionMenu.entryconfig(3, label=_("Unmute All Pop-ups"))
         else:
-            self.optionMenu.entryconfig(3, label= _("Mute All Pop-ups"))
+            self.optionMenu.entryconfig(3, label=_("Mute All Pop-ups"))
         if self.titlekey_check == True:
-            self.optionMenu.entryconfig(5, label= _("Disable Titlekey check"))
+            self.optionMenu.entryconfig(5, label=_("Disable Titlekey check"))
         else:
-            self.optionMenu.entryconfig(5, label= _("Enable Titlekey check"))
+            self.optionMenu.entryconfig(5, label=_("Enable Titlekey check"))
         if self.game_image_disable == True:
-            self.optionMenu.entryconfig(1, label= _("ENABLE GAME IMAGE"))
+            self.optionMenu.entryconfig(1, label=_("ENABLE GAME IMAGE"))
         else:
-            self.optionMenu.entryconfig(1, label= _("DISABLE GAME IMAGE"))
+            self.optionMenu.entryconfig(1, label=_("DISABLE GAME IMAGE"))
         if truncateName == True:
-            self.optionMenu.entryconfig(7, label= _("Disable Shorten Name"))
+            self.optionMenu.entryconfig(7, label=_("Disable Shorten Name"))
         else:
-            self.optionMenu.entryconfig(7, label= _("Enable Shorten Name"))
+            self.optionMenu.entryconfig(7, label=_("Enable Shorten Name"))
         if tinfoil == True:
-            self.optionMenu.entryconfig(8, label= _("Disable Tinfoil Download"))
+            self.optionMenu.entryconfig(8, label=_("Disable Tinfoil Download"))
         else:
-            self.optionMenu.entryconfig(8, label= _("Enable Tinfoil Download"))
+            self.optionMenu.entryconfig(8, label=_("Enable Tinfoil Download"))
         if sysver0 == True:
-            self.optionMenu.entryconfig(9, label= _("Disable SysVer 0 Patch"))
+            self.optionMenu.entryconfig(9, label=_("Disable SysVer 0 Patch"))
         else:
-            self.optionMenu.entryconfig(9, label= _("Enable SysVer 0 Patch"))
+            self.optionMenu.entryconfig(9, label=_("Enable SysVer 0 Patch"))
 
         # Status Label
         self.status_label = Label(self.root, text=_("Status:"))
         self.status_label.grid(row=0, column=0, columnspan=2, sticky=NS)
-        
+
         # Game selection section
         self.search_var = StringVar()
-        self.search_var.trace("w", lambda name, index, mode: self.update_list(True, label=""))
+        self.search_var.trace(
+            "w", lambda name, index, mode: self.update_list(True, label=""))
 
         game_selection_frame = Frame(self.root)
         game_selection_frame.grid(row=1, column=0, padx=20, pady=20, sticky=N)
@@ -1724,61 +2025,88 @@ class Application():
             entryWidth = self.listWidth + 3
         else:
             entryWidth = self.listWidth
-        self.entry = Entry(game_selection_frame, textvariable=self.search_var, width=entryWidth)
+        self.entry = Entry(
+            game_selection_frame,
+            textvariable=self.search_var,
+            width=entryWidth)
         self.entry.grid(row=0, column=0, columnspan=2, sticky=N)
 
         # Setup Listbox and scrollbar
         self.scrollbar = Scrollbar(game_selection_frame)
-##        self.scrollbar.grid(row=1, column=1, sticky=N+S+W)
+        ##        self.scrollbar.grid(row=1, column=1, sticky=N+S+W)
         self.title_list = Listbox(game_selection_frame, exportselection = False,\
                                   yscrollcommand = self.scrollbar.set, width=self.listWidth, selectmode=EXTENDED)
         self.title_list.bind('<<ListboxSelect>>', self.game_info)
-##        self.title_list.grid(row=1, column=0, sticky=W)
-        self.scrollbar.config(command = self.title_list.yview)
+        ##        self.title_list.grid(row=1, column=0, sticky=W)
+        self.scrollbar.config(command=self.title_list.yview)
 
         # Setup Treeview and Two Scrollbars
         container = ttk.Frame(game_selection_frame)
         container.grid(row=1, column=0, columnspan=2)
-        self.tree = ttk.Treeview(columns=("num", "G", "S"), show="headings", selectmode=EXTENDED)
+        self.tree = ttk.Treeview(
+            columns=("num", "G", "S"), show="headings", selectmode=EXTENDED)
         self.tree.bind('<<TreeviewSelect>>', self.game_info)
-        self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 0))
+        self.tree.heading(
+            "num",
+            text="#",
+            command=lambda c="num": self.sortby(self.tree, c, 0))
         self.tree.column("num", width=40)
-        self.tree.heading("G", text=_("Game"), command=lambda c="G": self.sortby(self.tree, c, 0))
+        self.tree.heading(
+            "G",
+            text=_("Game"),
+            command=lambda c="G": self.sortby(self.tree, c, 0))
         self.tree.column("G", width=590)
-        self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 0))
+        self.tree.heading(
+            "S",
+            text=_("State"),
+            command=lambda c="S": self.sortby(self.tree, c, 0))
         self.tree.column("S", width=130)
         vsb = ttk.Scrollbar(orient="vertical", command=self.tree.yview)
         hsb = ttk.Scrollbar(orient="horizontal", command=self.tree.xview)
         self.tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-        self.tree.grid(column=0, row=0, sticky='nsew', in_=container, columnspan=2)
+        self.tree.grid(
+            column=0, row=0, sticky='nsew', in_=container, columnspan=2)
         vsb.grid(column=2, row=0, sticky='ns', in_=container)
         hsb.grid(column=0, row=1, sticky='ew', in_=container)
         container.grid_columnconfigure(0, weight=1)
         container.grid_rowconfigure(0, weight=1)
 
         # Game image section
-        self.image_text_label = Label(game_selection_frame, text=_("Game Image:"))
+        self.image_text_label = Label(
+            game_selection_frame, text=_("Game Image:"))
         self.image_text_label.grid(row=2, column=0, pady=(20, 0))
 
         self.update_list(label="")
 
         self.image = Image.open("blank.jpg")
         self.photo = ImageTk.PhotoImage(self.image)
-        self.imageLabel = Label(game_selection_frame, image=self.photo, borderwidth=0, highlightthickness=0, cursor="hand2")
+        self.imageLabel = Label(
+            game_selection_frame,
+            image=self.photo,
+            borderwidth=0,
+            highlightthickness=0,
+            cursor="hand2")
         self.imageLabel.bind("<Button-1>", self.eShop_link)
-        self.imageLabel.image = self.photo # keep a reference!
+        self.imageLabel.image = self.photo  # keep a reference!
         self.imageLabel.grid(row=3, column=0, sticky=N, pady=0)
 
-        Label(game_selection_frame, text=_("Click the game image above \nto open the game in the eShop!")).grid(row=4, column=0)
+        Label(
+            game_selection_frame,
+            text=_(
+                "Click the game image above \nto open the game in the eShop!")
+        ).grid(
+            row=4, column=0)
 
         # Game info section
-        Label(game_selection_frame, text=_("Game Info:")).grid(row=2, column=1, pady=(20, 0))
+        Label(
+            game_selection_frame, text=_("Game Info:")).grid(
+                row=2, column=1, pady=(20, 0))
         game_text = Text(game_selection_frame, width=50, height=17, wrap=WORD)
-        
-##        scroll_bar = Scrollbar(game_selection_frame, command=game_text.yview)
-##        scroll_bar.grid(row=3, column=2, sticky='ns')
-##        game_text['yscrollcommand'] = scroll_bar.set
-        
+
+        ##        scroll_bar = Scrollbar(game_selection_frame, command=game_text.yview)
+        ##        scroll_bar.grid(row=3, column=2, sticky='ns')
+        ##        game_text['yscrollcommand'] = scroll_bar.set
+
         self.game_text = game_text
         game_text.grid(row=3, column=1, sticky=N)
         #-------------------------------------------
@@ -1790,7 +2118,8 @@ class Application():
 
         # Demo filter
         filter_frame = Frame(game_info_frame)
-        filter_frame.grid(row=0, column=0, columnspan=2, pady=(20,0), sticky=NS)
+        filter_frame.grid(
+            row=0, column=0, columnspan=2, pady=(20, 0), sticky=NS)
         self.demo = IntVar()
         Checkbutton(filter_frame, text=_("No Demo"), \
                     variable=self.demo, command=self.filter_game)\
@@ -1799,76 +2128,93 @@ class Application():
         Checkbutton(filter_frame, text=_("No Japanese Game"), \
                     variable=self.jap, command=self.filter_game)\
                     .grid(row=1, column=0, pady=(5,0), sticky=NS)
-        
+
         # Title ID info
         self.titleID_label = Label(game_info_frame, text=_("Title ID:"))
-        self.titleID_label.grid(row=1, column=0, pady=(20,0), columnspan=2)
+        self.titleID_label.grid(row=1, column=0, pady=(20, 0), columnspan=2)
 
         self.game_titleID = StringVar()
-        self.gameID_entry = Entry(game_info_frame, textvariable=self.game_titleID)
+        self.gameID_entry = Entry(
+            game_info_frame, textvariable=self.game_titleID)
         self.gameID_entry.grid(row=2, column=0, columnspan=2)
 
         # Title Key info
         self.titleID_label = Label(game_info_frame, text=_("Title Key:"))
-        self.titleID_label.grid(row=3, column=0, pady=(20,0), columnspan=2)
+        self.titleID_label.grid(row=3, column=0, pady=(20, 0), columnspan=2)
 
         self.game_titleKey = StringVar()
-        self.gameKey_entry = Entry(game_info_frame, textvariable=self.game_titleKey)
+        self.gameKey_entry = Entry(
+            game_info_frame, textvariable=self.game_titleKey)
         self.gameKey_entry.grid(row=4, column=0, columnspan=2)
 
         # Select update versions
-        self.version_label = Label(game_info_frame, text=_("Select update version:"))
-        self.version_label.grid(row=5, column=0, pady=(20,0), columnspan=2)
+        self.version_label = Label(
+            game_info_frame, text=_("Select update version:"))
+        self.version_label.grid(row=5, column=0, pady=(20, 0), columnspan=2)
 
         self.version_option = StringVar()
-        self.version_select = ttk.Combobox(game_info_frame, textvariable=self.version_option, state="readonly", postcommand=self.get_update_ver)
+        self.version_select = ttk.Combobox(
+            game_info_frame,
+            textvariable=self.version_option,
+            state="readonly",
+            postcommand=self.get_update_ver)
         self.version_select["values"] = ([_('Latest')])
         self.version_select.set(_("Latest"))
         self.version_select.grid(row=6, column=0, columnspan=2)
-        
-        # Download options
-        self.download_label = Label(game_info_frame, text=_("Download options:"))
-        self.download_label.grid(row=7, column=0, pady=(20,0), columnspan=2)
 
-        MODES = [
-            (_("Base game + Update + DLC"), "B+U+D"),
-            (_("Base game + Update"), "B+U"),
-            (_("Update + DLC"), "U+D"),
-            (_("Base game only"), "B"),
-            (_("Update only"), "U"),
-            (_("All DLC"), "D")
-        ]
+        # Download options
+        self.download_label = Label(
+            game_info_frame, text=_("Download options:"))
+        self.download_label.grid(row=7, column=0, pady=(20, 0), columnspan=2)
+
+        MODES = [(_("Base game + Update + DLC"), "B+U+D"),
+                 (_("Base game + Update"), "B+U"), (_("Update + DLC"), "U+D"),
+                 (_("Base game only"), "B"), (_("Update only"),
+                                              "U"), (_("All DLC"), "D")]
 
         self.updateOptions = StringVar()
         self.updateOptions.set("B+U+D")
-        
+
         self.radio_btn_collection = []
         row_count = 8
         for index in range(len(MODES)):
-            a = Radiobutton(game_info_frame, text=MODES[index][0],
-                        variable=self.updateOptions, value=MODES[index][1])
+            a = Radiobutton(
+                game_info_frame,
+                text=MODES[index][0],
+                variable=self.updateOptions,
+                value=MODES[index][1])
             a.grid(row=row_count, column=0, sticky=W, columnspan=2)
             row_count += 1
             self.radio_btn_collection.append(a)
 
         # Queue and Download button
-        queue_btn = Button(game_info_frame, text=_("Add to queue"), command=self.add_selected_items_to_queue)
-        queue_btn.grid(row=50, column=0, pady=(20,0))
+        queue_btn = Button(
+            game_info_frame,
+            text=_("Add to queue"),
+            command=self.add_selected_items_to_queue)
+        queue_btn.grid(row=50, column=0, pady=(20, 0))
         if _("Download_bottom") != "Download_bottom":
             download_bottom_txt = _("Download_bottom")
         else:
             download_bottom_txt = _("Download")
-        dl_btn = Button(game_info_frame, text=_(download_bottom_txt), command=self.download)
-        dl_btn.grid(row=50, column=1, pady=(20,0), padx=(5,0))
+        dl_btn = Button(
+            game_info_frame,
+            text=_(download_bottom_txt),
+            command=self.download)
+        dl_btn.grid(row=50, column=1, pady=(20, 0), padx=(5, 0))
 
-        update_btn = Button(game_info_frame, text=_("Update Titlekeys"), command=self.update_titlekeys)
+        update_btn = Button(
+            game_info_frame,
+            text=_("Update Titlekeys"),
+            command=self.update_titlekeys)
         update_btn.grid(row=51, column=0, pady=(20, 0), columnspan=2)
 
         #-----------------------------------------
         self.queue_menu_setup()
         #-----------------------------------------
 
-        self.load_persistent_queue() # only load the queue once the UI is initialized
+        self.load_persistent_queue(
+        )  # only load the queue once the UI is initialized
 
     def queue_menu_setup(self):
         # Queue Menu
@@ -1876,43 +2222,63 @@ class Application():
         self.queue_win = Toplevel(self.root)
         self.queue_win.title(_("Queue Menu"))
         self.queue_win.geometry(queue_win)
-        self.queue_win.withdraw() # Hide queue window, will show later
+        self.queue_win.withdraw()  # Hide queue window, will show later
 
         # Top Menu bar
         menubar = Menu(self.queue_win)
 
         # Download Menu Tab
         downloadMenu = Menu(menubar, tearoff=0)
-        downloadMenu.add_command(label=_("Load Saved Queue"), command=self.import_persistent_queue)
-        downloadMenu.add_command(label=_("Save Queue"), command=self.export_persistent_queue)
-        
+        downloadMenu.add_command(
+            label=_("Load Saved Queue"), command=self.import_persistent_queue)
+        downloadMenu.add_command(
+            label=_("Save Queue"), command=self.export_persistent_queue)
+
         # Menubar config
         menubar.add_cascade(label=_("Download"), menu=downloadMenu)
         self.queue_win.config(menu=menubar)
 
         # Queue GUI
         self.queue_scrollbar = Scrollbar(self.queue_win)
-        self.queue_scrollbar.grid(row=0, column=3, sticky=N+S+W)
-        
-        if self.sys_name == "Mac":
-            self.queue_width = self.listWidth+28
-        else:
-            self.queue_width = 100 # Windows 
-        self.queue_title_list = Listbox(self.queue_win, yscrollcommand = self.queue_scrollbar.set, width=self.queue_width, selectmode=EXTENDED)
-        self.queue_title_list.grid(row=0, column=0, sticky=W, columnspan=3)
-        self.queue_scrollbar.config(command = self.queue_title_list.yview)
+        self.queue_scrollbar.grid(row=0, column=3, sticky=N + S + W)
 
-        Button(self.queue_win, text=_("Remove selected game"), command=self.remove_selected_items).grid(row=1, column=0, pady=(30,0))
-        Button(self.queue_win, text=_("Remove all"), command=self.remove_all_and_dump).grid(row=1, column=1, pady=(30,0))
-        Button(self.queue_win, text=_("Download all"), command=self.download_all).grid(row=1, column=2, pady=(30,0))
-        self.stateLabel = Label(self.queue_win, text=_("Click download all to download all games in queue!"))
+        if self.sys_name == "Mac":
+            self.queue_width = self.listWidth + 28
+        else:
+            self.queue_width = 100  # Windows
+        self.queue_title_list = Listbox(
+            self.queue_win,
+            yscrollcommand=self.queue_scrollbar.set,
+            width=self.queue_width,
+            selectmode=EXTENDED)
+        self.queue_title_list.grid(row=0, column=0, sticky=W, columnspan=3)
+        self.queue_scrollbar.config(command=self.queue_title_list.yview)
+
+        Button(
+            self.queue_win,
+            text=_("Remove selected game"),
+            command=self.remove_selected_items).grid(
+                row=1, column=0, pady=(30, 0))
+        Button(
+            self.queue_win,
+            text=_("Remove all"),
+            command=self.remove_all_and_dump).grid(
+                row=1, column=1, pady=(30, 0))
+        Button(
+            self.queue_win, text=_("Download all"),
+            command=self.download_all).grid(
+                row=1, column=2, pady=(30, 0))
+        self.stateLabel = Label(
+            self.queue_win,
+            text=_("Click download all to download all games in queue!"))
         self.stateLabel.grid(row=2, column=0, columnspan=3, pady=(20, 0))
 
     # Sorting function for the treeview widget
     def sortby(self, tree, col, descending):
         """sort tree contents when a column header is clicked on"""
         # grab values to sort
-        data = [(self.tree.set(child, col), child) for child in self.tree.get_children('')]
+        data = [(self.tree.set(child, col), child)
+                for child in self.tree.get_children('')]
         # if the data to be sorted is numeric change to float
         #data =  change_numeric(data)
         # now sort the data in place
@@ -1923,7 +2289,7 @@ class Application():
         self.tree.heading(col, command=lambda col=col: self.sortby(tree, col, \
             int(not descending)))
 
-    def remove_all(self, dump_queue = False):
+    def remove_all(self, dump_queue=False):
         self.queue_list = []
         self.persistent_queue = []
         self.queue_title_list.delete(0, "end")
@@ -1952,10 +2318,11 @@ class Application():
                       "ES", "IT", "AT", "PT", "CH",\
                       "ZA", "CA"]
             # Thanks to user szczuru#7105 for find them for me :)
-    ##        https://ec.nintendo.com/apps/01000320000cc000/FR
+            ##        https://ec.nintendo.com/apps/01000320000cc000/FR
             url = ""
             for c in region:
-                r = requests.get("https://ec.nintendo.com/apps/{}/{}".format(tid, c))
+                r = requests.get("https://ec.nintendo.com/apps/{}/{}".format(
+                    tid, c))
                 if r.status_code == 200:
                     url = "https://ec.nintendo.com/apps/{}/{}".format(tid, c)
                     break
@@ -1963,10 +2330,11 @@ class Application():
                 webbrowser.open(url, new=0, autoraise=True)
         self.root.config(cursor="")
         self.imageLabel.config(cursor="hand2")
-                
+
     def eShop_link(self, evt):
         if self.game_titleID.get() != "":
-            thread = threading.Thread(target = lambda: self.threaded_eShop_link(evt))
+            thread = threading.Thread(
+                target=lambda: self.threaded_eShop_link(evt))
             self.root.config(cursor="watch")
             self.imageLabel.config(cursor="watch")
             thread.start()
@@ -1981,11 +2349,14 @@ class Application():
             os.mkdir("Config")
         if not os.path.isfile(r"Config/Current_status.txt"):
             rebuild = True
-        
-        if rebuild: # Rebuild current_status.txt file
-            print(_("\nBuilding the current state file... Please wait, this may take some time \
+
+        if rebuild:  # Rebuild current_status.txt file
+            print(
+                _("\nBuilding the current state file... Please wait, this may take some time \
 depending on how many games you have."))
-            self.status_label.config(text=_("\nBuilding the current state file... Please wait, this may take some time \
+            self.status_label.config(
+                text=
+                _("\nBuilding the current state file... Please wait, this may take some time \
 depending on how many games you have."))
             updates_tid = []
             installed = []
@@ -1994,11 +2365,16 @@ depending on how many games you have."))
 
             if not os.path.isfile("Config/Version_info.json"):
                 print(_("\nCan't find Version_info.json file!\n"))
-                print(_("Attempting to download the Version_info.json file for you"))
-                urllib.request.urlretrieve("https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Version_info.json", "Config/Version_info.json")
-                
+                print(
+                    _("Attempting to download the Version_info.json file for you"
+                      ))
+                urllib.request.urlretrieve(
+                    "https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Version_info.json",
+                    "Config/Version_info.json")
+
             if os.path.isfile("Config/Version_info.json"):
-                ver_file = open("Config/Version_info.json", "r", encoding="utf8")
+                ver_file = open(
+                    "Config/Version_info.json", "r", encoding="utf8")
                 known_ver = json.load(ver_file)
                 ver_file.close()
             file_path = r"Config/installed.txt"
@@ -2019,7 +2395,9 @@ depending on how many games you have."))
                                     tid = "{}000".format(tid[0:13])
                                 updates_tid.append(tid)
                         except Exception as e:
-                            print("Tid: {} has caused an error, it has the version of {}.\nError: {}".format(tid, ver, e))
+                            print(
+                                "Tid: {} has caused an error, it has the version of {}.\nError: {}".
+                                format(tid, ver, e))
             else:
                 file = open(file_path, "w")
                 file.close()
@@ -2034,30 +2412,31 @@ depending on how many games you have."))
                 file.close()
             installed = [install.split(",")[0] for install in installed]
 
-            status_file = open(r"Config/Current_status.txt", "w", encoding="utf-8")
+            status_file = open(
+                r"Config/Current_status.txt", "w", encoding="utf-8")
 
             for tid in self.titleID:
-                number = int(self.titleID.index(tid))+1
-                game_name = self.title[number-1]
+                number = int(self.titleID.index(tid)) + 1
+                game_name = self.title[number - 1]
                 if game_name[-1] == "\n":
                     game_name = game_name[:-1]
                 state = ""
 
                 if tid in new_tid:
                     state = "New"
-                
+
                 if tid in installed:
                     state = "Own"
-                
+
                 if tid in updates_tid:
                     state = "Update"
                 tree_row = (str(number), game_name, state)
-                status_file.write(str(tree_row)+"\n")
+                status_file.write(str(tree_row) + "\n")
             status_file.close()
-            threading.Timer(1, self.done_status).start()    
+            threading.Timer(1, self.done_status).start()
             status_file.close()
             self.update_list()
-            
+
         elif search:
             search_term = self.search_var.get()
             self.tree.delete(*self.tree.get_children())
@@ -2065,15 +2444,16 @@ depending on how many games you have."))
                 number = game_status[0].strip()
                 game_name = game_status[1].strip()
                 state = game_status[2].strip()
-                
+
                 tree_row = (number, game_name, state)
                 if search_term.lower() in game_name.lower():
                     self.tree.insert('', 'end', values=tree_row)
-                    
+
         else:
             if os.path.isfile(r"Config/Current_status.txt"):
                 self.current_status = []
-                file = open(r"Config/Current_status.txt", "r", encoding="utf-8")
+                file = open(
+                    r"Config/Current_status.txt", "r", encoding="utf-8")
                 for line in file.readlines():
                     if line[-1] == "\n":
                         line = line[:-1]
@@ -2090,12 +2470,21 @@ depending on how many games you have."))
                 self.make_list()
             else:
                 print(_("Error, Current_status.txt doesn't exist"))
-  
+
         self.tree.yview_moveto(0)
         # Reset the sorting back to default (descending)
-        self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 1))
-        self.tree.heading("G", text=_("Game"), command=lambda c="G": self.sortby(self.tree, c, 1))
-        self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 1))
+        self.tree.heading(
+            "num",
+            text="#",
+            command=lambda c="num": self.sortby(self.tree, c, 1))
+        self.tree.heading(
+            "G",
+            text=_("Game"),
+            command=lambda c="G": self.sortby(self.tree, c, 1))
+        self.tree.heading(
+            "S",
+            text=_("State"),
+            command=lambda c="S": self.sortby(self.tree, c, 1))
 
         # Reset cursor status
         self.root.config(cursor="")
@@ -2105,41 +2494,43 @@ depending on how many games you have."))
             pass
 
 ##    def update_list(self, search=False):
-##        # Set cursor status to waiting 
+##        # Set cursor status to waiting
 ##        thread = threading.Thread(target = lambda: self.threaded_update_list(search))
 ##        thread.start()
+
     def done_status(self):
         self.status_label.config(text=_("Status: Done!"))
         print(_("Status: Done!"))
-        
+
     def threaded_game_info(self, evt):
-        selection=self.tree.selection()[0]
-        selected = self.tree.item(selection,"value") # Returns the selected value as a dictionary
+        selection = self.tree.selection()[0]
+        selected = self.tree.item(
+            selection, "value")  # Returns the selected value as a dictionary
         if selection:
             w = evt.widget
             self.is_DLC = False
-##            try:
+            ##            try:
             value = selected[1]
             if "[DLC]" in value:
                 for radio in self.radio_btn_collection:
-                    radio.configure(state = DISABLED)
-                self.is_DLC=True
+                    radio.configure(state=DISABLED)
+                self.is_DLC = True
             else:
                 for radio in self.radio_btn_collection:
-                    radio.configure(state = "normal")
+                    radio.configure(state="normal")
             value = int(selected[0])
             value -= 1
             self.game_titleID.set(self.titleID[value])
             self.game_titleKey.set(self.titleKey[value])
-##            except:
-##                pass
+            ##            except:
+            ##                pass
 
             tid = self.titleID[value]
-            thread = threading.Thread(target = lambda: self.game_desc(tid))
+            thread = threading.Thread(target=lambda: self.game_desc(tid))
             thread.start()
-##            isDLC = False
-##            if not tid.endswith('00'):
-##                isDLC = True
+            ##            isDLC = False
+            ##            if not tid.endswith('00'):
+            ##                isDLC = True
             isDLC = False
             if not tid.endswith("00"):
                 isDLC = True
@@ -2159,24 +2550,49 @@ depending on how many games you have."))
                     global noaria
                     noaria = True
                     base_ver = get_versions(tid)[-1]
-                    result = game_image(tid, base_ver, self.titleKey[self.titleID.index(tid)])
+                    result = game_image(tid, base_ver,
+                                        self.titleKey[self.titleID.index(tid)])
                     noaria = False
                     if result[1] != "Exist":
                         if self.sys_name == "Win":
-                            subprocess.check_output("{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".format(hactoolPath, result[0].replace("/", "\\")), shell=True)
+                            subprocess.check_output(
+                                "{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".
+                                format(hactoolPath, result[0].replace(
+                                    "/", "\\")),
+                                shell=True)
                         else:
-                            subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
-                        icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat"]
+                            subprocess.check_output(
+                                "{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".
+                                format(hactoolPath, result[0]),
+                                shell=True)
+                        icon_list = [
+                            "icon_AmericanEnglish.dat",
+                            "icon_BritishEnglish.dat",
+                            "icon_CanadianFrench.dat", "icon_German.dat",
+                            "icon_Italian.dat", "icon_Japanese.dat",
+                            "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat"
+                        ]
                         file_name = ""
-                        dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
+                        dir_content = os.listdir(
+                            os.path.dirname(os.path.abspath(__file__)) +
+                            '/Images/{}/section0/'.format(tid))
                         for i in icon_list:
                             if i in dir_content:
                                 file_name = i.split(".")[0]
                                 break
-                        os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
-                        shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
-                        shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
-                img2 = ImageTk.PhotoImage(Image.open(os.path.dirname(os.path.abspath(__file__))+'/Images/{}.jpg'.format(tid)))
+                        os.rename(
+                            '{}/section0/{}.dat'.format(result[0], file_name),
+                            '{}/section0/{}.jpg'.format(result[0], file_name))
+                        shutil.copyfile(
+                            '{}/section0/{}.jpg'.format(result[0], file_name),
+                            'Images/{}.jpg'.format(tid))
+                        shutil.rmtree(
+                            os.path.dirname(os.path.abspath(__file__)) +
+                            '/Images/{}'.format(tid))
+                img2 = ImageTk.PhotoImage(
+                    Image.open(
+                        os.path.dirname(os.path.abspath(__file__)) +
+                        '/Images/{}.jpg'.format(tid)))
                 self.imageLabel.configure(image=img2, text="")
                 self.imageLabel.image = img2
                 end = time.time()
@@ -2185,12 +2601,14 @@ depending on how many games you have."))
                 img2 = ImageTk.PhotoImage(Image.open('blank.jpg'))
                 self.imageLabel.configure(image=img2, text="")
                 self.imageLabel.image = img2
-##            
+##
 ##            except:
 ##                pass
+
     def game_info(self, evt):
-        self.imageLabel.config(image="", text=_("\n\n\nDownloading game image..."))
-        thread = threading.Thread(target = lambda: self.threaded_game_info(evt))
+        self.imageLabel.config(
+            image="", text=_("\n\n\nDownloading game image..."))
+        thread = threading.Thread(target=lambda: self.threaded_game_info(evt))
         thread.start()
 
     def game_desc(self, tid):
@@ -2212,15 +2630,16 @@ depending on how many games you have."))
                 description += "{}\n".format(game_info_json[tid]["intro"]\
                                              .replace("\n\n", " ").replace("\n", "").strip())
 
-            info_name = {"\nGame Description": "description",
-                         "Release Date": "release_date_string",
-                         "Publisher": "publisher",
-                         "Category": "category",
-                         "Rating": "rating",
-                         "Game Size": "Game_size",
-                         "Number of Players": "number_of_players",
-                         "US eShop Game Price": "US_price"
-                         }
+            info_name = {
+                "\nGame Description": "description",
+                "Release Date": "release_date_string",
+                "Publisher": "publisher",
+                "Category": "category",
+                "Rating": "rating",
+                "Game Size": "Game_size",
+                "Number of Players": "number_of_players",
+                "US eShop Game Price": "US_price"
+            }
 
             for game_name, game_key in info_name.items():
                 if game_key == "description":
@@ -2228,29 +2647,47 @@ depending on how many games you have."))
                                                        .replace("\n\n", " ").replace("\n", "").strip())
                 elif game_key == "Game_size":
                     try:
-                        game_size_temp = bytes2human(float(game_info_json[tid]["{}".format(game_key)].replace("\n", "").strip()))
+                        game_size_temp = bytes2human(
+                            float(game_info_json[tid]["{}".format(game_key)]
+                                  .replace("\n", "").strip()))
                         game_size_temp_size = float(game_size_temp[0:-3])
-                        description += "{}: {:.2f} {}\n".format(game_name, game_size_temp_size, game_size_temp[-2:])
+                        description += "{}: {:.2f} {}\n".format(
+                            game_name, game_size_temp_size,
+                            game_size_temp[-2:])
                     except:
-                        description += "{}: Unable to get game size\n".format(game_name)
+                        description += "{}: Unable to get game size\n".format(
+                            game_name)
                 elif game_key == "US_price":
-                    description += "{}: ${}\n".format(game_name, game_info_json[tid]["{}".format(game_key)].replace("\n", "").strip())
+                    description += "{}: ${}\n".format(
+                        game_name,
+                        game_info_json[tid]["{}".format(game_key)].replace(
+                            "\n", "").strip())
                 else:
-                    description += "{}: {}\n".format(game_name, game_info_json[tid]["{}".format(game_key)].replace("\n", "").strip())
-                                                                         
+                    description += "{}: {}\n".format(
+                        game_name,
+                        game_info_json[tid]["{}".format(game_key)].replace(
+                            "\n", "").strip())
+
             self.game_text.delete("1.0", END)
             self.game_text.insert(INSERT, description)
 
             self.game_text.tag_add("All", "1.0", "end")
             self.game_text.tag_config("All", font=("Open Sans", 10))
-            
+
             self.game_text.tag_add("Intro", "1.0", "1.end")
-            self.game_text.tag_config("Intro", justify="center", font=("Open Sans", 10, "bold"))
+            self.game_text.tag_config(
+                "Intro", justify="center", font=("Open Sans", 10, "bold"))
 
             counter = 3
             for game_name, game_key in info_name.items():
-                self.game_text.tag_add("{}".format(game_name), "{}.0".format(counter), "{}.{}".format(counter, len(game_name)))
-                self.game_text.tag_config("{}".format(game_name), font=("Open Sans", 10, "bold"), spacing2="2", spacing3="3")
+                self.game_text.tag_add("{}".format(game_name),
+                                       "{}.0".format(counter), "{}.{}".format(
+                                           counter, len(game_name)))
+                self.game_text.tag_config(
+                    "{}".format(game_name),
+                    font=("Open Sans", 10, "bold"),
+                    spacing2="2",
+                    spacing3="3")
                 if counter == 3:
                     counter += 2
                 else:
@@ -2258,9 +2695,9 @@ depending on how many games you have."))
         else:
             self.game_text.delete("1.0", END)
             self.game_text.insert(INSERT, _("\n\n\nDownloading game info..."))
-            thread = threading.Thread(target = lambda: self.download_desc(tid))
+            thread = threading.Thread(target=lambda: self.download_desc(tid))
             thread.start()
-            
+
     def download_desc(self, tid, silent=False):
         # Coded by Panda
         global game_info_json
@@ -2268,7 +2705,7 @@ depending on how many games you have."))
         if tid in game_info_json:
             done = True
         if done == False:
-##            try:
+            ##            try:
             titleinfo = {}
             titleinfo['titleid'] = tid
             titleinfo['date_added'] = time.strftime('%Y%m%d')
@@ -2301,11 +2738,21 @@ depending on how many games you have."))
                 if result.url != 'https://www.nintendo.com/games/':
                     soup = BeautifulSoup(result.text, "html.parser")
                     if soup.find("meta", {"property": "og:url"}) != None:
-                        slug = soup.find("meta", {"property": "og:url"})["content"].split('/')[-1]
-                        infoJson = json.loads(requests.get("https://www.nintendo.com/json/content/get/game/%s" % slug).text)["game"]
+                        slug = soup.find(
+                            "meta",
+                            {"property": "og:url"})["content"].split('/')[-1]
+                        infoJson = json.loads(
+                            requests.get(
+                                "https://www.nintendo.com/json/content/get/game/%s"
+                                % slug).text)["game"]
                         if "release_date" in infoJson:
-                            titleinfo["release_date_string"] = infoJson["release_date"]
-                            titleinfo["release_date_iso"] = datetime.datetime.strftime(datetime.datetime.strptime(infoJson["release_date"], "%b %d, %Y"),'%Y%m%d')
+                            titleinfo["release_date_string"] = infoJson[
+                                "release_date"]
+                            titleinfo[
+                                "release_date_iso"] = datetime.datetime.strftime(
+                                    datetime.datetime.strptime(
+                                        infoJson["release_date"], "%b %d, %Y"),
+                                    '%Y%m%d')
 
                         if "title" in infoJson:
                             titleinfo["title"] = infoJson["title"]
@@ -2323,10 +2770,14 @@ depending on how many games you have."))
                         if "game_category_ref" in infoJson:
                             catindex = 0
                             if "title" in infoJson["game_category_ref"]:
-                                catagories.append(infoJson["game_category_ref"]["title"])
+                                catagories.append(
+                                    infoJson["game_category_ref"]["title"])
                             else:
-                                for game_category in infoJson["game_category_ref"]:
-                                    catagories.append(infoJson["game_category_ref"][catindex]["title"])
+                                for game_category in infoJson[
+                                        "game_category_ref"]:
+                                    catagories.append(
+                                        infoJson["game_category_ref"][
+                                            catindex]["title"])
                                     catindex += 1
                             if len(catagories) > 0:
                                 titleinfo["category"] = ','.join(catagories)
@@ -2334,54 +2785,70 @@ depending on how many games you have."))
                         esrbcontent = []
                         if "esrb_content_descriptor_ref" in infoJson:
                             esrbindex = 0
-                            if "title" in infoJson["esrb_content_descriptor_ref"]:
-                                esrbcontent.append(infoJson["esrb_content_descriptor_ref"]["title"])
+                            if "title" in infoJson[
+                                    "esrb_content_descriptor_ref"]:
+                                esrbcontent.append(infoJson[
+                                    "esrb_content_descriptor_ref"]["title"])
                             else:
-                                for descriptor in infoJson["esrb_content_descriptor_ref"]:
-                                    esrbcontent.append(infoJson["esrb_content_descriptor_ref"][esrbindex]["title"])
+                                for descriptor in infoJson[
+                                        "esrb_content_descriptor_ref"]:
+                                    esrbcontent.append(
+                                        infoJson["esrb_content_descriptor_ref"]
+                                        [esrbindex]["title"])
                                     esrbindex += 1
                             if len(esrbcontent) > 0:
                                 titleinfo["content"] = ','.join(esrbcontent)
 
                         if "number_of_players" in infoJson:
-                            titleinfo["number_of_players"] = infoJson["number_of_players"]
+                            titleinfo["number_of_players"] = infoJson[
+                                "number_of_players"]
 
                         if "eshop_price" in infoJson:
                             titleinfo["US_price"] = infoJson["eshop_price"]
 
                         if "esrb_rating_ref" in infoJson:
                             if "title" in infoJson["esrb_rating_ref"]:
-                                titleinfo["rating"] = infoJson["esrb_rating_ref"]["esrb_rating"]["short_description"]
+                                titleinfo["rating"] = infoJson[
+                                    "esrb_rating_ref"]["esrb_rating"][
+                                        "short_description"]
 
                         if "amiibo_compatibility" in infoJson:
-                            titleinfo["amiibo_compatibility"] = infoJson["amiibo_compatibility"]
- 
+                            titleinfo["amiibo_compatibility"] = infoJson[
+                                "amiibo_compatibility"]
+
                         if "dlc" in infoJson:
                             titleinfo["dlc"] = infoJson["dlc"]
 
                         if "developer_ref" in infoJson:
                             if "title" in infoJson["developer_ref"]:
-                                titleinfo["developer"] = infoJson["developer_ref"]["title"]
-
+                                titleinfo["developer"] = infoJson[
+                                    "developer_ref"]["title"]
 
                         if "publisher_ref" in infoJson:
                             if "title" in infoJson["publisher_ref"]:
-                                titleinfo["publisher"] = infoJson["publisher_ref"]["title"]
+                                titleinfo["publisher"] = infoJson[
+                                    "publisher_ref"]["title"]
 
                         if "front_box_art" in infoJson:
                             if "image" in infoJson["front_box_art"]:
-                                if "image" in infoJson["front_box_art"]["image"]:
-                                    if "url" in infoJson["front_box_art"]["image"]["image"]:
-                                        titleinfo["front_box_art"] = infoJson["front_box_art"]["image"]["image"]["url"]
+                                if "image" in infoJson["front_box_art"][
+                                        "image"]:
+                                    if "url" in infoJson["front_box_art"][
+                                            "image"]["image"]:
+                                        titleinfo["front_box_art"] = infoJson[
+                                            "front_box_art"]["image"]["image"][
+                                                "url"]
 
                         if "intro" in infoJson:
                             try:
-                                details = BeautifulSoup(infoJson["intro"][0],"html.parser")
+                                details = BeautifulSoup(
+                                    infoJson["intro"][0], "html.parser")
                                 try:
                                     details = details.decode(formatter=None)
                                 except:
                                     details = details.decode()
-                                details = re.sub('<[^<]+?>', '', details).strip()
+                                details = re.sub('<[^<]+?>', '',
+                                                 details).strip()
                                 details = re.sub(' +', ' ', details)
                                 details = re.sub('\n ', '\n', details)
                                 details = re.sub('\n\n+', '\n\n', details)
@@ -2390,7 +2857,9 @@ depending on how many games you have."))
                                 pass
 
                         if "game_overview_description" in infoJson:
-                            details = BeautifulSoup(infoJson["game_overview_description"][0],"html.parser")
+                            details = BeautifulSoup(
+                                infoJson["game_overview_description"][0],
+                                "html.parser")
                             try:
                                 details = details.decode(formatter=None)
                             except:
@@ -2401,56 +2870,80 @@ depending on how many games you have."))
                             details = re.sub('\n\n+', '\n\n', details)
                             titleinfo["description"] = details
 
-                        result = requests.get("https://ec.nintendo.com/apps/%s/AU" % tid)
+                        result = requests.get(
+                            "https://ec.nintendo.com/apps/%s/AU" % tid)
                         _json = ''
                         if result.status_code == 200:
-                            _json = json.loads(result.text.split('NXSTORE.titleDetail.jsonData = ')[1].split('NXSTORE.titleDetail')[0].replace(';',''))
+                            _json = json.loads(
+                                result.text.split(
+                                    'NXSTORE.titleDetail.jsonData = ')[1]
+                                .split('NXSTORE.titleDetail')[0].replace(
+                                    ';', ''))
                         else:
-                            result = requests.get("https://ec.nintendo.com/apps/%s/JP" % tid)
-                            
+                            result = requests.get(
+                                "https://ec.nintendo.com/apps/%s/JP" % tid)
+
                             if result.status_code == 200:
-                                _json = json.loads(result.text.split('NXSTORE.titleDetail.jsonData = ')[1].split('NXSTORE.titleDetail')[0].replace(';',''))
+                                _json = json.loads(
+                                    result.text.split(
+                                        'NXSTORE.titleDetail.jsonData = ')[1]
+                                    .split('NXSTORE.titleDetail')[0].replace(
+                                        ';', ''))
                         if _json != '':
-        ##                    print(_json["total_rom_size"])
-        ##                    sys.exit()
+                            ##                    print(_json["total_rom_size"])
+                            ##                    sys.exit()
 
                             if "total_rom_size" in _json:
-                                titleinfo["Game_size"] = str(_json["total_rom_size"])
+                                titleinfo["Game_size"] = str(
+                                    _json["total_rom_size"])
 
                             game_info_json[tid] = titleinfo
 
             if tid not in game_info_json:
-                result = requests.get("https://ec.nintendo.com/apps/%s/AU" % tid)
+                result = requests.get(
+                    "https://ec.nintendo.com/apps/%s/AU" % tid)
                 _json = ''
                 if result.status_code == 200:
-                    _json = json.loads(result.text.split('NXSTORE.titleDetail.jsonData = ')[1].split('NXSTORE.titleDetail')[0].replace(';',''))
+                    _json = json.loads(
+                        result.text.split('NXSTORE.titleDetail.jsonData = ')[1]
+                        .split('NXSTORE.titleDetail')[0].replace(';', ''))
                 else:
-                    result = requests.get("https://ec.nintendo.com/apps/%s/JP" % tid)
-                    
+                    result = requests.get(
+                        "https://ec.nintendo.com/apps/%s/JP" % tid)
+
                     if result.status_code == 200:
-                        _json = json.loads(result.text.split('NXSTORE.titleDetail.jsonData = ')[1].split('NXSTORE.titleDetail')[0].replace(';',''))
+                        _json = json.loads(
+                            result.text.split(
+                                'NXSTORE.titleDetail.jsonData = ')[1].split(
+                                    'NXSTORE.titleDetail')[0].replace(';', ''))
                 if _json != '':
-##                    print(_json["total_rom_size"])
-##                    sys.exit()
+                    ##                    print(_json["total_rom_size"])
+                    ##                    sys.exit()
 
                     if "total_rom_size" in _json:
                         titleinfo["Game_size"] = str(_json["total_rom_size"])
 
                     if "release_date_on_eshop" in _json:
-                        titleinfo["release_date_iso"] = _json["release_date_on_eshop"].replace('-','')
-                        titleinfo["release_date_string"] = datetime.datetime.strftime(datetime.datetime.strptime(_json["release_date_on_eshop"].replace('-',''),'%Y%m%d' ),"%b %d, %Y")
-                    
+                        titleinfo["release_date_iso"] = _json[
+                            "release_date_on_eshop"].replace('-', '')
+                        titleinfo[
+                            "release_date_string"] = datetime.datetime.strftime(
+                                datetime.datetime.strptime(
+                                    _json["release_date_on_eshop"].replace(
+                                        '-', ''), '%Y%m%d'), "%b %d, %Y")
+
                     if "formal_name" in _json:
                         titleinfo["title"] = _json["formal_name"]
-                    
+
                     if "id" in _json:
                         titleinfo["nsuid"] = "%s" % _json["id"]
-                        
+
                     titleinfo["slug"] = ""
                     titleinfo["game_code"] = ""
 
                     if "genre" in _json:
-                        titleinfo["category"] = _json["genre"].replace(' / ',',')
+                        titleinfo["category"] = _json["genre"].replace(
+                            ' / ', ',')
 
                     if "rating_info" in _json:
                         if "rating" in _json["rating_info"]:
@@ -2465,17 +2958,19 @@ depending on how many games you have."))
 
                         if "content_descriptors" in _json["rating_info"]:
                             content = []
-                            for descriptor in  _json["rating_info"]["content_descriptors"]:
+                            for descriptor in _json["rating_info"][
+                                    "content_descriptors"]:
                                 content.append(descriptor['name'])
                             titleinfo["rating_content"] = ','.join(content)
 
-                
                     if "player_number" in _json:
                         if 'offline_max' in _json["player_number"]:
-                            titleinfo["number_of_players"] = "up to %s players" % _json["player_number"]["offline_max"]
+                            titleinfo[
+                                "number_of_players"] = "up to %s players" % _json["player_number"]["offline_max"]
 
                         if 'local_max' in _json["player_number"]:
-                            titleinfo["number_of_players"] = "up to %s players" % _json["player_number"]["local_max"]
+                            titleinfo[
+                                "number_of_players"] = "up to %s players" % _json["player_number"]["local_max"]
 
                     titleinfo["amiibo_compatibility"] = ""
 
@@ -2486,10 +2981,12 @@ depending on how many games you have."))
 
                     if "applications" in _json:
                         if "image_url" in _json["applications"][0]:
-                            titleinfo["front_box_art"] = _json["applications"][0]['image_url']
-                    
+                            titleinfo["front_box_art"] = _json["applications"][
+                                0]['image_url']
+
                     if "hero_banner_url" in _json:
-                        titleinfo["front_box_art_alt"] = _json["hero_banner_url"]
+                        titleinfo["front_box_art_alt"] = _json[
+                            "hero_banner_url"]
 
                     if "catch_copy" in _json:
                         titleinfo["intro"] = _json["catch_copy"]
@@ -2499,14 +2996,16 @@ depending on how many games you have."))
 
                     titleinfo["dlc"] = ""
                     game_info_json[tid] = titleinfo
-                
+
                 else:
                     f = open("Config/missing.txt", 'a', encoding="utf8")
-                    f.write(tid+"|title doesn't exist at ec.nintendo.com"+'\n')
+                    f.write(tid + "|title doesn't exist at ec.nintendo.com" +
+                            '\n')
                     f.close()
                     if not silent:
                         self.game_text.delete("1.0", END)
-                        self.game_text.insert(INSERT, _("\n\n\nUnable to find game info"))
+                        self.game_text.insert(
+                            INSERT, _("\n\n\nUnable to find game info"))
                     done = True
 
 ##            except Exception as e:
@@ -2519,26 +3018,31 @@ depending on how many games you have."))
 ##                done = True
 
         if not done:
-            with open("Config/Game_info.json", "w", encoding="utf8") as jsonFile:
+            with open(
+                    "Config/Game_info.json", "w", encoding="utf8") as jsonFile:
                 json.dump(game_info_json, jsonFile, indent=4)
             jsonFile.close()
             if not silent:
                 self.game_desc(tid)
-            
 
-    
     def threaded_download(self):
         option = self.updateOptions.get()
-##        try:
+        ##        try:
         tid = self.game_titleID.get()
         updateTid = tid
         tkey = self.game_titleKey.get()
         ver = self.version_option.get()
-        
+
         if len(tkey) != 32 and self.titlekey_check:
-            self.messages(_('Error'), _('Titlekey {} is not a 32-digits hexadecimal number!').format(tkey))                
+            self.messages(
+                _('Error'),
+                _('Titlekey {} is not a 32-digits hexadecimal number!').format(
+                    tkey))
         elif len(tid) != 16:
-            self.messages(_('Error'), _('TitleID {} is not a 16-digits hexadecimal number!').format(tid))
+            self.messages(
+                _('Error'),
+                _('TitleID {} is not a 16-digits hexadecimal number!').format(
+                    tid))
         else:
             if _("Latest") in ver:
                 updateTid = tid
@@ -2550,29 +3054,50 @@ depending on how many games you have."))
                 ver = get_versions(updateTid)[-1]
             elif "none" in ver:
                 ver == "none"
-                    
+
             if tid.endswith('000'):
                 updateTid = '%s800' % tid[:-3]
             elif tid.endswith('800'):
                 baseTid = '%s000' % tid[:-3]
                 updateTid = tid
-                
+
             if option == "U" or self.is_DLC == True:
                 if ver != "none":
-                    self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    self.messages(
+                        "",
+                        _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                          ))
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                     self.messages("", _("Download finished!"))
                 else:
                     self.messages("", _("No updates available for the game"))
-                    
+
             elif option == "B+U+D":
                 base_tid = "{}000".format(tid[0:13])
-                self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
+                self.messages(
+                    "",
+                    _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                      ))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
@@ -2581,14 +3106,27 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 self.messages("", _("Download finished!"))
 
             elif option == "U+D":
                 if ver != "none":
                     updateTid = "{}800".format(tid[0:13])
-                    self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    self.messages(
+                        "",
+                        _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                          ))
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
@@ -2597,12 +3135,19 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 self.messages("", _("Download finished!"))
-
 
             elif option == "D":
-                self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
+                self.messages(
+                    "",
+                    _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                      ))
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
@@ -2611,55 +3156,95 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 self.messages("", _("Download finished!"))
 
-                
             elif option == "B":
                 base_tid = "{}000".format(tid[0:13])
-                self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
+                self.messages(
+                    "",
+                    _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                      ))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
                 self.messages("", _("Download finished!"))
-                
+
             elif option == "B+U":
                 base_tid = "{}000".format(tid[0:13])
-                self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
+                self.messages(
+                    "",
+                    _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
+                      ))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                     self.messages("", _("Download finished!"))
                 else:
-                    self.messages("", _("No updates available for the game, base game downloaded!"))
+                    self.messages(
+                        "",
+                        _("No updates available for the game, base game downloaded!"
+                          ))
 ##        except:
 ##            print("Error downloading {}, note: if you're downloading a DLC then different versions of DLC may have different titlekeys".format(tid))
         return
-    
+
     def download(self):
-        thread = threading.Thread(target = self.threaded_download)
+        thread = threading.Thread(target=self.threaded_download)
         thread.start()
 
     def export_persistent_queue(self):
-        self.dump_persistent_queue(self.normalize_file_path(filedialog.asksaveasfilename(initialdir = self.path, title = "Select file", filetypes = (("JSON files","*.json"),("all files","*.*")))))
+        self.dump_persistent_queue(
+            self.normalize_file_path(
+                filedialog.asksaveasfilename(
+                    initialdir=self.path,
+                    title="Select file",
+                    filetypes=(("JSON files", "*.json"), ("all files",
+                                                          "*.*")))))
 
     def import_persistent_queue(self):
-        self.load_persistent_queue(self.normalize_file_path(filedialog.askopenfilename(initialdir = self.path, title = "Select file", filetypes = (("JSON files","*.json"),("all files","*.*")))))
+        self.load_persistent_queue(
+            self.normalize_file_path(
+                filedialog.askopenfilename(
+                    initialdir=self.path,
+                    title="Select file",
+                    filetypes=(("JSON files", "*.json"), ("all files",
+                                                          "*.*")))))
 
-    def dump_persistent_queue(self, path = r'Config/CDNSP_queue.json'):
+    def dump_persistent_queue(self, path=r'Config/CDNSP_queue.json'):
         if path == "":
             print(_("\nYou didn't choose a location to save the file!"))
             return
         elif not path.endswith(".json"):
             path += ".json"
-            
+
         # if self.persist_queue # check for user option here
         f = open(path, 'w')
         json.dump(self.persistent_queue, f)
         f.close()
 
-    def load_persistent_queue(self, path = r'Config/CDNSP_queue.json'):
+    def load_persistent_queue(self, path=r'Config/CDNSP_queue.json'):
         # if self.persist_queue # check for user option here
         try:
             f = open(path, 'r')
@@ -2683,18 +3268,24 @@ depending on how many games you have."))
         self.add_items_to_queue(self.tree.selection())
 
     def add_items_to_queue(self, indices):
-##        try:
+        ##        try:
         for index in indices:
-            index = int(self.tree.item(index,"value")[0])-1
-##            index = int(self.temp_list[index].split(",")[0])-1
+            index = int(self.tree.item(index, "value")[0]) - 1
+            ##            index = int(self.temp_list[index].split(",")[0])-1
             tid = self.titleID[index]
             key = self.titleKey[index]
             ver = self.version_option.get()
             option = self.updateOptions.get()
             if len(key) != 32 and self.titlekey_check:
-                self.messages(_('Error'), _('Titlekey {} is not a 32-digits hexadecimal number!').format(key))
+                self.messages(
+                    _('Error'),
+                    _('Titlekey {} is not a 32-digits hexadecimal number!')
+                    .format(key))
             elif len(tid) != 16:
-                self.messages(_('Error'), _('TitleID {} is not a 16-digits hexadecimal number!').format(tid))
+                self.messages(
+                    _('Error'),
+                    _('TitleID {} is not a 16-digits hexadecimal number!')
+                    .format(tid))
             else:
                 self.add_item_to_queue((tid, ver, key, option))
 
@@ -2713,16 +3304,17 @@ depending on how many games you have."))
         return (tid, ver)
 
     # takes an item with unformatted tid and ver
-    def add_item_to_queue(self, item, dump_queue = False):
+    def add_item_to_queue(self, item, dump_queue=False):
         tid, ver, key, option = item
         if len(tid) == 16:
             if not Toplevel.winfo_exists(self.queue_win):
-                self.queue_menu_setup() #Fix for app crashing when close the queue menu and re-open
+                self.queue_menu_setup(
+                )  #Fix for app crashing when close the queue menu and re-open
             self.queue_win.update()
             self.queue_win.deiconify()
             try:
                 c = self.titleID.index(tid)
-                c = self.title[c] # Name of the game
+                c = self.title[c]  # Name of the game
             except:
                 print(_("Name for titleID not found in the list"), tid)
                 c = "UNKNOWN NAME"
@@ -2736,11 +3328,13 @@ depending on how many games you have."))
                 eng_ver = "Latest"
             else:
                 eng_ver = ver
-            self.queue_title_list.insert("end", "{}---{}---{}".format(c, _(ver), option))
+            self.queue_title_list.insert(
+                "end", "{}---{}---{}".format(c, _(ver), option))
             self.queue_list.append((formatted_tid, formatted_ver, key, option))
             self.persistent_queue.append((c, tid, eng_ver, key, option))
             if dump_queue: self.dump_persistent_queue()
-        self.queue_title_list.yview(END) # Auto scroll the queue menu as requested
+        self.queue_title_list.yview(
+            END)  # Auto scroll the queue menu as requested
 
     def remove_selected_items(self):
         self.remove_items(self.queue_title_list.curselection())
@@ -2757,35 +3351,54 @@ depending on how many games you have."))
 
         self.dump_persistent_queue()
 
-    def remove_item(self, index, dump_queue = False):
+    def remove_item(self, index, dump_queue=False):
         del self.queue_list[index]
         del self.persistent_queue[index]
         self.queue_title_list.delete(index)
         if dump_queue: self.dump_persistent_queue()
-        
+
     def threaded_download_all(self):
-        self.messages("", _("Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"))
-        self.stateLabel.configure(text = _("Downloading games..."))
+        self.messages(
+            "",
+            _("Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"
+              ))
+        self.stateLabel.configure(text=_("Downloading games..."))
         download_list = self.queue_list.copy()
         for item in download_list:
             tid, ver, tkey, option = item
             ver = self.process_item_versions(tid, ver)[1]
-##            try:
+            ##            try:
             if option == "U" or option == "DLC":
                 if ver != "none":
                     if tid.endswith("00"):
                         tid = "{}800".format(tid[0:13])
-                    download_game(tid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        tid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 else:
-                    print(_("No updates available for titleID: {}").format(tid))
-                    
+                    print(
+                        _("No updates available for titleID: {}").format(tid))
+
             elif option == "B+U+D":
                 base_tid = "{}000".format(tid[0:13])
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
@@ -2794,12 +3407,22 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
 
             elif option == "U+D":
                 if ver != "none":
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
@@ -2808,8 +3431,12 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
-
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
 
             elif option == "D":
                 DLC_titleID = []
@@ -2820,23 +3447,44 @@ depending on how many games you have."))
                         DLC_titleID.append(self.titleID[index])
                 for DLC_ID in DLC_titleID:
                     DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        DLC_ID,
+                        DLC_ver,
+                        self.titleKey[self.titleID.index(DLC_ID)],
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
 
-                
             elif option == "B":
                 base_tid = "{}000".format(tid[0:13])
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
-                
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
+
             elif option == "B+U":
                 base_tid = "{}000".format(tid[0:13])
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                download_game(
+                    base_tid,
+                    base_ver,
+                    tkey,
+                    nspRepack=self.repack,
+                    path_Dir=self.path)
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    download_game(
+                        updateTid,
+                        ver,
+                        tkey,
+                        nspRepack=self.repack,
+                        path_Dir=self.path)
                 else:
-                    print(_("No updates available for titleID: {}, base game downloaded!").format(tid))
+                    print(
+                        _("No updates available for titleID: {}, base game downloaded!"
+                          ).format(tid))
 
             index = self.get_index_in_queue(item)
             self.remove_item(index, True)
@@ -2847,7 +3495,7 @@ depending on how many games you have."))
         # self.remove_all(dump_queue = True)
 
     def download_all(self):
-        thread = threading.Thread(target = self.threaded_download_all)
+        thread = threading.Thread(target=self.threaded_download_all)
         thread.start()
 
 ##    def download_check(self, tid, ver):
@@ -2855,7 +3503,7 @@ depending on how many games you have."))
 ##            if any(tid_list in tid for tid_list in self.installed):
 ##                print(tid, self.installed.index(tid))
 ##        else:
-##            if any(tid_list in tid for tid_list in self.installed):                      
+##            if any(tid_list in tid for tid_list in self.installed):
 
     def normalize_file_path(self, file_path):
         if self.sys_name == "Win":
@@ -2871,25 +3519,26 @@ depending on how many games you have."))
 
     def nsp_repack_option(self):
         if self.repack == True:
-            self.optionMenu.entryconfig(4, label= _("Enable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Enable NSP Repack"))
             self.repack = False
         elif self.repack == False:
-            self.optionMenu.entryconfig(4, label= _("Disable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Disable NSP Repack"))
             self.repack = True
         updateJsonFile("NSP_repack", str(self.repack))
 
     def threaded_update_titlekeys(self):
         self.status_label.config(text=_("Status: Updating titlekeys"))
         print(self.db_URL)
-##        try:
+        ##        try:
         r = requests.get(self.db_URL, allow_redirects=True, verify=False)
-        if str(r.history) == "[<Response [302]>]" and str(r.status_code) == "200":
+        if str(r.history) == "[<Response [302]>]" and str(
+                r.status_code) == "200":
             r.encoding = "utf-8"
             newdb = r.text.split('\n')
             if newdb[-1] == "":
                 newdb = newdb[:-1]
             if os.path.isfile('titlekeys.txt'):
-                with open('titlekeys.txt',encoding="utf8") as f:
+                with open('titlekeys.txt', encoding="utf8") as f:
                     currdb = f.read().split('\n')
                     if currdb[-1] == "":
                         currdb = currdb[:-1]
@@ -2901,7 +3550,7 @@ depending on how many games you have."))
                         if line.strip() not in currdb:
                             if line.strip() != newdb[0].strip():
                                 new_tid.append(line.strip().split('|')[0])
-                                info += (line.strip()).rsplit('|',1)[1] + '\n'
+                                info += (line.strip()).rsplit('|', 1)[1] + '\n'
                                 counter += 1
                     if len(new_tid) != 0:
                         file_path = open(r"Config/new.txt", "w")
@@ -2911,7 +3560,9 @@ depending on how many games you have."))
                         file_path.write(text)
                         file_path.close()
                     if counter:
-                        update_win = Toplevel(self.root) #https://stackoverflow.com/questions/13832720/how-to-attach-a-scrollbar-to-a-text-widget
+                        update_win = Toplevel(
+                            self.root
+                        )  #https://stackoverflow.com/questions/13832720/how-to-attach-a-scrollbar-to-a-text-widget
                         self.update_window = update_win
                         global update_win_size
                         update_win.title(_("Finished update!"))
@@ -2930,32 +3581,51 @@ depending on how many games you have."))
 
                         # create a Text widget
                         txt = Text(txt_frm, borderwidth=3, relief="sunken")
-                        txt.config(font=("Open Sans", 12), undo=True, wrap='word')
-                        txt.grid(row=0, column=0, sticky="nsew", padx=2, pady=2, columnspan=2)
+                        txt.config(
+                            font=("Open Sans", 12), undo=True, wrap='word')
+                        txt.grid(
+                            row=0,
+                            column=0,
+                            sticky="nsew",
+                            padx=2,
+                            pady=2,
+                            columnspan=2)
                         txt.insert("1.0", info)
 
                         # create a Scrollbar and associate it with txt
-                        scrollb = Scrollbar(txt_frm, command=txt.yview, width=20)
+                        scrollb = Scrollbar(
+                            txt_frm, command=txt.yview, width=20)
                         scrollb.grid(row=0, column=3, sticky='nsew')
                         txt['yscrollcommand'] = scrollb.set
 
-
                         # info on total games added and an exit button
-                        Label(txt_frm, text=_("Total of new games added: {}").format(counter)).grid(row=1, column=0)
-                        Button(txt_frm, text=_("Close"), height=2, command=lambda: update_win.destroy()).grid(row=1, column=1)
-    ##                    Label(txt_frm, text="   ").grid(row=1, column=3)
-                        
+                        Label(
+                            txt_frm,
+                            text=_("Total of new games added: {}").format(
+                                counter)).grid(
+                                    row=1, column=0)
+                        Button(
+                            txt_frm,
+                            text=_("Close"),
+                            height=2,
+                            command=lambda: update_win.destroy()).grid(
+                                row=1, column=1)
+                        ##                    Label(txt_frm, text="   ").grid(row=1, column=3)
+
                         try:
                             # print('\nSaving new database...')
-                            f = open('titlekeys.txt','w',encoding="utf-8")
+                            f = open('titlekeys.txt', 'w', encoding="utf-8")
                             self.title = []
                             self.titleID = []
                             self.titleKey = []
                             for line in newdb:
                                 if line.strip():
-                                    self.title.append(line.strip().split("|")[2])
-                                    self.titleID.append(line.strip().split("|")[0][:16])
-                                    self.titleKey.append(line.strip().split("|")[1])
+                                    self.title.append(
+                                        line.strip().split("|")[2])
+                                    self.titleID.append(
+                                        line.strip().split("|")[0][:16])
+                                    self.titleKey.append(
+                                        line.strip().split("|")[1])
                                     f.write(line.strip() + '\n')
                             f.close()
                             self.current_status = []
@@ -2963,8 +3633,13 @@ depending on how many games you have."))
                         except Exception as e:
                             print(e)
                     else:
-                        self.status_label.config(text=_('Status: Finished update, There were no new games to update!'))
-                        print(_('\nStatus: Finished update, There were no new games to update!'))
+                        self.status_label.config(
+                            text=
+                            _('Status: Finished update, There were no new games to update!'
+                              ))
+                        print(
+                            _('\nStatus: Finished update, There were no new games to update!'
+                              ))
                         self.root.config(cursor="")
                         try:
                             self.imageLabel.config(cursor="hand2")
@@ -2974,26 +3649,34 @@ depending on how many games you have."))
             else:
                 try:
                     # print('\nSaving new database...')
-                    f = open('titlekeys.txt','w',encoding="utf-8")
+                    f = open('titlekeys.txt', 'w', encoding="utf-8")
                     self.title = []
                     self.titleID = []
                     self.titleKey = []
                     for line in newdb:
                         if line.strip():
                             self.title.append(line.strip().split("|")[2])
-                            self.titleID.append(line.strip().split("|")[0][:16])
+                            self.titleID.append(
+                                line.strip().split("|")[0][:16])
                             self.titleKey.append(line.strip().split("|")[1])
                             f.write(line.strip() + '\n')
                     f.close()
                     self.current_status = []
-                    self.update_list(rebuild=True, label=_('Status: Finished update, Database rebuilt from scratch'))
+                    self.update_list(
+                        rebuild=True,
+                        label=
+                        _('Status: Finished update, Database rebuilt from scratch'
+                          ))
                 except Exception as e:
                     print(e)
         else:
-            self.messages(_("Error"), _("The database server {} might be down or unavailable").format(self.db_URL))
+            self.messages(
+                _("Error"),
+                _("The database server {} might be down or unavailable")
+                .format(self.db_URL))
         game_list = []
         self.title_list.delete(0, END)
-        
+
         f = open("titlekeys.txt", "r", encoding="utf8")
         content = f.readlines()
         self.titleID = []
@@ -3004,7 +3687,9 @@ depending on how many games you have."))
             try:
                 titleID, titleKey, title = content[i].split("|")
             except:
-                print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+                print(
+                    _("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"
+                      ))
             if titleID != "":
                 self.titleID.append(titleID[:16])
                 self.titleKey.append(titleKey)
@@ -3012,7 +3697,7 @@ depending on how many games you have."))
         global titleID_list
         global titleKey_list
         global title_list
-        
+
         titleID_list = []
         titleKey_list = []
         title_list = []
@@ -3024,15 +3709,15 @@ depending on how many games you have."))
     def update_titlekeys(self):
         self.root.config(cursor="watch")
         self.imageLabel.config(cursor="watch")
-        thread = threading.Thread(target = self.threaded_update_titlekeys)
+        thread = threading.Thread(target=self.threaded_update_titlekeys)
         thread.start()
 
     def mute_all(self):
         if self.mute == False:
-            self.optionMenu.entryconfig(3, label= _("Unmute All Pop-ups"))
+            self.optionMenu.entryconfig(3, label=_("Unmute All Pop-ups"))
             self.mute = True
         elif self.mute == True:
-            self.optionMenu.entryconfig(3, label= _("Mute All Pop-ups"))
+            self.optionMenu.entryconfig(3, label=_("Mute All Pop-ups"))
             self.mute = False
         updateJsonFile("Mute", str(self.mute))
 
@@ -3047,31 +3732,33 @@ depending on how many games you have."))
         if self.titlekey_check == True:
             self.titlekey_check = False
             titlekey_check = self.titlekey_check
-            self.optionMenu.entryconfig(5, label= _("Enable Titlekey Check")) # Automatically disable repacking as well
+            self.optionMenu.entryconfig(
+                5, label=_("Enable Titlekey Check")
+            )  # Automatically disable repacking as well
             self.repack = False
-            self.optionMenu.entryconfig(4, label= _("Enable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Enable NSP Repack"))
         elif self.titlekey_check == False:
             self.titlekey_check = True
             titlekey_check = self.titlekey_check
-            self.optionMenu.entryconfig(5, label= _("Disable Titlekey Check"))
+            self.optionMenu.entryconfig(5, label=_("Disable Titlekey Check"))
             self.repack = True
-            self.optionMenu.entryconfig(4, label= _("Disable NSP Repack"))
+            self.optionMenu.entryconfig(4, label=_("Disable NSP Repack"))
         updateJsonFile("Titlekey_check", str(self.titlekey_check))
-        
+
     def disable_aria2c(self):
         pass
 
     def disable_game_image(self):
         if self.game_image_disable == False:
             self.game_image_disable = True
-            self.optionMenu.entryconfig(1, label= _("ENABLE GAME IMAGE"))
+            self.optionMenu.entryconfig(1, label=_("ENABLE GAME IMAGE"))
         elif self.game_image_disable == True:
             self.game_image_disable = False
-            self.optionMenu.entryconfig(1, label= _("DISABLE GAME IMAGE"))
+            self.optionMenu.entryconfig(1, label=_("DISABLE GAME IMAGE"))
         updateJsonFile("Disable_game_image", str(self.game_image_disable))
 
     def threaded_preload_images(self):
-##        try:
+        ##        try:
         for k in self.titleID:
             if k != "":
                 start = time.time()
@@ -3080,7 +3767,9 @@ depending on how many games you have."))
                 if not tid.endswith("00"):
                     isDLC = True
                     tid = "{}".format(tid[0:12])
-                    indices = [i for i, s in enumerate(self.titleID) if tid in s]
+                    indices = [
+                        i for i, s in enumerate(self.titleID) if tid in s
+                    ]
                     if len(indices) >= 2:
                         for t in indices:
                             if self.titleID[t].endswith("000"):
@@ -3094,36 +3783,67 @@ depending on how many games you have."))
                         noaria = True
                         start = time.time()
                         base_ver = get_versions(tid)[-1]
-                        result = game_image(tid, base_ver, self.titleKey[self.titleID.index(tid)])
+                        result = game_image(
+                            tid, base_ver,
+                            self.titleKey[self.titleID.index(tid)])
                         noaria = False
                         if result[1] != "Exist":
                             if self.sys_name == "Win":
                                 try:
-                                    subprocess.check_output("{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".format(hactoolPath, result[0].replace("/", "\\")), shell=True)
+                                    subprocess.check_output(
+                                        "{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".
+                                        format(hactoolPath, result[0].replace(
+                                            "/", "\\")),
+                                        shell=True)
                                 except subprocess.CalledProcessError as e:
-                                    raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+                                    raise RuntimeError(
+                                        "command '{}' return with error (code {}): {}".
+                                        format(e.cmd, e.returncode, e.output))
                             else:
-                                subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
-                            icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat"]
+                                subprocess.check_output(
+                                    "{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".
+                                    format(hactoolPath, result[0]),
+                                    shell=True)
+                            icon_list = [
+                                "icon_AmericanEnglish.dat",
+                                "icon_BritishEnglish.dat",
+                                "icon_CanadianFrench.dat", "icon_German.dat",
+                                "icon_Italian.dat", "icon_Japanese.dat",
+                                "icon_LatinAmericanSpanish.dat",
+                                "icon_Spanish.dat"
+                            ]
                             file_name = ""
-                            dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
+                            dir_content = os.listdir(
+                                os.path.dirname(os.path.abspath(__file__)) +
+                                '/Images/{}/section0/'.format(tid))
                             for i in icon_list:
                                 if i in dir_content:
                                     file_name = i.split(".")[0]
                                     break
-                            os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
-                            shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
-                            shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
+                            os.rename(
+                                '{}/section0/{}.dat'.format(
+                                    result[0], file_name),
+                                '{}/section0/{}.jpg'.format(
+                                    result[0], file_name))
+                            shutil.copyfile(
+                                '{}/section0/{}.jpg'.format(
+                                    result[0], file_name),
+                                'Images/{}.jpg'.format(tid))
+                            shutil.rmtree(
+                                os.path.dirname(os.path.abspath(__file__)) +
+                                '/Images/{}'.format(tid))
         end = time.time()
-        print(_("\nIt took {} seconds for you to get all images!\n").format(end - start))
+        print(
+            _("\nIt took {} seconds for you to get all images!\n").format(
+                end - start))
         self.messages("", _("Done getting all game images!"))
 ##        except:
 ##            print("Error getting game images")
 
     def preload_images(self):
-        thread = threading.Thread(target = self.threaded_preload_images)
+        thread = threading.Thread(target=self.threaded_preload_images)
         thread.start()
-    
+
     def get_update_ver(self):
         tid = self.game_titleID.get()
         if tid != "" and len(tid) == 16:
@@ -3161,20 +3881,20 @@ depending on how many games you have."))
         global truncateName
         if truncateName == False:
             truncateName = True
-            self.optionMenu.entryconfig(7, label= _("Disable Shorten Name"))
+            self.optionMenu.entryconfig(7, label=_("Disable Shorten Name"))
         elif truncateName == True:
             truncateName = False
-            self.optionMenu.entryconfig(7, label= _("Enable Shorten Name"))
+            self.optionMenu.entryconfig(7, label=_("Enable Shorten Name"))
         updateJsonFile("Shorten", str(truncateName))
-            
+
     def tinfoil_change(self):
         global tinfoil
         if tinfoil == False:
             tinfoil = True
-            self.optionMenu.entryconfig(8, label= _("Disable Tinfoil Download"))
+            self.optionMenu.entryconfig(8, label=_("Disable Tinfoil Download"))
         elif tinfoil == True:
             tinfoil = False
-            self.optionMenu.entryconfig(8, label= _("Enable Tinfoil Download"))
+            self.optionMenu.entryconfig(8, label=_("Enable Tinfoil Download"))
         updateJsonFile("Tinfoil", str(tinfoil))
 
     def window_info(self, window):
@@ -3198,7 +3918,8 @@ depending on how many games you have."))
             pass
         try:
             if Toplevel.winfo_exists(self.update_window):
-                updateJsonFile("Update_win", self.window_info(self.update_window))
+                updateJsonFile("Update_win",
+                               self.window_info(self.update_window))
                 global update_win
                 update_win = self.window_info(self.update_window)
         except:
@@ -3234,8 +3955,9 @@ depending on how many games you have."))
             dir_entry.delete(0, END)
             dir_entry.insert(0, self.game_location)
         self.dir_entry = dir_entry
-        dir_entry.grid(row=0, column=0, padx=(10,0), pady=10)
-        browse_btn = Button(my_game, text=_("Browse"), command=self.my_game_directory)
+        dir_entry.grid(row=0, column=0, padx=(10, 0), pady=10)
+        browse_btn = Button(
+            my_game, text=_("Browse"), command=self.my_game_directory)
         browse_btn.grid(row=0, column=1, padx=10, pady=10)
         scan_btn = Button(my_game, text=_("Scan"), command=self.my_game_scan)
         scan_btn.grid(row=1, column=0, columnspan=2, sticky=N, padx=10)
@@ -3263,21 +3985,22 @@ depending on how many games you have."))
             self.my_game.lift()
         else:
             game_list = []
-            
-    ##        print([name for name in os.listdir(a_dir) if os.path.isdir(os.path.join(a_dir, name))])
-    ##        print(glob.glob(a_dir+"\*.nsp"))
-            
-    ##        for game in glob.iglob(r"{}\**\*.nsp".format(a_dir), recursive=True):
-    ##            game_list.append(game)
-    ##        print(os.scandir(a_dir))
+
+            ##        print([name for name in os.listdir(a_dir) if os.path.isdir(os.path.join(a_dir, name))])
+            ##        print(glob.glob(a_dir+"\*.nsp"))
+
+            ##        for game in glob.iglob(r"{}\**\*.nsp".format(a_dir), recursive=True):
+            ##            game_list.append(game)
+            ##        print(os.scandir(a_dir))
             for root, dirs, files in os.walk(a_dir):
                 for basename in files:
                     if basename.endswith(".nsp"):
                         game_list.append(basename)
+
     ##        game_list = os.listdir(self.dir_entry.get())
             if not os.path.isdir("Config"):
                 os.mkdir("Config")
-            tid_exist = [] # Tid that's already in the installed.txt
+            tid_exist = []  # Tid that's already in the installed.txt
             ver_exist = []
 
             if os.path.isfile(r"Config/installed.txt"):
@@ -3299,7 +4022,7 @@ depending on how many games you have."))
                             tid_result = "{}000".format(tid_result[:13])
                     except:
                         tid_result = "0"
-                    
+
                     try:
                         ver_check = re.compile(r"[v][0-9]+")
                         ver_result = ver_check.findall(game)[0]
@@ -3307,9 +4030,14 @@ depending on how many games you have."))
                     except:
                         ver_result = "0"
                     if tid_result != "0":
-                        if any(list_tid in tid_result for list_tid in tid_exist): # Check if the tid is already in installed.txt
-                            if int(ver_result) > int(ver_exist[tid_exist.index(tid_result)]):
-                                ver_exist[tid_exist.index(tid_result)] = ver_result
+                        if any(
+                                list_tid in tid_result
+                                for list_tid in tid_exist
+                        ):  # Check if the tid is already in installed.txt
+                            if int(ver_result) > int(
+                                    ver_exist[tid_exist.index(tid_result)]):
+                                ver_exist[tid_exist.index(
+                                    tid_result)] = ver_result
                         else:
                             tid_exist.append(tid_result)
                             ver_exist.append(ver_result)
@@ -3321,7 +4049,7 @@ depending on how many games you have."))
 
             self.update_list(rebuild=True, label=build_text)
             self.my_game.destroy()
-            
+
     def base_64_GUI(self):
         global base64_win
         base_64 = Toplevel(self.root)
@@ -3335,7 +4063,7 @@ depending on how many games you have."))
         base_64_label.grid(row=0, column=0)
         base_64_entry = Entry(base_64, width=entry_w)
         self.base_64_entry = base_64_entry
-        base_64_entry.grid(row=0, column=1, padx=(10,0), pady=10)
+        base_64_entry.grid(row=0, column=1, padx=(10, 0), pady=10)
         browse_btn = Button(base_64, text=_("Decode"), command=self.decode_64)
         browse_btn.grid(row=0, column=2, padx=10, pady=10)
 
@@ -3343,7 +4071,7 @@ depending on how many games you have."))
         decoded_label.grid(row=1, column=0)
         decoded_entry = Entry(base_64, width=entry_w)
         self.decoded_entry = decoded_entry
-        decoded_entry.grid(row=1, column=1, padx=(10,0), pady=10)
+        decoded_entry.grid(row=1, column=1, padx=(10, 0), pady=10)
         scan_btn = Button(base_64, text=_("Open"), command=self.base64_open)
         scan_btn.grid(row=1, column=2, sticky=N, padx=10, pady=10)
 
@@ -3359,16 +4087,18 @@ depending on how many games you have."))
     def make_list(self):
         # Create list in advance
         self.full_list = self.current_status
-        
-        self.no_demo_list = [] # No demo list
+
+        self.no_demo_list = []  # No demo list
         for game in self.full_list:
-            if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+            if not "demo" in game[1].strip().lower(
+            ) and not "体験版" in game[1].strip().lower():
                 self.no_demo_list.append(game)
-                
+
         self.no_jap_list = []
         for game in self.full_list:
             try:
-                game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                game[1].strip().lower().encode(
+                    encoding='utf-8').decode('ascii')
             except UnicodeDecodeError:
                 pass
             else:
@@ -3376,19 +4106,20 @@ depending on how many games you have."))
 
         self.no_demo_jap_list = []
         for game in self.full_list:
-            if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+            if not "demo" in game[1].strip().lower(
+            ) and not "体験版" in game[1].strip().lower():
                 try:
-                    game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                    game[1].strip().lower().encode(
+                        encoding='utf-8').decode('ascii')
                 except UnicodeDecodeError:
                     pass
                 else:
                     self.no_demo_jap_list.append(game)
-        
-        
-    def filter_game(self):        
+
+    def filter_game(self):
         demo_off = self.demo.get()
         no_jap = self.jap.get()
-        
+
         if demo_off and no_jap:
             self.current_status = self.no_demo_jap_list
         elif demo_off:
@@ -3406,24 +4137,24 @@ depending on how many games you have."))
             number = game_status[0].strip()
             game_name = game_status[1].strip()
             state = game_status[2].strip()
-            
+
             tree_row = (number, game_name, state)
             if search_term.lower() in game_name.lower():
                 self.tree.insert('', 'end', values=tree_row)
-                    
+
     def sysver_zero(self):
         global sysver0
         if sysver0 == False:
             sysver0 = True
-            self.optionMenu.entryconfig(9, label= _("Disable SysVer 0 Patch"))
+            self.optionMenu.entryconfig(9, label=_("Disable SysVer 0 Patch"))
         elif sysver0 == True:
             sysver0 = False
-            self.optionMenu.entryconfig(9, label= _("Enable SysVer 0 Patch"))
+            self.optionMenu.entryconfig(9, label=_("Enable SysVer 0 Patch"))
         updateJsonFile("SysVerZero", str(sysver0))
 
 ##    def threaded_preload_desc(self):
 ##        self.status_label.config(text=_("Status: Downloading all game descriptions"))
-##        
+##
 ##        global game_info_json
 ##        for tid in self.titleID:
 ##            if not tid.endswith("00"):
@@ -3438,7 +4169,7 @@ depending on how many games you have."))
 ##                if len(tid) == 16:
 ##                    print(tid)
 ##                    self.download_desc(tid, silent=True)
-##                
+##
 ##        print(_("Done preloading all game descriptions!"))
 ##        thread = threading.Thread(target = lambda: self.done_status())
 ##        thread.start()
@@ -3449,7 +4180,7 @@ depending on how many games you have."))
 
     def credit_gui(self):
         credit_win = Toplevel(self.root)
-##        credit_win.geometry("600x500+100+100")
+        ##        credit_win.geometry("600x500+100+100")
         self.credit_win = credit_win
         credit_win.title(_("Credits"))
 
@@ -3490,14 +4221,17 @@ Malaysian: fadzly#4390"""
         credit['yscrollcommand'] = scrollb.set
 
     def threaded_update_ver_list(self):
-        self.status_label.config(text=_("Status: Updating version list...")) 
+        self.status_label.config(text=_("Status: Updating version list..."))
         known_ver = {}
 
         if not os.path.isfile("Config/Version_info.json"):
             print(_("\nCan't find Version_info.json file!\n"))
-            print(_("Attempting to download the Version_info.json file for you"))
-            urllib.request.urlretrieve("https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Version_info.json", "Config/Version_info.json")
-                
+            print(
+                _("Attempting to download the Version_info.json file for you"))
+            urllib.request.urlretrieve(
+                "https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Version_info.json",
+                "Config/Version_info.json")
+
         if os.path.isfile("Config/Version_info.json"):
             ver_file = open("Config/Version_info.json", "r", encoding="utf8")
             known_ver = json.load(ver_file)
@@ -3520,28 +4254,35 @@ Malaysian: fadzly#4390"""
                     updateTid = tid
                 latest_ver = str(get_versions(updateTid)[-1])
 
-                print("Tid: {}, latest version: {}".format(updateTid, latest_ver))
+                print("Tid: {}, latest version: {}".format(
+                    updateTid, latest_ver))
                 known_ver[tid] = latest_ver
-                
+
             ver_file = open("Config/Version_info.json", "w", encoding="utf8")
             json.dump(known_ver, ver_file, indent=4)
             ver_file.close()
         else:
-            print(_("Unable to find Version_info.json file inside your Config folder"))
+            print(
+                _("Unable to find Version_info.json file inside your Config folder"
+                  ))
         self.update_list(rebuild=True)
-        
+
     def update_ver_list(self):
         thread = threading.Thread(target=self.threaded_update_ver_list)
         thread.start()
+
+
 # ------------------------
 # Main Section
 
+
 def main():
-    urllib3.disable_warnings()       
+    urllib3.disable_warnings()
     configPath = os.path.join(os.path.dirname(__file__), 'CDNSPconfig.json')
     global hactoolPath, keysPath, NXclientPath, ShopNPath, reg, fw, did, env, dbURL, nspout
-    hactoolPath, keysPath, NXclientPath, ShopNPath, reg, fw, did, env, dbURL, nspout = load_config(configPath)
-    
+    hactoolPath, keysPath, NXclientPath, ShopNPath, reg, fw, did, env, dbURL, nspout = load_config(
+        configPath)
+
     spam_spec = util.find_spec("tqdm")
     found = spam_spec is not None
     global tqdmProgBar
@@ -3549,7 +4290,9 @@ def main():
         tqdmProgBar = True
     else:
         tqdmProgBar = False
-        print('Install the tqdm library for better-looking progress bars! (pip install tqdm)')
+        print(
+            'Install the tqdm library for better-looking progress bars! (pip install tqdm)'
+        )
     global keysArg
     if keysPath != '':
         keysArg = ' -k "%s"' % keysPath
@@ -3571,7 +4314,9 @@ def main():
         try:
             titleID, titleKey, title = content[i].split("|")
         except:
-            print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+            print(
+                _("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"
+                  ))
         if titleID != "":
             titleID_list.append(titleID[:16])
             titleKey_list.append(titleKey)
@@ -3591,7 +4336,7 @@ def main():
                 _tid, _tkey = line.split("|")
                 _tid = _tid[:16]
                 _tkey = _tkey[:32]
-                
+
                 if len(_tid) == 16:
                     if len(_tkey) == 32:
                         if _tid in titleID_list:
@@ -3602,6 +4347,7 @@ def main():
     Application(root, titleID_list, titleKey_list, title_list, dbURL)
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
