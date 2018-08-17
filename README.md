@@ -3,7 +3,7 @@ Check [here](https://github.com/Bob123a1/CDNSP-GUI/releases) for the latest rele
 
 People with problems using the GUI on a Mac you can check out [this guide here!](https://github.com/Bob123a1/CDNSP-GUI/wiki/Step-by-step-setup-guide-(bug-fixes)-for-Mac-users)
 
-## Installation instructions
+## Setup instructions
 * Download Python 3 (https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe) (3.7 is the latest version)
 * Install Python 3, when installing make sure you ***tick "Add to Path"*** and ***untick install for "ALL USER"*** 
 * Extract the folder in the zip file to your Desktop (or wherever you want)
