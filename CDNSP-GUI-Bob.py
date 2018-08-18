@@ -232,11 +232,16 @@ global tqdmProgBar
 tqdmProgBar = True
 
 sysver0 = False
+sysverUser = sys.maxsize
 
 #Global Vars
 truncateName = False
 tinfoil = False
 enxhop = False
+
+system_version = {'1.0.0': 450, '2.0.0': 65796, '2.1.0': 131162, '2.2.0': 196628, '2.3.0': 262164, '3.0.0': 201327002, '3.0.1': 201392178, '3.0.2': 201457684,
+                  '4.0.0': 268435656, '4.0.1': 268501002, '4.1.0': 269484082, '5.0.0': 335544750, '5.0.1': 335609886, '5.0.2': 335675432, '5.1.0': 336592976,
+                  'Latest': sys.maxsize}
     
 import os, sys
 import re
@@ -1112,6 +1117,48 @@ def download_sysupdate(ver):
         download_title(dir, title, titles[title][0], n='n')
         
     return sysupdateDir    
+        
+def get_title_sysver(tid, ver, path_Dir=""):
+    if path_Dir == "":
+        path_Dir = os.path.join(os.path.dirname(__file__), "_NSPOUT")
+    
+    gameDir = os.path.join(path_Dir, tid)
+
+    if not os.path.exists(gameDir):
+        os.makedirs(gameDir, exist_ok=True)
+
+    print('\n%s v%s:' % (tid, ver))
+    if len(tid) != 16:
+        tid = (16-len(tid)) * '0' + tid
+    
+    url = 'https://atum.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (env, tid, ver, did)
+    r = make_request('HEAD', url)
+    CNMTid = r.headers.get('X-Nintendo-Content-ID')
+    
+    print('\tDownloading CNMT (%s.cnmt.nca)...' % CNMTid)
+    url = 'https://atum.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (env, CNMTid, did)
+    fPath = os.path.join(gameDir, CNMTid + '.cnmt.nca')
+    cnmtNCA = download_file(url, fPath)
+    
+    cnmtDir = decrypt_NCA(cnmtNCA)
+    CNMT = cnmt(os.path.join(cnmtDir, 'section0', os.listdir(os.path.join(cnmtDir, 'section0'))[0]), 
+                os.path.join(cnmtDir, 'Header.bin'))
+    
+    outf = os.path.join(gameDir, '%s.xml' % os.path.basename(cnmtNCA).strip('.nca'))
+    cnmtXML = CNMT.gen_xml(cnmtNCA, outf)
+
+    content_meta = {}
+
+    root = ET.parse(outf).getroot()
+    for child in root:
+        if len(list(child)) == 0: # Content
+            content_meta[child.tag] = child.text
+
+    required_sysver = int(content_meta['RequiredSystemVersion']) % 0x100000000
+
+    shutil.rmtree(gameDir, ignore_errors=True)
+
+    return required_sysver
     
 class cnmt:
     titleTypes = {
@@ -1892,21 +1939,22 @@ class Application():
 
         # Queue GUI
         self.queue_scrollbar = Scrollbar(self.queue_win)
-        self.queue_scrollbar.grid(row=0, column=3, sticky=N+S+W)
+        self.queue_scrollbar.grid(row=0, column=4, sticky=N+S+W)
         
         if self.sys_name == "Mac":
             self.queue_width = self.listWidth+28
         else:
             self.queue_width = 100 # Windows 
         self.queue_title_list = Listbox(self.queue_win, yscrollcommand = self.queue_scrollbar.set, width=self.queue_width, selectmode=EXTENDED)
-        self.queue_title_list.grid(row=0, column=0, sticky=W, columnspan=3)
+        self.queue_title_list.grid(row=0, column=0, sticky=W, columnspan=4)
         self.queue_scrollbar.config(command = self.queue_title_list.yview)
 
         Button(self.queue_win, text=_("Remove selected game"), command=self.remove_selected_items).grid(row=1, column=0, pady=(30,0))
         Button(self.queue_win, text=_("Remove all"), command=self.remove_all_and_dump).grid(row=1, column=1, pady=(30,0))
         Button(self.queue_win, text=_("Download all"), command=self.download_all).grid(row=1, column=2, pady=(30,0))
+        Button(self.queue_win, text=_("Get required firmware"), command=self.get_required_sysver).grid(row=1, column=3, pady=(30,0))
         self.stateLabel = Label(self.queue_win, text=_("Click download all to download all games in queue!"))
-        self.stateLabel.grid(row=2, column=0, columnspan=3, pady=(20, 0))
+        self.stateLabel.grid(row=2, column=0, columnspan=4, pady=(20, 0))
 
     # Sorting function for the treeview widget
     def sortby(self, tree, col, descending):
@@ -2560,8 +2608,17 @@ depending on how many games you have."))
             if option == "U" or self.is_DLC == True:
                 if ver != "none":
                     self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
-                    self.messages("", _("Download finished!"))
+
+                    required_sysver = 0
+                    if sysverUser < sys.maxsize:
+                        required_sysver = get_title_sysver(updateTid, ver, path_Dir=self.path)
+
+                    if required_sysver == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                      format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver), "Unknown"))):
+                        download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                        self.messages("", _("Download finished!"))
+                    else:
+                        self.messages("", _("Download cancelled!"))
                 else:
                     self.messages("", _("No updates available for the game"))
                     
@@ -2569,37 +2626,69 @@ depending on how many games you have."))
                 base_tid = "{}000".format(tid[0:13])
                 self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                updateTid = ""
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
                 for index in indices:
                     if not self.titleID[index].endswith("00"):
                         DLC_titleID.append(self.titleID[index])
-                for DLC_ID in DLC_titleID:
-                    DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
-                self.messages("", _("Download finished!"))
+
+                required_sysver = []
+                if sysverUser < sys.maxsize:
+                    required_sysver.append(get_title_sysver(base_tid, base_ver, path_Dir=self.path))
+                    if ver != 'none':
+                        required_sysver.append(get_title_sysver(updateTid, ver, path_Dir=self.path))
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path))
+                    required_sysver.sort(reverse=True)
+
+                if len(required_sysver) == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                    format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver[0]), "Unknown"))):
+                    download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    if ver != 'none':
+                        download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    self.messages("", _("Download finished!"))
+                else:
+                    self.messages("", _("Download cancelled!"))
 
             elif option == "U+D":
+                self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
+                updateTid = ""
                 if ver != "none":
                     updateTid = "{}800".format(tid[0:13])
-                    self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
                 DLC_titleID = []
                 tid = "{}".format(tid[0:12])
                 indices = [i for i, s in enumerate(self.titleID) if tid in s]
                 for index in indices:
                     if not self.titleID[index].endswith("00"):
                         DLC_titleID.append(self.titleID[index])
-                for DLC_ID in DLC_titleID:
-                    DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
-                self.messages("", _("Download finished!"))
 
+                required_sysver = []
+                if sysverUser < sys.maxsize:
+                    if ver != "none":
+                        required_sysver.append(get_title_sysver(updateTid, ver, path_Dir=self.path))
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path))
+                    required_sysver.sort(reverse=True)
+
+                if len(required_sysver) == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                    format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver[0]), "Unknown"))):
+                    if ver != "none":
+                        download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    self.messages("", _("Download finished!"))
+                else:
+                    self.messages("", _("Download cancelled!"))
 
             elif option == "D":
                 self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
@@ -2609,30 +2698,64 @@ depending on how many games you have."))
                 for index in indices:
                     if not self.titleID[index].endswith("00"):
                         DLC_titleID.append(self.titleID[index])
-                for DLC_ID in DLC_titleID:
-                    DLC_ver = get_versions(DLC_ID)[-1]
-                    download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
-                self.messages("", _("Download finished!"))
 
+                required_sysver = []
+                if sysverUser < sys.maxsize:
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path))
+                    required_sysver.sort(reverse=True)
+
+                if len(required_sysver) == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                    format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver[0]), "Unknown"))):
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+                    self.messages("", _("Download finished!"))
+                else:
+                    self.messages("", _("Download cancelled!"))
                 
             elif option == "B":
                 base_tid = "{}000".format(tid[0:13])
                 self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
-                self.messages("", _("Download finished!"))
+
+                required_sysver = 0
+                if sysverUser < sys.maxsize:
+                    required_sysver = get_title_sysver(base_tid, base_ver, path_Dir=self.path)
+
+                if required_sysver == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                    format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver), "Unknown"))):
+                    download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    self.messages("", _("Download finished!"))
+                else:
+                    self.messages("", _("Download cancelled!"))
                 
             elif option == "B+U":
                 base_tid = "{}000".format(tid[0:13])
                 self.messages("", _("Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."))
                 base_ver = get_versions(base_tid)[-1]
-                download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                updateTid = ""
                 if ver != 'none':
                     updateTid = "{}800".format(tid[0:13])
-                    download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
-                    self.messages("", _("Download finished!"))
+
+                required_sysver = []
+                if sysverUser < sys.maxsize:
+                    required_sysver.append(get_title_sysver(base_tid, base_ver, path_Dir=self.path))
+                    if ver != 'none':
+                        required_sysver.append(get_title_sysver(updateTid, ver, path_Dir=self.path))
+                    required_sysver.sort(reverse=True)
+
+                if len(required_sysver) == 0 or messagebox.askyesno("", (_("This game requires Firmware version {}.") + " " + _("Do you wish to continue downloading?")).
+                                                                    format(next((firmware for firmware, sysver in system_version.items() if sysver >= required_sysver[0]), "Unknown"))):
+                    download_game(base_tid, base_ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                    if ver != 'none':
+                        download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
+                        self.messages("", _("Download finished!"))
+                    else:
+                        self.messages("", _("No updates available for the game, base game downloaded!"))
                 else:
-                    self.messages("", _("No updates available for the game, base game downloaded!"))
+                    self.messages("", _("Download cancelled!"))
 ##        except:
 ##            print("Error downloading {}, note: if you're downloading a DLC then different versions of DLC may have different titlekeys".format(tid))
         return
@@ -2856,6 +2979,107 @@ depending on how many games you have."))
 ##                print(tid, self.installed.index(tid))
 ##        else:
 ##            if any(tid_list in tid for tid_list in self.installed):                      
+
+    def threaded_get_required_sysver(self):
+        selection = self.queue_title_list.curselection()
+        if len(selection) == 0:
+            self.messages("", _("No game selected!"))
+            return
+
+        self.messages("", _("Starting to retrieve required firmware info! It will take some time, please be patient."))
+        required_sysver_all = []
+
+        for item in selection:
+            try:
+                tid, ver, tkey, option = self.queue_list[item]
+                ver = self.process_item_versions(tid, ver)[1]
+
+                required_sysver = []
+##                try:
+                if option == "U" or option == "DLC":
+                    if ver != "none":
+                        if tid.endswith("00"):
+                            tid = "{}800".format(tid[0:13])
+                        required_sysver.append(("{}{} (v{})".format("[DLC] " if option == "DLC" and not self.persistent_queue[item][0].startswith("[DLC] ") else "[UPD] ", self.persistent_queue[item][0], ver), get_title_sysver(tid, ver, path_Dir=self.path)))
+                    else:
+                        print(_("No updates available for titleID: {}").format(tid))
+                    
+                elif option == "B+U+D":
+                    base_tid = "{}000".format(tid[0:13])
+                    base_ver = get_versions(base_tid)[-1]
+                    required_sysver.append(("{} (v{})".format(self.persistent_queue[item][0], base_ver), get_title_sysver(base_tid, base_ver, path_Dir=self.path)))
+                    if ver != 'none':
+                        updateTid = "{}800".format(tid[0:13])
+                        required_sysver.append(("[UPD] {} (v{})".format(self.persistent_queue[item][0], ver), get_title_sysver(updateTid, ver, path_Dir=self.path)))
+                    DLC_titleID = []
+                    tid = "{}".format(tid[0:12])
+                    indices = [i for i, s in enumerate(self.titleID) if tid in s]
+                    for index in indices:
+                        if not self.titleID[index].endswith("00"):
+                            DLC_titleID.append(self.titleID[index])
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(("{}{} (v{})".format("[DLC] " if not self.persistent_queue[item][0].startswith("[DLC] ") else "", self.persistent_queue[item][0], DLC_ver), get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path)))
+
+                elif option == "U+D":
+                    if ver != "none":
+                        updateTid = "{}800".format(tid[0:13])
+                        required_sysver.append(("[UPD] {} (v{})".format(self.persistent_queue[item][0], ver), get_title_sysver(updateTid, ver, path_Dir=self.path)))
+                    DLC_titleID = []
+                    tid = "{}".format(tid[0:12])
+                    indices = [i for i, s in enumerate(self.titleID) if tid in s]
+                    for index in indices:
+                        if not self.titleID[index].endswith("00"):
+                            DLC_titleID.append(self.titleID[index])
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(("{}{} (v{})".format("[DLC] " if not self.persistent_queue[item][0].startswith("[DLC] ") else "", self.persistent_queue[item][0], DLC_ver), get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path)))
+
+                elif option == "D":
+                    DLC_titleID = []
+                    tid = "{}".format(tid[0:12])
+                    indices = [i for i, s in enumerate(self.titleID) if tid in s]
+                    for index in indices:
+                        if not self.titleID[index].endswith("00"):
+                            DLC_titleID.append(self.titleID[index])
+                    for DLC_ID in DLC_titleID:
+                        DLC_ver = get_versions(DLC_ID)[-1]
+                        required_sysver.append(("{}{} (v{})".format("[DLC] " if not self.persistent_queue[item][0].startswith("[DLC] ") else "", self.persistent_queue[item][0], DLC_ver), get_title_sysver(DLC_ID, DLC_ver, path_Dir=self.path)))
+                
+                elif option == "B":
+                    base_tid = "{}000".format(tid[0:13])
+                    base_ver = get_versions(base_tid)[-1]
+                    required_sysver.append(("{} (v{})".format(self.persistent_queue[item][0], base_ver), get_title_sysver(base_tid, base_ver, path_Dir=self.path)))
+                
+                elif option == "B+U":
+                    base_tid = "{}000".format(tid[0:13])
+                    base_ver = get_versions(base_tid)[-1]
+                    required_sysver.append(("{} (v{})".format(self.persistent_queue[item][0], base_ver), get_title_sysver(base_tid, base_ver, path_Dir=self.path)))
+                    if ver != 'none':
+                        updateTid = "{}800".format(tid[0:13])
+                        required_sysver.append(("[UPD] {} (v{})".format(self.persistent_queue[item][0], ver), get_title_sysver(updateTid, ver, path_Dir=self.path)))
+                    else:
+                        print(_("No updates available for titleID: {}, base game downloaded!").format(tid))
+##                except:
+##                    print("Error downloading {}, note: if you're downloading a DLC then different versions of DLC may have different titlekeys".format(tid))
+
+                required_sysver_all.extend(required_sysver)
+            except Exception as e:
+                print(e)
+
+        if len(required_sysver_all) > 0:
+            messages = "Required Firmware:"
+            if len(required_sysver_all) > 1:
+                messages += "\n"
+            for sysver in required_sysver_all:
+                messages += "\n{} {}".format(sysver[0].ljust(50, " "), next((firmware for firmware, version in system_version.items() if version >= sysver[1]), "Unknown"))
+            self.messages("", messages)
+        else:
+            self.messages("", _("No game selected!"))
+
+    def get_required_sysver(self):
+        thread = threading.Thread(target = self.threaded_get_required_sysver)
+        thread.start()
 
     def normalize_file_path(self, file_path):
         if self.sys_name == "Win":
