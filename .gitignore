@@ -1,0 +1,6 @@
+# IDE
+/.idea/
+/*.iml
+
+# language.mo files
+/locales/*/LC_MESSAGES/language.mo
