@@ -2863,7 +2863,7 @@ depending on how many games you have."))
 ##            messagebox.showerror("Error", "No game selected/entered to add to queue")
 
     def process_item_versions(self, tid, ver):
-        if _("Latest") or "Latest" in ver:
+        if _("Latest") in ver or "Latest" in ver:
             if tid.endswith('000'):
                 tid = '%s800' % tid[:-3]
             ver = get_versions(tid)[-1]
