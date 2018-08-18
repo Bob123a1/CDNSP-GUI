@@ -1530,6 +1530,7 @@ def GUI_config(fPath):
                 "Shorten": "False",
                 "Tinfoil": "False",
                 "SysVerZero": "False",
+                "SysVerUser": "Latest",
                 "Main_win": main_win,
                 "Queue_win": queue_win,
                 "Update_win": "600x400+120+200",
@@ -1560,6 +1561,10 @@ def GUI_config(fPath):
     shorten = str2bool(j['Options']['Shorten'])
     tinfoil = str2bool(j['Options']['Tinfoil'])
     sysver0 = str2bool(j['Options']['SysVerZero'])
+    try:
+        sysverUser = system_version[j['Options']['SysVerUser']]
+    except:
+        sysverUser = sys.maxsize
     main_win  = j['Options']['Main_win']
     queue_win  = j['Options']['Queue_win']
     update_win  = j['Options']['Update_win']
@@ -1571,7 +1576,7 @@ def GUI_config(fPath):
         download_location = ""
         updateJsonFile("Download_location", download_location)
     return download_location, game_location, repack, mute, titlekey_check, noaria, \
-           disable_game_image, shorten, tinfoil, sysver0, main_win, queue_win, update_win, \
+           disable_game_image, shorten, tinfoil, sysver0, sysverUser, main_win, queue_win, update_win, \
            scan_win, base64_win, language
 
 class Application():
@@ -1587,8 +1592,8 @@ class Application():
         
         configGUIPath = os.path.join(os.path.dirname(__file__), 'CDNSP-GUI-config.json') # Load config file
         self.path, self.game_location, self.repack, self.mute, self.titlekey_check, noaria_temp, \
-                   self.game_image_disable, shorten_temp, tinfoil_temp, sysver0_temp, main_win, \
-                   queue_win, update_win, scan_win, \
+                   self.game_image_disable, shorten_temp, tinfoil_temp, sysver0_temp, sysverUser_temp, \
+                   main_win, queue_win, update_win, scan_win, \
                    base64_win, language = GUI_config(configGUIPath) # Get config values
 
         
@@ -1645,6 +1650,9 @@ class Application():
         global sysver0
         sysver0 = sysver0_temp
 
+        global sysverUser
+        sysverUser = sysverUser_temp
+
         # Top Menu bar
         self.menubar = Menu(self.root)
 
@@ -1676,6 +1684,28 @@ class Application():
         self.optionMenu.add_command(label=_("Enable Tinfoil Download"), command=self.tinfoil_change)
         self.optionMenu.add_command(label=_("Enable SysVer 0 Patch"), command=self.sysver_zero)
         
+        self.optionMenu.add_separator() # Add separator to the menu dropdown
+
+        self.sysverMenu = Menu(self.optionMenu, tearoff=0)
+        self.optionMenu.add_cascade(label=_("System Firmware"), menu=self.sysverMenu)
+
+        self.sysverMenu.add_command(label="1.0.0", command=lambda: self.system_firmware("1.0.0"))
+        self.sysverMenu.add_command(label="2.0.0", command=lambda: self.system_firmware("2.0.0"))
+        self.sysverMenu.add_command(label="2.1.0", command=lambda: self.system_firmware("2.1.0"))
+        self.sysverMenu.add_command(label="2.2.0", command=lambda: self.system_firmware("2.2.0"))
+        self.sysverMenu.add_command(label="2.3.0", command=lambda: self.system_firmware("2.3.0"))
+        self.sysverMenu.add_command(label="3.0.0", command=lambda: self.system_firmware("3.0.0"))
+        self.sysverMenu.add_command(label="3.0.1", command=lambda: self.system_firmware("3.0.1"))
+        self.sysverMenu.add_command(label="3.0.2", command=lambda: self.system_firmware("3.0.2"))
+        self.sysverMenu.add_command(label="4.0.0", command=lambda: self.system_firmware("4.0.0"))
+        self.sysverMenu.add_command(label="4.0.1", command=lambda: self.system_firmware("4.0.1"))
+        self.sysverMenu.add_command(label="4.1.0", command=lambda: self.system_firmware("4.1.0"))
+        self.sysverMenu.add_command(label="5.0.0", command=lambda: self.system_firmware("5.0.0"))
+        self.sysverMenu.add_command(label="5.0.1", command=lambda: self.system_firmware("5.0.1"))
+        self.sysverMenu.add_command(label="5.0.2", command=lambda: self.system_firmware("5.0.2"))
+        self.sysverMenu.add_command(label="5.1.0", command=lambda: self.system_firmware("5.1.0"))
+        self.sysverMenu.add_command(label="Latest", command=lambda: self.system_firmware("Latest"))
+
         self.optionMenu.add_separator() # Add separator to the menu dropdown
         
         self.optionMenu.add_command(label=_("Save Windows Location and Size"), command=self.window_save)
@@ -1754,6 +1784,13 @@ class Application():
             self.optionMenu.entryconfig(9, label= _("Disable SysVer 0 Patch"))
         else:
             self.optionMenu.entryconfig(9, label= _("Enable SysVer 0 Patch"))
+
+        label = next((firmware for firmware, sysver in system_version.items() if sysver >= sysverUser), "Latest")
+        try:
+            index = list(system_version).index(label)
+            self.sysverMenu.entryconfig(index, label= label + "*")
+        except Exception as e:
+            print(e)
 
         # Status Label
         self.status_label = Label(self.root, text=_("Status:"))
@@ -3644,6 +3681,27 @@ depending on how many games you have."))
             sysver0 = False
             self.optionMenu.entryconfig(9, label= _("Enable SysVer 0 Patch"))
         updateJsonFile("SysVerZero", str(sysver0))
+                    
+    def system_firmware(self, sysver):
+        global sysverUser
+        label = next((firmware for firmware, sysver in system_version.items() if sysver >= sysverUser), "Latest")
+        try:
+            index = list(system_version).index(label)
+            self.sysverMenu.entryconfig(index, label= label)
+        except Exception as e:
+            print(e)
+
+        try:
+            sysverUser = system_version[sysver]
+        except:
+            sysverUser = sys.maxsize
+        label = next((firmware for firmware, sysver in system_version.items() if sysver >= sysverUser), "Latest")
+        try:
+            index = list(system_version).index(label)
+            self.sysverMenu.entryconfig(index, label= label + "*")
+        except Exception as e:
+            print(e)
+        updateJsonFile("SysVerUser", label)
 
 ##    def threaded_preload_desc(self):
 ##        self.status_label.config(text=_("Status: Downloading all game descriptions"))
