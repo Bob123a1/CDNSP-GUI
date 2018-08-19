@@ -416,7 +416,7 @@ msgstr "La descarga ha comenzado. Puede tardar un poco, ten paciencia. Puedes ve
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2095
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2105
 msgid "Download finished!"
-msgstr "¡Desgarga finalizada!"
+msgstr "¡Descarga finalizada!"
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2038
@@ -440,7 +440,7 @@ msgstr ""
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2143
 msgid "Persistent queue not found, skipping..."
-msgstr "No se ha encontrado cola de desgargas, saltando..."
+msgstr "No se ha encontrado cola de descargas, saltando..."
 
 #:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2149
