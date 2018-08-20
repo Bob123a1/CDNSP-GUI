@@ -3,4 +3,4 @@
 /*.iml
 
 # language.mo files
-/locales/*/LC_MESSAGES/language.mo
+#/locales/*/LC_MESSAGES/language.mo
