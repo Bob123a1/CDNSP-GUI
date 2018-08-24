@@ -1739,14 +1739,21 @@ class Application():
         # Setup Treeview and Two Scrollbars
         container = ttk.Frame(game_selection_frame)
         container.grid(row=1, column=0, columnspan=2)
-        self.tree = ttk.Treeview(columns=("num", "G", "S"), show="headings", selectmode=EXTENDED)
+        self.tree = ttk.Treeview(columns=("num", "tid", "G", "S"), show="headings", selectmode=EXTENDED)
         self.tree.bind('<<TreeviewSelect>>', self.game_info)
         self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 0))
         self.tree.column("num", width=40)
+        self.tree.heading("tid", text=_("TitleID"), command=lambda c="tid": self.sortby(self.tree, c, 0))
+        self.tree.column("tid", width=140)
         self.tree.heading("G", text=_("Game"), command=lambda c="G": self.sortby(self.tree, c, 0))
         self.tree.column("G", width=590)
-        self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 0))
-        self.tree.column("S", width=130)
+        self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 0))        
+        columnWidth_S = 130
+        if chosen_lang == "zh-cn":
+            columnWidth_S = 45
+        elif chosen_lang == "en":
+            columnWidth_S = 55
+        self.tree.column("S", width=columnWidth_S)
         vsb = ttk.Scrollbar(orient="vertical", command=self.tree.yview)
         hsb = ttk.Scrollbar(orient="horizontal", command=self.tree.xview)
         self.tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
@@ -2051,7 +2058,7 @@ depending on how many games you have."))
                 
                 if tid in updates_tid:
                     state = "Update"
-                tree_row = (str(number), game_name, state)
+                tree_row = (str(number), tid, game_name, state)
                 status_file.write(str(tree_row)+"\n")
             status_file.close()
             threading.Timer(1, self.done_status).start()    
@@ -2063,11 +2070,12 @@ depending on how many games you have."))
             self.tree.delete(*self.tree.get_children())
             for game_status in self.current_status:
                 number = game_status[0].strip()
-                game_name = game_status[1].strip()
-                state = game_status[2].strip()
+                tid = game_status[1].strip()
+                game_name = game_status[2].strip()
+                state = game_status[3].strip()
                 
-                tree_row = (number, game_name, state)
-                if search_term.lower() in game_name.lower():
+                tree_row = (number, tid, game_name, state)
+                if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
                     self.tree.insert('', 'end', values=tree_row)
                     
         else:
@@ -2094,6 +2102,7 @@ depending on how many games you have."))
         self.tree.yview_moveto(0)
         # Reset the sorting back to default (descending)
         self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 1))
+        self.tree.heading("tid", text=_("TitleID"), command=lambda c="tid": self.sortby(self.tree, c, 0))
         self.tree.heading("G", text=_("Game"), command=lambda c="G": self.sortby(self.tree, c, 1))
         self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 1))
 
@@ -3404,11 +3413,12 @@ depending on how many games you have."))
         self.tree.delete(*self.tree.get_children())
         for game_status in self.current_status:
             number = game_status[0].strip()
-            game_name = game_status[1].strip()
-            state = game_status[2].strip()
+            tid = game_status[1].strip()
+            game_name = game_status[2].strip()
+            state = game_status[3].strip()
             
-            tree_row = (number, game_name, state)
-            if search_term.lower() in game_name.lower():
+            tree_row = (number, tid, game_name, state)
+            if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
                 self.tree.insert('', 'end', values=tree_row)
                     
     def sysver_zero(self):
