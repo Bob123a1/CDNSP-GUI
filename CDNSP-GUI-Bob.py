@@ -2212,7 +2212,7 @@ depending on how many games you have."))
                 description += "{}\n".format(game_info_json[tid]["intro"]\
                                              .replace("\n\n", " ").replace("\n", "").strip())
 
-            info_name = {"\nGame Description": "description",
+            info_name = {"Game Description": "description",
                          "Release Date": "release_date_string",
                          "Publisher": "publisher",
                          "Category": "category",
@@ -2224,7 +2224,8 @@ depending on how many games you have."))
 
             for game_name, game_key in info_name.items():
                 if game_key == "description":
-                    description += "{}: {}\n\n".format(_(game_name), game_info_json[tid]["{}".format(game_key)]\
+                    print(repr(_("Game Description:")))
+                    description += "\n{} {}\n\n".format(_(game_name+":"), game_info_json[tid]["{}".format(game_key)]\
                                                        .replace("\n\n", " ").replace("\n", "").strip())
                 elif game_key == "Game_size":
                     try:
@@ -2249,6 +2250,7 @@ depending on how many games you have."))
 
             counter = 3
             for game_name, game_key in info_name.items():
+                print(len(_(game_name)))
                 self.game_text.tag_add("{}".format(_(game_name)), "{}.0".format(counter), "{}.{}".format(counter, len(_(game_name))))
                 self.game_text.tag_config("{}".format(_(game_name)), font=("Open Sans", 10, "bold"), spacing2="2", spacing3="3")
                 if counter == 3:
