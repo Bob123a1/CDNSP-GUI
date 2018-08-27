@@ -2086,11 +2086,11 @@ depending on how many games you have."))
                     if line[-1] == "\n":
                         line = line[:-1]
                     if "New" in line:
-                        line = line.replace("New", _("New"))
+                        line = line.replace("'New'", "'" + _("New") + "'")
                     if "Own" in line:
-                        line = line.replace("Own", _("Own"))
+                        line = line.replace("'Own'", "'" + _("Own") + "'")
                     if "Update" in line:
-                        line = line.replace("Update", _("Update"))
+                        line = line.replace("'Update'", "'" + _("Update") + "'")
                     status_list = eval(line)
                     self.current_status.append(status_list)
                 self.update_list(search=True)
