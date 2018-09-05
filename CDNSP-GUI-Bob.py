@@ -2175,7 +2175,7 @@ depending on how many games you have."))
                             subprocess.check_output("{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".format(hactoolPath, result[0].replace("/", "\\")), shell=True)
                         else:
                             subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
-                        icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat"]
+                        icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", "icon_Korean.dat"]
                         file_name = ""
                         dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
                         for i in icon_list:
@@ -2907,7 +2907,7 @@ depending on how many games you have."))
                     info = ''
                     new_tid = []
                     for line in newdb:
-                        if line.strip() not in currdb:
+                        if line.strip() not in currdb and 'RightsID|TitleKey|Name' not in line:
                             if line.strip() != newdb[0].strip():
                                 new_tid.append(line.strip().split('|')[0])
                                 info += (line.strip()).rsplit('|',1)[1] + '\n'
@@ -2961,7 +2961,7 @@ depending on how many games you have."))
                             self.titleID = []
                             self.titleKey = []
                             for line in newdb:
-                                if line.strip():
+                                if line.strip() and 'RightsID|TitleKey|Name' not in line:
                                     self.title.append(line.strip().split("|")[2])
                                     self.titleID.append(line.strip().split("|")[0][:16])
                                     self.titleKey.append(line.strip().split("|")[1])
@@ -2988,7 +2988,7 @@ depending on how many games you have."))
                     self.titleID = []
                     self.titleKey = []
                     for line in newdb:
-                        if line.strip():
+                        if line.strip() and 'RightsID|TitleKey|Name' not in line:
                             self.title.append(line.strip().split("|")[2])
                             self.titleID.append(line.strip().split("|")[0][:16])
                             self.titleKey.append(line.strip().split("|")[1])
@@ -3113,7 +3113,7 @@ depending on how many games you have."))
                                     raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
                             else:
                                 subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
-                            icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat"]
+                            icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat", "icon_CanadianFrench.dat", "icon_German.dat", "icon_Italian.dat", "icon_Japanese.dat", "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", "icon_Korean.dat"]
                             file_name = ""
                             dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
                             for i in icon_list:
