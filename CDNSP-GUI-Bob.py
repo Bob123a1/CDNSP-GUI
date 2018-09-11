@@ -3371,13 +3371,13 @@ depending on how many games you have."))
         
         self.no_demo_list = [] # No demo list
         for game in self.full_list:
-            if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+            if not "demo" in game[2].strip().lower() and not "体験版" in game[2].strip().lower():
                 self.no_demo_list.append(game)
                 
         self.no_jap_list = []
         for game in self.full_list:
             try:
-                game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                game[2].strip().lower().encode(encoding='utf-8').decode('ascii')
             except UnicodeDecodeError:
                 pass
             else:
@@ -3385,9 +3385,9 @@ depending on how many games you have."))
 
         self.no_demo_jap_list = []
         for game in self.full_list:
-            if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+            if not "demo" in game[2].strip().lower() and not "体験版" in game[2].strip().lower():
                 try:
-                    game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                    game[2].strip().lower().encode(encoding='utf-8').decode('ascii')
                 except UnicodeDecodeError:
                     pass
                 else:
