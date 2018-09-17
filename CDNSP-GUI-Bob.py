@@ -2322,7 +2322,8 @@ depending on how many games you have."))
                             icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat",\
                                          "icon_CanadianFrench.dat", "icon_German.dat", \
                                          "icon_Italian.dat", "icon_Japanese.dat", \
-                                         "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", "icon_Korean.dat"]
+                                         "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", \
+                                         "icon_Korean.dat", "icon_TraditionalChinese.dat"]
                             file_name = ""
                             dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
                             for i in icon_list:
@@ -3276,7 +3277,8 @@ depending on how many games you have."))
                                 icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat",\
                                          "icon_CanadianFrench.dat", "icon_German.dat", \
                                          "icon_Italian.dat", "icon_Japanese.dat", \
-                                         "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", "icon_Korean.dat"]
+                                         "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", \
+                                         "icon_Korean.dat", "icon_TraditionalChinese.dat"]
                                 file_name = ""
                                 dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
                                 for i in icon_list:
