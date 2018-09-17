@@ -15,8 +15,8 @@ import locale
 import json
 import os
 
-__gui_version__ = "5.0.0"
-__lang_version___ = "1.0.0"
+__gui_version__ = "5.0.1"
+__lang_version__ = "1.0.0"
 
 global sys_locale
 
@@ -382,7 +382,7 @@ def load_config(fPath):
             'Firmware': '5.1.0-3',
             'DeviceID': '6265A5E4140FF804',
             'Environment': 'lp1',
-            'TitleKeysURL': 'http://snip.li/newkeydb',
+            'TitleKeysURL': '{}'.format(base64.b64decode("aHR0cDovL3NuaXAubGkvbmV3a2V5ZGI=").decode("ascii")),
             'NspOut': '_NSPOUT',
             'AutoUpdatedb': 'False'}}
     try:
@@ -1868,11 +1868,7 @@ class Application():
         # Game info section
         Label(game_selection_frame, text=_("Game Info:")).grid(row=2, column=1, pady=(20, 0))
         game_text = Text(game_selection_frame, width=50, height=17, wrap=WORD)
-        
-##        scroll_bar = Scrollbar(game_selection_frame, command=game_text.yview)
-##        scroll_bar.grid(row=3, column=2, sticky='ns')
-##        game_text['yscrollcommand'] = scroll_bar.set
-        
+
         self.game_text = game_text
         game_text.grid(row=3, column=1, sticky=N)
         #-------------------------------------------
@@ -1978,29 +1974,33 @@ class Application():
 
         #-----------------------------------------
         # Setup GUI Functions
+        self.my_game_scan(a_dir=self.path, silent=True)
         self.update_list(rebuild=True)
         self.filter_game()
-        self.my_game_scan(a_dir=self.path, silent=True)
         self.queue_menu_setup()
         self.load_persistent_queue() # only load the queue once the UI is initialized
-        
+        try:
+            self.status_label.config(text=_("Status: Done!"))
+        except:
+            pass
         update_result = self.check_update()
         self.update_result = update_result
         display = True
+        display_text = ""
+        
         # G - Indicates an update for the GUI,
         # L - Indicates an update for the Language files
-##        self.status_label.config(text=_("Status: Done!"))
         if update_result == "GL":
             display_text = _("Status:")+ " " + _("New GUI version and Language Files available!")
         elif update_result == "G":
-            display_text = _("Status:")+ " " + _("Status: New GUI version available!")
+            display_text = _("Status:")+ " " + _("New GUI version available!")
         elif update_result == "L":
-            display_text = _("Status:")+ " " + _("Status: New Language Files available!")
+            display_text = _("Status:")+ " " + _("New Language Files available!")
         else:
             display = False
-
         if display:
-            threading.Timer(3, lambda: self.done_status(display_text)).start()  
+            threading.Timer(3, lambda: self.done_status(display_text)).start()
+            
         #-----------------------------------------
 
     def queue_menu_setup(self):
@@ -2103,17 +2103,15 @@ class Application():
             self.root.config(cursor="watch")
             self.imageLabel.config(cursor="watch")
             thread.start()
-
-    def update_list(self, search=False, rebuild=False, label=_("Status:")):
-        label = _("Status:")
+                                      
+    def update_list(self, search=False, rebuild=False, label="Status:"):
+        if label == "Status:":
+            label = _(label)
         #_("Status: Getting game status... Please wait")
         self.root.config(cursor="watch")
-        self.status_label.config(text=label)
         
         if rebuild: # Rebuild current_status.txt file
             print(_("\nBuilding the current state list... Please wait, this may take some time \
-depending on how many games you have."))
-            self.status_label.config(text=_("\nBuilding the current state list... Please wait, this may take some time \
 depending on how many games you have."))
             updates_tid = []
             installed = []
@@ -2210,7 +2208,8 @@ depending on how many games you have."))
                 # Thanks to Moko0815 for the solution to fill with leading 0s
                 tree_row = (str(number).zfill(4), tid, game_name, state)
                 self.status_list.append(str(tree_row))
-            threading.Timer(1, self.done_status).start()    
+##            threading.Timer(1, self.done_status).start()
+            self.done_status()
             self.update_list()
             
         elif search:
@@ -2227,6 +2226,7 @@ depending on how many games you have."))
                     self.tree.insert('', 'end', values=tree_row)
                     
         else:
+            self.current_status = []
             if self.status_list:
                 for line in self.status_list:
                     if line[-1] == "\n":
@@ -2242,6 +2242,7 @@ depending on how many games you have."))
                     self.current_status.append(status_list)
                 self.update_list(search=True)
                 self.make_list()
+                self.filter_game()
             else:
                 print(_("Error, Current_status.txt doesn't exist"))
   
@@ -2258,15 +2259,13 @@ depending on how many games you have."))
             self.imageLabel.config(cursor="hand2")
         except:
             pass
-
-##    def update_list(self, search=False):
-##        # Set cursor status to waiting 
-##        thread = threading.Thread(target = lambda: self.threaded_update_list(search))
-##        thread.start()
         
     def done_status(self, display_text="Status: Done!"):
         display_text = _(display_text)
-        self.status_label.config(text=display_text)
+        try:
+            self.status_label.config(text=display_text)
+        except RuntimeError as e:
+            print(e)
         print(display_text)
         
     def threaded_game_info(self, evt):
@@ -2330,9 +2329,12 @@ depending on how many games you have."))
                                 if i in dir_content:
                                     file_name = i.split(".")[0]
                                     break
-                            os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
-                            shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
-                            shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
+                            try:
+                                os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
+                                shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
+                                shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
+                            except Exception as e:
+                                print(_("An error has occured, click on the game image to try again" + "\n" + _("Error:") + " {}".format(e)))
                     else:
                         img2 = ImageTk.PhotoImage(Image.open('blank.jpg'))
                         self.imageLabel.configure(image=img2, text="")
@@ -2943,7 +2945,6 @@ depending on how many games you have."))
             ver = self.process_item_versions(tid, ver)[1]
 ##            try:
             if option == "U" or option == "DLC":
-                sys.exit()
                 if ver != "none":
                     if tid.endswith("00"):
                         tid = "{}800".format(tid[0:13])
@@ -3071,7 +3072,7 @@ depending on how many games you have."))
         # Change the values if on Nut mode
         if self.current_mode == "Nut":
             titlekey_file_name = "Nut_titlekeys.txt"
-            titlekey_url = "http://snip.li/nutdb"
+            titlekey_url = "{}".format(base64.b64decode("aHR0cDovL3NuaXAubGkvbnV0ZGI=").decode("ascii"))
             new_text_name = "Nut_new.txt"
         
         self.status_label.config(text=_("Status: Updating titlekeys"))
@@ -3533,13 +3534,13 @@ depending on how many games you have."))
         if current_mode_global == "CDNSP":
             self.no_demo_list = [] # No demo list
             for game in self.full_list:
-                if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+                if not "demo" in game[2].strip().lower() and not "体験版" in game[2].strip().lower():
                     self.no_demo_list.append(game)
                     
             self.no_jap_list = []
             for game in self.full_list:
                 try:
-                    game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                    game[2].strip().lower().encode(encoding='utf-8').decode('ascii')
                 except UnicodeDecodeError:
                     pass
                 else:
@@ -3547,9 +3548,9 @@ depending on how many games you have."))
 
             self.no_demo_jap_list = []
             for game in self.full_list:
-                if not "demo" in game[1].strip().lower() and not "体験版" in game[1].strip().lower():
+                if not "demo" in game[2].strip().lower() and not "体験版" in game[2].strip().lower():
                     try:
-                        game[1].strip().lower().encode(encoding='utf-8').decode('ascii')
+                        game[2].strip().lower().encode(encoding='utf-8').decode('ascii')
                     except UnicodeDecodeError:
                         pass
                     else:
@@ -3619,6 +3620,12 @@ depending on how many games you have."))
             tree_row = (str(number).zfill(4), tid, game_name, state)
             if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
                 self.tree.insert('', 'end', values=tree_row)
+                
+        # Reset the sorting back to default (descending)
+        self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 1))
+        self.tree.heading("tid", text=_("TitleID"), command=lambda c="tid": self.sortby(self.tree, c, 1))
+        self.tree.heading("G", text=_("Game"), command=lambda c="G": self.sortby(self.tree, c, 1))
+        self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 1))
                     
     def sysver_zero(self):
         global sysver0
@@ -3945,11 +3952,30 @@ Malaysian: fadzly#4390"""
         update = ""
         if not os.path.isfile("Config/version.txt"):
             file = open("Config/version.txt", "w")
-            file.write("{}\n{}".format(__gui_version__, __lang_version___))
+            file.write("{}\n{}".format(__gui_version__, __lang_version__))
             file.close()
 
         file = open("Config/version.txt", "r")
-        gui_ver, lang_ver = file.read().split("\n")
+        ver_list = file.readlines()
+        file.close()
+        
+        if len(ver_list) != 2:
+            file = open("Config/version.txt", "w")
+            file.write("{}\n{}".format(__gui_version__, __lang_version__))
+            file.close()
+            
+            file = open("Config/version.txt", "r")
+            ver_list = file.readlines()
+            file.close()
+            
+
+        gui_ver, lang_ver = ver_list
+
+        gui_ver = gui_ver.strip()
+        lang_ver = lang_ver.strip()
+        
+        print("\n"+_("GUI Version: {}").format(__gui_version__))
+        print(_("Language Files Version: {}").format(lang_ver))
         
         self.gui_ver = gui_ver
         self.lang_ver = lang_ver
@@ -3961,7 +3987,7 @@ Malaysian: fadzly#4390"""
         new_lang_ver = requests.get("https://\
         raw.githubusercontent.com/Bob123a1/\
         CDNSP-GUI-Files/master/language_version.txt".replace(" ", "")).text.replace("\n", "")
-
+        
         self.new_cdnsp_ver = new_cdnsp_ver
         self.new_lang_ver = new_lang_ver
         
@@ -3993,15 +4019,15 @@ Malaysian: fadzly#4390"""
         if update_result == "GL":
             urllib.request.urlretrieve(gui_file, gui_file.split("/")[-1])
             urllib.request.urlretrieve(lang_file, "lang.zip")
-            self.messages("", _("New GUI version and Language Files downloaded!" + "\n" + _("Please restart your GUI from the new GUI script downloaded")))
+            self.messages("", _("New GUI version and Language Files downloaded!" + "\n" + _("Please restart your GUI")))
             text = "{}\n{}".format(self.new_cdnsp_ver, self.new_lang_ver)
         elif update_result == "G":
             urllib.request.urlretrieve(gui_file, gui_file.split("/")[-1])
-            self.messages("", _("New GUI version downloaded!" + "\n" + _("Please restart your GUI from the new GUI script downloaded")))
+            self.messages("", _("New GUI version downloaded!" + "\n" + "\n" + _("Please restart your GUI")))
             text = "{}\n{}".format(self.new_cdnsp_ver, self.lang_ver)
         elif update_result == "L":
             urllib.request.urlretrieve(lang_file, "lang.zip")
-            self.messages("", _("New Language Files downloaded!"))
+            self.messages("", _("New Language Files downloaded!" + "\n" + _("Please restart your GUI")))
             text = "{}\n{}".format(self.cdnsp_ver, self.new_lang_ver)
         else:
             updated = False
@@ -4016,13 +4042,13 @@ Malaysian: fadzly#4390"""
             else:
                 print(_("Couldn't find the download lang.zip file in your GUI folder"))
 
-
-        file = open("Config/version.txt", "w")
-        file.write(text)
-        file.close()
-
         if updated:
+            file = open("Config/version.txt", "w")
+            file.write(text)
+            file.close()
             self.status_label.config(text=_("Status: Done!"))
+        else:
+            self.messages("", _("No new update available"))
 
         
 # ------------------------
@@ -4153,7 +4179,7 @@ def main():
     info_list = []
 
     root = Tk()
-    root.title("CDNSP GUI - Bobv5")
+    root.title("CDNSP GUI - Bobv"+__gui_version__)
     Application(root, titleID_list, titleKey_list, title_list, dbURL, info_list=info_list)
 
     root.mainloop()
