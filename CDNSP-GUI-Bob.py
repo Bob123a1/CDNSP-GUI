@@ -336,6 +336,8 @@ def get_name(tid):
             if tid.endswith('800'):
                 tid = '%s000' % tid[:-3]
             name = title_list[titleID_list.index(tid.lower())]
+            #Check And Format Windows FileName Limit
+            name = re.sub(r'[/\\:*?!"|™©®()]+', "", unidecode.unidecode(name.strip()))
             print(name)
             return name
         except:
