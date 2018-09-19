@@ -5,7 +5,7 @@
 # Design inspiration: Lucas Rey's GUI (https://darkumbra.net/forums/topic/174470-app-cdnsp-gui-v105-download-nsp-gamez-using-a-gui/)
 # Thanks to the developer(s) that worked on CDNSP_Next for the cert fix!
 # Thanks to the help of devloper NighTime, kvn1351, gizmomelb, theLorknessMonster, vertigo
-# CDNSP - GUI - Bob - v5
+# CDNSP - GUI - Bob - v5.0.2
 import sys
 import time
 import random
@@ -15,7 +15,7 @@ import locale
 import json
 import os
 
-__gui_version__ = "5.0.1"
+__gui_version__ = "5.0.2"
 __lang_version__ = "1.0.0"
 
 global sys_locale
@@ -143,6 +143,7 @@ def install_module(module):
         print(_("Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}").format(module))
 
 def add_to_installed(tid, ver):
+    print(tid, ver)
     installed_tid = []
     installed_ver = []
     if os.path.isfile("Config/installed.txt"):
@@ -203,7 +204,8 @@ except:
 
 ssl._create_default_https_context = ssl._create_unverified_context # Thanks to user rdmrocha on Github
 
-req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt", "titlekeys_overwrite.txt", "Nut_titlekeys.txt"]
+req_file = ["CDNSPconfig.json", "keys.txt", "nx_tls_client_cert.pem", "titlekeys.txt",\
+            "titlekeys_overwrite.txt", "Nut_titlekeys.txt", "cert_dead.jpg"]
 try:
     for file in req_file:
         check_req_file(file)
@@ -336,6 +338,7 @@ def get_name(tid):
             if tid.endswith('800'):
                 tid = '%s000' % tid[:-3]
             name = title_list[titleID_list.index(tid.lower())]
+            name = re.sub(r'[/\\:*?!"|™©®()]+', "", unidecode.unidecode(name))
             print(name)
             return name
         except:
@@ -594,6 +597,18 @@ def get_name_from_nacp(fPath):
     except FileNotFoundError:
         return ''
 
+def cert_dead():
+    print("\n\n" + _('Request rejected by server! You may need a new cert.'))
+
+    messagebox.showinfo("",  _('Request rejected by server! You may need a new cert.'))
+
+    if os.path.isfile('cert_dead.jpg'):
+        img2 = ImageTk.PhotoImage(Image.open('cert_dead.jpg'))
+        imageLabel_widget.configure(image=img2, text="")
+        imageLabel_widget.image = img2
+
+    sys.exit()
+
 def make_request(method, url, certificate='', hdArgs={}):
     if not certificate: # Workaround for defining errors
         certificate = NXclientPath
@@ -607,9 +622,10 @@ def make_request(method, url, certificate='', hdArgs={}):
     r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
     
     if r.status_code == 403:
-        raise requests.exceptions.SSLError('Request rejected!')
+        cert_dead()
     if r.status_code == 404:
-        raise requests.exceptions.HTTPError('File doesn\'t exist!')
+        print('Error, File doesn\'t exist on the CDN')
+        return None
     
     return r
 
@@ -625,8 +641,7 @@ def make_request_new(method, url, certificate='', hdArgs={}):
     r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
     
     if r.status_code == 403:
-        print('Request rejected by server! Check your cert.')
-        return r
+        cert_dead()
 
     return r
     
@@ -837,6 +852,8 @@ def download_title(gameDir, tid, ver, tkey='', nspRepack=False, verify=False, n=
     
     url = 'https://atum%s.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (n, env, tid, ver, did)
     r = make_request('HEAD', url)
+    if r == None:
+        return (None, "")
     CNMTid = r.headers.get('X-Nintendo-Content-ID')
     
     print('\tDownloading CNMT (%s.cnmt.nca)...' % CNMTid)
@@ -948,7 +965,7 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
 
     if CNMTid == None:
         print('title not available on CDN')
-        return
+        return None
 
     print('\nDownloading CNMT (%s.cnmt.nca)...' % CNMTid)
     url = 'https://atum%s.hac.%s.d4c.nintendo.net/c/a/%s?device_id=%s' % (n, env, CNMTid, did)
@@ -1084,7 +1101,7 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
     outname = outf.split(outputDir)[1][1:]
 
     if truncateName:
-        name = name.replace(' ','')[0:20]
+        name = name.replace(' ','')[0:20].replace(":", "")
         outf = os.path.join(outputDir, '%s%sv%s' % (name,tid,ver))
 
     if tinfoil:
@@ -1118,6 +1135,9 @@ def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False,
     else:
         files, name = download_title(gameDir, tid, ver, tkey, nspRepack, verify)
 
+    if files == None:
+        shutil.rmtree(gameDir)
+        return
     
     if nspRepack:
         os.makedirs(path_Dir, exist_ok=True)
@@ -1427,12 +1447,17 @@ def game_image(tid, ver, tkey="", nspRepack=False, n='',verify=False):
         r = make_request('HEAD', url)
         check = True
     except Exception as e:
-        pass
+        print(e)
+
+    if r == None:
+        return ("", "Error")
+    
     if check:
         CNMTid = r.headers.get('X-Nintendo-Content-ID')
 
         if CNMTid is None:
             print("not a valid title")
+            return ("", "Error")
             
         fPath = os.path.join(gameDir, CNMTid + '.cnmt.nca')
         cnmtNCA = download_file(url, fPath)
@@ -1634,20 +1659,8 @@ class Application():
         self.persistent_queue = []
         self.db_URL = dbURL
         self.current_status = []
-        self.installed = [] # List of TID already installed
-        self.installed_ver = []
         self.info_list = info_list
         self.auto_shutdown = False
-        
-        if os.path.exists(r"Config/installed.txt"):
-            f = open(r"Config/installed.txt", "r")
-            for line in f.readlines():
-                tid = line.split(",")[0].strip()
-                ver = line.split(",")[1].strip()
-                if ver != "0":
-                    tid = "{}800".format(tid[:13])
-                self.installed.append(tid)
-                self.installed_ver.append(ver)
         
         self.listWidth = 67
         global current_mode
@@ -1732,6 +1745,7 @@ class Application():
         self.langMenu.add_command(label='Arabic (العربية)', command=lambda: updateJsonFile('Language', 'ar', root=self.root))
         self.langMenu.add_command(label='Chinese Simplified (简体中文)', command=lambda: updateJsonFile('Language', 'zh-cn', root=self.root))
         self.langMenu.add_command(label='Chinese Traditional (繁體中文)', command=lambda: updateJsonFile('Language', 'zh-tw', root=self.root))
+        self.langMenu.add_command(label='Czech (Čeština)', command=lambda: updateJsonFile('Language', 'cs', root=self.root))
         self.langMenu.add_command(label='Dutch (Nederlands)', command=lambda: updateJsonFile('Language', 'nl', root=self.root))
         self.langMenu.add_command(label='English', command=lambda: updateJsonFile('Language', 'en', root=self.root))
         self.langMenu.add_command(label='French (Français)', command=lambda: updateJsonFile('Language', 'fr', root=self.root))
@@ -1858,7 +1872,9 @@ class Application():
 
         self.image = Image.open("blank.jpg")
         self.photo = ImageTk.PhotoImage(self.image)
+        global imageLabel_widget
         self.imageLabel = Label(game_selection_frame, image=self.photo, borderwidth=0, highlightthickness=0, cursor="hand2")
+        imageLabel_widget = self.imageLabel
         self.imageLabel.bind("<Button-1>", self.eShop_link)
         self.imageLabel.image = self.photo # keep a reference!
         self.imageLabel.grid(row=3, column=0, sticky=N, pady=0)
@@ -1883,12 +1899,12 @@ class Application():
         filter_frame.grid(row=0, column=0, columnspan=2, pady=(0,0), sticky=NS)
         self.current_mode_text = Label(filter_frame, text=_("Current mode is: {}").format(self.current_mode))
         self.current_mode_text.grid(row=0, column=0, sticky=NS, pady=(0, 10))
-        self.list_mode = Button(filter_frame, text=_("CDNSP Mode"), command=self.change_mode)
+        self.list_mode = Button(filter_frame, text=_("CDNSP Mode").replace("\n", ""), command=self.change_mode)
 
         if self.current_mode == "CDNSP":
-            self.list_mode.config(text=_("Nut Mode"))
+            self.list_mode.config(text=_("Nut Mode").replace("\n", ""))
         elif self.current_mode == "Nut":
-            self.list_mode.config(text=_("CDNSP Mode"))
+            self.list_mode.config(text=_("CDNSP Mode").replace("\n", ""))
         self.list_mode.grid(row=1, column=0, sticky=NS, pady=(0, 20))
             
         self.demo = IntVar()
@@ -2153,7 +2169,7 @@ depending on how many games you have."))
                 file = open(file_path, "r")
                 for line in file.readlines():
                     if line[-1] == "\n":
-                        line = line[:-1]
+                        line = line[:-1].lower()
                     installed.append(line.lower())
                 file.close()
                 for info in installed:
@@ -2162,6 +2178,7 @@ depending on how many games you have."))
                     if ver == "none":
                         ver = "0"
                     if tid in known_ver:
+                        tid = tid.lower()
                         try:
                             known_ver_num = known_ver[tid]
                             if known_ver_num == "none":
@@ -2190,7 +2207,7 @@ depending on how many games you have."))
             self.status_list = []
 
             for tid in self.titleID:
-                tid = tid
+                tid = tid.lower()
                 number = int(self.titleID.index(tid))+1
                 game_name = self.title[number-1]
                 if game_name[-1] == "\n":
@@ -3462,7 +3479,7 @@ depending on how many games you have."))
 
             file = open(r"Config/installed.txt", "w")
             for game in game_list:
-                title = re.search(r".*[0][0-9a-zA-Z]{15}.*[.nsp]", game)
+                title = re.search(r".*[0][0-9a-zA-Z]{15}.*", game)
                 if title:
                     try:
                         tid_check = re.compile(r"[0][0-9a-zA-Z]{15}")
@@ -3755,10 +3772,10 @@ Malaysian: fadzly#4390"""
     def change_mode(self):
         if self.current_mode == "CDNSP":
             self.current_mode = "Nut"
-            self.list_mode.config(text="CDNSP Mode")
+            self.list_mode.config(text=_("CDNSP Mode").replace("\n", ""))
         elif self.current_mode == "Nut":
             self.current_mode = "CDNSP"
-            self.list_mode.config(text="Nut Mode")
+            self.list_mode.config(text=_("Nut Mode").replace("\n", ""))
         updateJsonFile("Mode", self.current_mode)        
         self.current_mode_text.config(text=_("Current mode is: {}").format(self.current_mode))
         self.root.destroy()
@@ -3830,6 +3847,7 @@ Malaysian: fadzly#4390"""
                             if titleID != "":
                                 temp_tid.append(titleID[:16])
                                 temp_tkey.append(titleKey)
+                unlocked_a_game = False # Check if a game has been unlocked
                 for game in game_list:
                     game_basename = os.path.basename(game)
                     tid_result, ver_result = self.get_tid_get_ver(game_basename, ".nsx")
@@ -3842,11 +3860,15 @@ Malaysian: fadzly#4390"""
                             if tkey_block != 0:
                                 self.write_tkey_block(game, tkey_block, temp_tkey[temp_tid.index(tid_result)])
                                 print(_("Successfully unlocked {}").format(game_basename))
+                                unlocked_a_game = True
                             else:
                                 print(_("Unable to find the titlekey block"))
                         else:
                             print(_("Unable to find the titlekey for {}").format(game_basename))
+                if unlocked_a_game:
                     self.messages("", _("Done unlocking nsx files"))
+                else:
+                    self.messages("", _("Couldn't find nsx files that needs to be unlocked"))
             else:
                 self.messages("", _("Couldn't find nsx files that needs to be unlocked"))
             self.unlock_nsx_gui.destroy()
@@ -3898,10 +3920,10 @@ Malaysian: fadzly#4390"""
     def shutdown_set(self):
         if self.auto_shutdown == False:
             self.auto_shutdown = True
-            self.toolMenu.entryconfig(4, label= _("Auto Shutdown: ON"))
+            self.toolMenu.entryconfig(5, label= _("Auto Shutdown: ON"))
         elif self.auto_shutdown == True:
             self.auto_shutdown = False
-            self.toolMenu.entryconfig(4, label= _("Auto Shutdown: OFF"))
+            self.toolMenu.entryconfig(5, label= _("Auto Shutdown: OFF"))
         
     def shutdown(self):
         if platform.system()=="Windows":
@@ -3938,16 +3960,16 @@ Malaysian: fadzly#4390"""
         if int(ver) > 0:
             download_game(updateTid, ver, tkey, nspRepack=self.repack, path_Dir=self.path)
 
-        # Download DLC
-        DLC_titleID = []
-        tid = "{}".format(tid[0:12])
-        indices = [i for i, s in enumerate(self.titleID) if tid in s]
-        for index in indices:
-            if not self.titleID[index].endswith("00"):
-                DLC_titleID.append(self.titleID[index])
-        for DLC_ID in DLC_titleID:
-            DLC_ver = get_versions(DLC_ID)[-1]
-            download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
+##        # Download DLC
+##        DLC_titleID = []
+##        tid = "{}".format(tid[0:12])
+##        indices = [i for i, s in enumerate(self.titleID) if tid in s]
+##        for index in indices:
+##            if not self.titleID[index].endswith("00"):
+##                DLC_titleID.append(self.titleID[index])
+##        for DLC_ID in DLC_titleID:
+##            DLC_ver = get_versions(DLC_ID)[-1]
+##            download_game(DLC_ID, DLC_ver, self.titleKey[self.titleID.index(DLC_ID)], nspRepack=self.repack, path_Dir=self.path)
 
     def check_update(self):
         output_text = ""
@@ -4030,7 +4052,7 @@ Malaysian: fadzly#4390"""
         elif update_result == "L":
             urllib.request.urlretrieve(lang_file, "lang.zip")
             self.messages("", _("New Language Files downloaded!" + "\n" + _("Please restart your GUI")))
-            text = "{}\n{}".format(self.cdnsp_ver, self.new_lang_ver)
+            text = "{}\n{}".format(__gui_version__, self.new_lang_ver)
         else:
             updated = False
 
@@ -4104,8 +4126,11 @@ def read_titlekey_list():
                             titleKey = content_row[2]
                             if len(titleKey) == 32:
                                 title = content_row[6]
+                                isDemo = content_row[5]
                                 if not titleID.endswith("00"):
                                     title = "[DLC] " + title
+                                if isDemo == "1":
+                                    title += " Demo"
                                 titleID_list.append(titleID[:16])
                                 titleKey_list.append(titleKey)
                                 if title[:-1] == "\n":
