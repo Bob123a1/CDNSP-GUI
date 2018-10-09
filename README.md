@@ -21,4 +21,4 @@ In order to translate: You need to choose your language's [ISO 639-1 Country Cod
 You can check out my [Project](https://github.com/Bob123a1/CDNSP-GUI/projects) page for a list of to-do's, if you beleive you can help me with one of the to-do task you're more than welcome to messsage me on Discord (Bob#0340) (Since I believe you can't PM on Github?) that you want to work on it!
 
 ## GUI screenshot:
-![GUI screenshot](https://cdn.discordapp.com/attachments/472976693435432960/480641631314509834/v4.1.PNG)
+![GUI screenshot](https://cdn.discordapp.com/attachments/464490927751299083/499153132769771530/v6.PNG)
