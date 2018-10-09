@@ -262,6 +262,8 @@ tinfoil = False
 enxhop = False
 current_mode = ""
 nsp_location = ""
+pause_download = False
+downloading = False
     
 import os, sys
 import re
@@ -819,10 +821,16 @@ def download_file(url, fPath, fSize=0):
         
     if fSize >= 10000:
         t = tqdm(initial=dlded, total=int(fSize), desc=fName, unit='B', unit_scale=True, leave=False, mininterval=0.5)
+        global downloading
+        downloading = True
         for chunk in r.iter_content(4096):
             f.write(chunk)
             dlded += len(chunk)
             t.update(len(chunk))
+            if pause_download:
+                while pause_download:
+                    time.sleep(.5)
+        downloading = False
         t.close()
     else:
         f.write(r.content)
@@ -1984,9 +1992,11 @@ class Application():
             download_bottom_txt = _("Download")
         dl_btn = Button(game_info_frame, text=download_bottom_txt, command=self.download)
         dl_btn.grid(row=50, column=1, pady=(20,0), padx=(5,0))
+        self.pause_btn = Button(game_info_frame, text=("Pause Download"), command=self.pause_download_command)
+        self.pause_btn.grid(row=51, column=0, pady=(20,0), columnspan=2)
 
         update_btn = Button(game_info_frame, text=_("Update Titlekeys"), command=self.update_titlekeys)
-        update_btn.grid(row=51, column=0, pady=(20, 0), columnspan=2)
+        update_btn.grid(row=52, column=0, pady=(20, 0), columnspan=2)
 
         #-----------------------------------------
         # Setup GUI Functions
@@ -2826,8 +2836,22 @@ depending on how many games you have."))
         return
     
     def download(self):
-        thread = threading.Thread(target = self.threaded_download)
-        thread.start()
+        self.thread = threading.Thread(target = self.threaded_download)
+        self.thread.start()
+
+    def pause_download_command(self):
+        global pause_download
+        global downloading
+        if downloading:
+            pause_download = not pause_download
+            if pause_download:
+                self.pause_btn["text"] = "Resume Download"
+                print("\nDownload paused, waiting for the user resumes the download again")
+            else:
+                self.pause_btn["text"] = "Pause Download"
+                print("\nDownload resumed")
+        else:
+            print("\n There is not a download in progress")
 
     def export_persistent_queue(self):
         self.dump_persistent_queue(self.normalize_file_path(filedialog.asksaveasfilename(initialdir = self.path, title = "Select file", filetypes = (("JSON files","*.json"),("all files","*.*")))))
