@@ -621,6 +621,7 @@ def make_request(method, url, certificate='', hdArgs={}):
     if not certificate: # Workaround for defining errors
         certificate = NXclientPath
 
+    global fw
     if fw != '6.0.1-1.0':
         fw = '6.0.1-1.0' # Hard coded to the latest Switch firmware version
     
