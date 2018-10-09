@@ -5,7 +5,7 @@
 # Design inspiration: Lucas Rey's GUI (https://darkumbra.net/forums/topic/174470-app-cdnsp-gui-v105-download-nsp-gamez-using-a-gui/)
 # Thanks to the developer(s) that worked on CDNSP_Next for the cert fix!
 # Thanks to the help of devloper NighTime, kvn1351, gizmomelb, theLorknessMonster, vertigo
-# CDNSP - GUI - Bob - v5.0.2
+# CDNSP - GUI - Bob - v6.0.0
 import sys
 import time
 import random
@@ -15,7 +15,7 @@ import locale
 import json
 import os
 
-__gui_version__ = "5.0.2"
+__gui_version__ = "6.0.0"
 __lang_version__ = "1.0.0"
 
 global sys_locale
@@ -107,6 +107,9 @@ set_lang(chosen_lang)
 
 if not os.path.isdir("Config"):
     os.mkdir("Config")
+
+if not os.path.isdir("Images"):
+    os.mkdir("Images")
 
 build_text = _("\nBuilding the current state list... Please wait, this may take some time \
 depending on how many games you have.")
@@ -242,6 +245,11 @@ import operator
 import base64
 import shlex
 from distutils.version import StrictVersion as StrV
+import re
+import shutil
+import requests
+import xml.etree.ElementTree as ET, xml.dom.minidom as minidom
+import unicodedata as ud
 
 from tkinter import filedialog
 import threading
@@ -263,23 +271,7 @@ enxhop = False
 current_mode = ""
 nsp_location = ""
 pause_download = False
-downloading = False
-    
-import os, sys
-import re
-import shutil
-import subprocess
-import requests
-import urllib3
-import json
-import argparse
-import unicodedata as ud
-import xml.etree.ElementTree as ET, xml.dom.minidom as minidom
-from tqdm import tqdm
-from hashlib import sha256
-from struct import pack as pk, unpack as upk
-from binascii import hexlify as hx, unhexlify as uhx
-
+downloading = False # Thanks to rockbass2560 on Github
 
 def read_at(f, off, len):
     f.seek(off)
@@ -612,8 +604,25 @@ def cert_dead():
     sys.exit()
 
 def make_request(method, url, certificate='', hdArgs={}):
+    if edgeToken == None:
+        print("\n"+_("Error, Unable to make request without the token"))
+        return None
+
+    try:
+        expiry_time = int(edgeToken[edgeToken.index("=")+1:edgeToken.index("~")])
+    except ValueError:
+        print("\n"+_("Your token file is not formatted correctly"))
+        return None
+
+    if expiry_time < time.time():
+        print("\n"+_("Your token has expired, please get a new token before making request"))
+        return None
+        
     if not certificate: # Workaround for defining errors
         certificate = NXclientPath
+
+    if fw != '6.0.1-1.0':
+        fw = '6.0.1-1.0' # Hard coded to the latest Switch firmware version
     
     reqHd = {'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; did:%s; eid:%s)' % (fw, did, env),
              'Accept-Encoding': 'gzip, deflate',
@@ -624,27 +633,12 @@ def make_request(method, url, certificate='', hdArgs={}):
     r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
     
     if r.status_code == 403:
-        cert_dead()
+        print("\n\n" + _('Request rejected by server! You may need a new cert.'))
+        return None
     if r.status_code == 404:
         print('Error, File doesn\'t exist on the CDN')
         return None
     
-    return r
-
-def make_request_new(method, url, certificate='', hdArgs={}):
-    if certificate == '':  # Workaround for defining errors
-        certificate = NXclientPath
-
-    reqHd = {'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; eid:%s)' % (fw, env),
-             'Accept-Encoding': 'gzip, deflate',
-             'Accept': '*/*',
-             'Connection': 'keep-alive'}
-    reqHd.update(hdArgs)
-    r = requests.request(method, url, cert=certificate, headers=reqHd, verify=False, stream=True)
-    
-    if r.status_code == 403:
-        cert_dead()
-
     return r
     
 def print_info(tid):
@@ -734,10 +728,11 @@ def get_info(tid='', freeword=''):
     return tid, name, size
     
 def get_versions(tid):
-    #url = 'https://tagaya.hac.%s.eshop.nintendo.net/tagaya/hac_versionlist' % env
+##    url = 'https://tagaya.hac.%s.eshop.nintendo.net/tagaya/hac_versionlist' % env
     url = 'https://superfly.hac.%s.d4c.nintendo.net/v1/t/%s/dv' % (env,tid)
-    r = make_request_new('GET', url)
+    r = make_request('GET', url)
     j = r.json()
+    print(j)
 
     try:
         if j['error']:
@@ -965,7 +960,7 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
     url = 'https://atum.hac.%s.d4c.nintendo.net/t/a/%s/%s?device_id=%s' % (env, tid, ver, did)
     print(url)
     try:
-        r = make_request_new('HEAD', url)
+        r = make_request('HEAD', url)
     except Exception as e:
         print("Error downloading title. Check for incorrect titleid or version.")
         return
@@ -2000,6 +1995,9 @@ class Application():
 
         #-----------------------------------------
         # Setup GUI Functions
+        url = 'https://raw.githubusercontent.com/Bob123a1/CDNSP-GUI-Files/master/Config/Version_info.json'
+        file = os.path.join("Config", "Version_info.json")
+        urllib.request.urlretrieve(url, file)
         self.my_game_scan(a_dir=self.path, silent=True)
         self.update_list(rebuild=True)
         self.filter_game()
@@ -2142,6 +2140,7 @@ depending on how many games you have."))
             updates_tid = []
             installed = []
             new_tid = []
+            global known_ver
             known_ver = {}
 
             # -> Read_file
@@ -2298,6 +2297,7 @@ depending on how many games you have."))
     def threaded_game_info(self, evt):
         selection=self.tree.selection()[0]
         selected = self.tree.item(selection,"value") # Returns the selected value as a dictionary
+        
         if selection:
             w = evt.widget
             self.is_DLC = False
@@ -2333,7 +2333,21 @@ depending on how many games you have."))
                             break
                     if tid.endswith("000"):
                         isDLC = False
-##            try:
+            
+            if edgeToken == None and not self.game_image_disable:
+                image_name = "{}.jpg".format(tid.lower())
+
+                if not os.path.isfile("Images/{}".format(image_name)):
+                    url = "https://terannet.sirv.com/CDNSP/{}".format(image_name)
+                    r = requests.get(url)
+
+                    if r.status_code != 200:
+                        isDLC = True
+                        print("\n"+_("Unable to get game image"))
+                    else:
+                        file_name = os.path.join("Images", image_name)
+                        urllib.request.urlretrieve(url, file_name)
+                
             change_img = False
             if not self.game_image_disable and not isDLC:
                 if not os.path.isfile("Images/{}.jpg".format(tid)):
@@ -2836,8 +2850,8 @@ depending on how many games you have."))
         return
     
     def download(self):
-        self.thread = threading.Thread(target = self.threaded_download)
-        self.thread.start()
+        thread = threading.Thread(target = self.threaded_download)
+        thread.start()
 
     def pause_download_command(self):
         global pause_download
@@ -3141,7 +3155,7 @@ depending on how many games you have."))
                                 if line.strip() != newdb[0].strip():
                                     new_tid.append(line.strip().split('|')[0])
                                     if current_mode_global == "Nut":
-                                        _name = line.strip().split('|')[6] + '\n'
+                                        _name = line.strip().split('|')[4] + '\n'
                                         if _name not in info:
                                             info += _name
                                         else:
@@ -3195,6 +3209,8 @@ depending on how many games you have."))
                         # print('\nSaving new database...')
                         f = open(titlekey_file_name,'w',encoding="utf-8")
                         for line in newdb:
+                            if line[-1] != "\n":
+                                line += "\n"
                             f.write(str(line))
                         f.close()
                         self.current_status = []
@@ -3305,30 +3321,45 @@ depending on how many games you have."))
                                 break
                         if tid.endswith("000"):
                             isDLC = False
-                if not self.game_image_disable and not isDLC:
-                    if not os.path.isfile("Images/{}.jpg".format(tid)):
-                        base_ver = get_versions(tid)[-1]
-                        result = game_image(tid, base_ver, self.titleKey[self.titleID.index(tid)])
-                        if result[1] != "Error":
-                            if result[1] != "Exist":
-                                if self.sys_name == "Win":
-                                    subprocess.check_output("{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".format(hactoolPath, result[0].replace("/", "\\")), shell=True)
-                                else:
-                                    subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
-                                icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat",\
-                                         "icon_CanadianFrench.dat", "icon_German.dat", \
-                                         "icon_Italian.dat", "icon_Japanese.dat", \
-                                         "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", \
-                                         "icon_Korean.dat", "icon_TraditionalChinese.dat"]
-                                file_name = ""
-                                dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
-                                for i in icon_list:
-                                    if i in dir_content:
-                                        file_name = i.split(".")[0]
-                                        break
-                                os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
-                                shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
-                                shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
+                print(_("Currently downloading the image for TID: {}").format(tid))
+                if edgeToken == None:
+                    image_name = "{}.jpg".format(tid.lower())
+
+                    if not os.path.isfile("Images/{}".format(image_name)):
+                        print("don't have")
+                        url = "https://terannet.sirv.com/CDNSP/{}".format(image_name)
+                        r = requests.get(url)
+
+                        if r.status_code != 200:
+                            isDLC = True
+                        else:
+                            file_name = os.path.join("Images", image_name)
+                            urllib.request.urlretrieve(url, file_name)
+                else:
+                    if not self.game_image_disable and not isDLC:
+                        if not os.path.isfile("Images/{}.jpg".format(tid)):
+                            base_ver = get_versions(tid)[-1]
+                            result = game_image(tid, base_ver, self.titleKey[self.titleID.index(tid)])
+                            if result[1] != "Error":
+                                if result[1] != "Exist":
+                                    if self.sys_name == "Win":
+                                        subprocess.check_output("{0} -k keys.txt {1}\\control.nca --section0dir={1}\\section0".format(hactoolPath, result[0].replace("/", "\\")), shell=True)
+                                    else:
+                                        subprocess.check_output("{0} -k keys.txt '{1}/control.nca' --section0dir='{1}/section0'".format(hactoolPath, result[0]), shell=True)
+                                    icon_list = ["icon_AmericanEnglish.dat", "icon_BritishEnglish.dat",\
+                                             "icon_CanadianFrench.dat", "icon_German.dat", \
+                                             "icon_Italian.dat", "icon_Japanese.dat", \
+                                             "icon_LatinAmericanSpanish.dat", "icon_Spanish.dat", \
+                                             "icon_Korean.dat", "icon_TraditionalChinese.dat"]
+                                    file_name = ""
+                                    dir_content = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/Images/{}/section0/'.format(tid))
+                                    for i in icon_list:
+                                        if i in dir_content:
+                                            file_name = i.split(".")[0]
+                                            break
+                                    os.rename('{}/section0/{}.dat'.format(result[0], file_name), '{}/section0/{}.jpg'.format(result[0], file_name))
+                                    shutil.copyfile('{}/section0/{}.jpg'.format(result[0], file_name), 'Images/{}.jpg'.format(tid))
+                                    shutil.rmtree(os.path.dirname(os.path.abspath(__file__))+'/Images/{}'.format(tid))
         end = time.time()
         print(_("\nIt took {} seconds for you to get all images!\n").format(end - start))
         self.messages("", _("Done getting all game images!"))
@@ -3340,37 +3371,64 @@ depending on how many games you have."))
         thread.start()
     
     def get_update_ver(self):
-        tid = self.game_titleID.get()
-        if tid != "" and len(tid) == 16:
-            value = self.titleID.index(tid)
-            print(tid)
-            try:
-                isDLC = False
-                tid = self.titleID[value]
-                updateTid = tid
-                if tid.endswith('000'):
-                    updateTid = '%s800' % tid[:-3]
-                elif tid.endswith('800'):
-                    baseTid = '%s000' % tid[:-3]
-                    updateTid = tid
-                elif not tid.endswith('00'):
-                    isDLC = True
+        if edgeToken == None:
+            tid = self.game_titleID.get().lower()
+            if tid in known_ver:
+                ver = known_ver[tid]
                 update_list = []
-                for i in get_versions(updateTid):
-                    update_list.append(i)
-                if isDLC:
-                    if update_list[0] != "0":
-                        update_list.insert(0, "0")
-                if update_list[0] == 'none':
-                    update_list[0] = "0"
-                print(update_list)
+                if ver == "none":
+                    update_list.append("none")
+                else:
+                    ver = int(ver)
+                    
+                    while ver != 0:
+                        update_list.append(str(ver))
+                        ver -= 65536
+                    
+                if not tid.endswith("00"):
+                    update_list.append("0")
+                
                 update_list.insert(0, _("Latest"))
                 self.version_select["values"] = update_list
                 self.version_select.set(_("Latest"))
-            except:
-                print(_("Failed to get version"))
+            else:
+                print("Unable to get the latest version for this TID")
+##                update_list.insert(0, _("Latest"))
+                self.version_select["values"] = [_("Latest")]
+                self.version_select.set(_("Latest"))
+            
         else:
-            print(_("No TitleID or TitleID not 16 characters!"))
+            tid = self.game_titleID.get()
+            if tid != "" and len(tid) == 16:
+                value = self.titleID.index(tid)
+                print(tid)
+                try:
+                    isDLC = False
+                    tid = self.titleID[value]
+                    updateTid = tid
+                    if tid.endswith('000'):
+                        updateTid = '%s800' % tid[:-3]
+                    elif tid.endswith('800'):
+                        baseTid = '%s000' % tid[:-3]
+                        updateTid = tid
+                    elif not tid.endswith('00'):
+                        isDLC = True
+                    update_list = []
+                    for i in get_versions(updateTid):
+                        update_list.append(i)
+                    if isDLC:
+                        if update_list[0] != "0":
+                            update_list.insert(0, "0")
+                    if update_list[0] == 'none':
+                        update_list[0] = "0"
+                    print(update_list)
+                    update_list.insert(0, _("Latest"))
+                    self.version_select["values"] = update_list
+                    self.version_select.set(_("Latest"))
+                except:
+                    print(_("Failed to get version"))
+            else:
+                print(_("No TitleID or TitleID not 16 characters!"))
 
     def shorten(self):
         global truncateName
@@ -3749,7 +3807,8 @@ Malaysian: fadzly#4390"""
         credit['yscrollcommand'] = scrollb.set
 
     def threaded_update_ver_list(self):
-        self.status_label.config(text=_("Status: Updating version list...")) 
+        self.status_label.config(text=_("Status: Updating version list..."))
+        global known_ver
         known_ver = {}
 
         if not os.path.isfile("Config/Version_info.json"):
@@ -4149,8 +4208,8 @@ def read_titlekey_list():
                         if titleID != "":
                             titleKey = content_row[2]
                             if len(titleKey) == 32:
-                                title = content_row[6]
-                                isDemo = content_row[5]
+                                title = content_row[4]
+                                isDemo = content_row[3]
                                 if not titleID.endswith("00"):
                                     title = "[DLC] " + title
                                 if isDemo == "1":
@@ -4161,8 +4220,8 @@ def read_titlekey_list():
                                     title_list.append(title[:-1])
                                 else:
                                     title_list.append(title)
-                                isDemo = content_row[5]
-                                region = content_row[8]
+                                isDemo = content_row[3]
+                                region = content_row[5]
                                 info_list.append((isDemo, region))
         f.close()
 
@@ -4228,6 +4287,16 @@ def main():
     titleKey_list = []
     title_list = []
     info_list = []
+
+    global edgeToken
+    
+    edgeToken = None
+    if os.path.isfile("edge_token.txt"):
+        with open("edge_token.txt", encoding="utf-8") as file:
+            edgeToken = file.read()
+            edgeToken = edgeToken.strip()
+            if edgeToken == "":
+                edgeToken = None
 
     root = Tk()
     root.title("CDNSP GUI - Bobv"+__gui_version__)
