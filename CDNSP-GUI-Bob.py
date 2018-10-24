@@ -5,7 +5,7 @@
 # Design inspiration: Lucas Rey's GUI (https://darkumbra.net/forums/topic/174470-app-cdnsp-gui-v105-download-nsp-gamez-using-a-gui/)
 # Thanks to the developer(s) that worked on CDNSP_Next for the cert fix!
 # Thanks to the help of devloper NighTime, kvn1351, gizmomelb, theLorknessMonster, vertigo
-# CDNSP - GUI - Bob - v6.0.0
+# CDNSP - GUI - Bob - v6.0.1
 import sys
 import time
 import random
@@ -15,7 +15,7 @@ import locale
 import json
 import os
 
-__gui_version__ = "6.0.0"
+__gui_version__ = "6.0.1"
 __lang_version__ = "1.0.0"
 
 global sys_locale
@@ -732,7 +732,10 @@ def get_versions(tid):
 ##    url = 'https://tagaya.hac.%s.eshop.nintendo.net/tagaya/hac_versionlist' % env
     url = 'https://superfly.hac.%s.d4c.nintendo.net/v1/t/%s/dv' % (env,tid)
     r = make_request('GET', url)
-    j = r.json()
+    try:
+        j = r.json()
+    except AttributeError:
+        return "none"
     print(j)
 
     try:
@@ -1839,7 +1842,7 @@ class Application():
         self.entry = Entry(game_selection_frame, textvariable=self.search_var, width=entryWidth)
         self.entry.grid(row=0, column=0, columnspan=2, sticky=N)
 
-        # Setup Listbox and scrollbar
+        # Setup Scrollbar
         self.scrollbar = Scrollbar(game_selection_frame)
 ##        self.scrollbar.grid(row=1, column=1, sticky=N+S+W)
         self.title_list = Listbox(game_selection_frame, exportselection = False,\
@@ -2074,7 +2077,9 @@ class Application():
         # if the data to be sorted is numeric change to float
         #data =  change_numeric(data)
         # now sort the data in place
+        
         data.sort(reverse=descending)
+        
         for ix, item in enumerate(data):
             self.tree.move(item[1], '', ix)
         # switch the heading so it will sort in the opposite direction
@@ -3138,11 +3143,11 @@ depending on how many games you have."))
         r = requests.get(titlekey_url, allow_redirects=True, verify=False)
         if str(r.history) == "[<Response [302]>]" and str(r.status_code) == "200":
             r.encoding = "utf-8"
-            newdb = r.text.split('\n')
+            newdb = r.text.replace("\r", "").split('\n')
             if newdb[-1] == "":
                 newdb = newdb[:-1]
             if os.path.isfile(titlekey_file_name):
-                with open(titlekey_file_name,encoding="utf8") as f:
+                with open(titlekey_file_name, encoding="utf8") as f:
                     currdb = f.read().split('\n')
                     if currdb[-1] == "":
                         currdb = currdb[:-1]
@@ -3150,13 +3155,31 @@ depending on how many games you have."))
                     counter = 0
                     info = ''
                     new_tid = []
+
+                    if self.current_mode == "Nut":
+                        found_line = False
+                        # Find the header info
+                        for line in newdb:
+                            if line[0] != "#" and line[:2] == "id" and current_mode_global == "Nut":
+                                line = line.strip()
+                                found_line = True
+                                header_list = line.split("|")
+                                index_tid = find_index(header_list, "id")
+                                index_title = find_index(header_list, "name")
+                                break
+                    
+
+                        if not found_line:
+                            print("\n"+"Error: Header is not found in the Nut_titlekeys.txt file, please double check you have the header")
+                            sys.exit()
+            
                     for line in newdb:
                         if line[0:2] == "01":
                             if line.strip() not in currdb:
                                 if line.strip() != newdb[0].strip():
                                     new_tid.append(line.strip().split('|')[0])
                                     if current_mode_global == "Nut":
-                                        _name = line.strip().split('|')[4] + '\n'
+                                        _name = line.strip().split('|')[index_title] + '\n'
                                         if _name not in info:
                                             info += _name
                                         else:
@@ -3388,7 +3411,7 @@ depending on how many games you have."))
                     
                 if not tid.endswith("00"):
                     update_list.append("0")
-                
+                update_list = update_list[::-1]
                 update_list.insert(0, _("Latest"))
                 self.version_select["values"] = update_list
                 self.version_select.set(_("Latest"))
@@ -3546,7 +3569,7 @@ depending on how many games you have."))
             
             for root, dirs, files in os.walk(a_dir):
                 for basename in files:
-                    if basename.endswith(".nsp"):
+                    if basename.endswith(".nsp") or basename.endswith(".xci"):
                         game_list.append(basename)
             if not os.path.isdir("Config"):
                 os.mkdir("Config")
@@ -3780,6 +3803,7 @@ German: Jojo#1234
 Portuguese: KazumaKiryu#7300
 Chinese Simplified: Dolur#7867
 Chinese Traditional: Maruku#7128
+CZech: -Spider86-#7530
 Japanese: Jinoshi(ジノシ)#4416
 Korean: RoutineFree#4012
 Spanish: pordeciralgo#3603
@@ -3919,17 +3943,19 @@ Malaysian: fadzly#4390"""
 
                 temp_tid = []
                 temp_tkey = []
-
+                notified = False
                 with open("titlekeys.txt", "r", encoding="utf-8") as file:
                     for line in file.readlines():
                         line = line.strip()
                         try:
                             titleID, titleKey, title = line.split("|")
                         except:
-                            print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+                            if not notified:
+                                print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+                                notified = True
                         if len(titleID) == 16 or len(titleID) == 32:
                             if titleID != "":
-                                temp_tid.append(titleID[:16])
+                                temp_tid.append(titleID[:16].lower())
                                 temp_tkey.append(titleKey)
                 unlocked_a_game = False # Check if a game has been unlocked
                 for game in game_list:
@@ -4076,9 +4102,9 @@ Malaysian: fadzly#4390"""
             ver_list = file.readlines()
             file.close()
             
-
+        
         gui_ver, lang_ver = ver_list
-
+        
         gui_ver = gui_ver.strip()
         lang_ver = lang_ver.strip()
         
@@ -4162,6 +4188,13 @@ Malaysian: fadzly#4390"""
 # ------------------------
 # Main Section
 
+def find_index(header_list, text):
+    if text in header_list:
+        return header_list.index(text)
+    else:
+        print("Couldn't match the header text: {} in the header provided".format(text))
+        sys.exit()
+    
 def read_titlekey_list():
     titleID_list = []
     titleKey_list = []
@@ -4171,15 +4204,18 @@ def read_titlekey_list():
     if current_mode_global == "CDNSP":
         f = open("titlekeys.txt", "r", encoding="utf8")
         content = f.readlines()
+        notified = False
         for i in range(len(content)):
             titleID = ""
             try:
                 titleID, titleKey, title = content[i].split("|")
             except:
-                print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+                if not notified:
+                    print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
+                    notified = True
             if len(titleID) == 16 or len(titleID) == 32:
                 if titleID != "":
-                    titleID_list.append(titleID[:16])
+                    titleID_list.append(titleID[:16].lower())
                     titleKey_list.append(titleKey)
                     if title[:-1] == "\n":
                         title_list.append(title[:-1])
@@ -4191,14 +4227,37 @@ def read_titlekey_list():
         info_list = []
         f = open("Nut_titlekeys.txt", "r", encoding="utf8")
         content = f.readlines()
+
+        found_line = False
+        # Find the header info
+        for line in content:
+            if line[0] != "#" and line[:2] == "id":
+                line = line.strip()
+                found_line = True
+                header_list = line.split("|")
+                index_tid = find_index(header_list, "id")
+                index_key = find_index(header_list, "key")
+                index_title = find_index(header_list, "name")
+                index_isDemo = find_index(header_list, "isDemo")
+                index_region = find_index(header_list, "region")
+                break
+                
+
+        if not found_line:
+            print("\n"+"Error: Header is not found in the Nut_titlekeys.txt file, please double check you have the header")
+            sys.exit()
+            
+        notified = False
         for i in range(len(content)):
             titleID = ""
-            if content[i][0] == "0" and content[i][1] == "1":
+            if content[i][0:2] == "01":
                 try:
                     content_row = content[i].split("|")
                 except:
-                    print(_("Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"))
-                titleID = content_row[0].lower()
+                    if not notified:
+                        print(_("Check if there's extra spaces at the bottom of your Nut_titlekeys.txt file! Delete if you do!"))
+                        notified = True
+                titleID = content_row[index_tid].lower()
                 if len(titleID) == 32:
                     titleID = titleID[:16]
                 if len(titleID) == 16 or len(titleID) == 32:
@@ -4207,22 +4266,21 @@ def read_titlekey_list():
                     if titleID not in unique_tid_list:
                         unique_tid_list.append(titleID)
                         if titleID != "":
-                            titleKey = content_row[2]
+                            titleKey = content_row[index_key]
                             if len(titleKey) == 32:
-                                title = content_row[4]
-                                isDemo = content_row[3]
+                                title = content_row[index_title]
+                                isDemo = content_row[index_isDemo]
                                 if not titleID.endswith("00"):
                                     title = "[DLC] " + title
                                 if isDemo == "1":
                                     title += " Demo"
-                                titleID_list.append(titleID[:16])
+                                titleID_list.append(titleID[:16].lower())
                                 titleKey_list.append(titleKey)
                                 if title[:-1] == "\n":
                                     title_list.append(title[:-1])
                                 else:
                                     title_list.append(title)
-                                isDemo = content_row[3]
-                                region = content_row[5]
+                                region = content_row[index_region]
                                 info_list.append((isDemo, region))
         f.close()
 
