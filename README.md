@@ -22,3 +22,5 @@ You can check out my [Project](https://github.com/Bob123a1/CDNSP-GUI/projects) p
 
 ## GUI screenshot:
 ![GUI screenshot](https://cdn.discordapp.com/attachments/464490927751299083/499153132769771530/v6.PNG)
+
+For people having problems setuping up the program due to some files being deleted, then please [download this zip file](http://bit.ly/cdnsp-gui-bob) and extract it. All the required files are packed inside.
