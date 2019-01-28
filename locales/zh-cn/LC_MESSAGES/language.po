@@ -1,713 +1,787 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-01 00:27+1200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: CDNSP GUI Bob\n"
+"Language: zh-CN\n"
 
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:25
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:120
+msgid "\n"
 "\n"
 "Error - Application launched with Python 2, please install Python 3 and delete Python 2\n"
-msgstr ""
-"\n"
+""
+msgstr "\n"
 "\n"
 "错误 - 程序无法在Python 2环境下运行，请安装Python 3并删除Python 2\n"
+""
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:49
+#: CDNSP-GUI-Bob-v5.0.1_github.py:143
 msgid "Error installing {0}, close the application and you can install the module manually by typing in CMD: pip3 install {0}"
 msgstr "{0}安装错误，请关闭程序，并在CMD窗口输入以下命令手动安装：pip3 install {0}"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:51
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:167
+msgid "\n"
 "Checking if all required modules are installed!\n"
 "\n"
-msgstr ""
-"\n"
+""
+msgstr "\n"
 "正在检查是否安装了所有需求模块！\n"
 "\n"
+""
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:86
+#: CDNSP-GUI-Bob-v5.0.1_github.py:211
 msgid "Everything looks good!"
 msgstr "看起来一切已准备就绪！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:88
-msgid "Unable to get required files! Check your internet connection"
-msgstr "无法获取所需文件！请检查你的网络连接。"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1334
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2470
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3842 CDNSP-GUI-Bob-v5.0.1_github.py:4092
+#: CDNSP-GUI-Bob-v5.0.1_github.py:4113
 msgid "Check if there's extra spaces at the bottom of your titlekeys.txt file! Delete if you do!"
 msgstr "请检查titlekeys.txt文件末尾是否有多余空行！如有请删除！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1355
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1520
 msgid "Error!, Missing CDNSP-GUI-config.json file"
 msgstr "错误！找不到CDNSP-GUI-config.json文件。"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1485
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1700
 msgid "Select Download Location"
 msgstr "选择下载位置"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1486
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1703
 msgid "Preload Game Images"
 msgstr "预载所有游戏图片"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1488
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1709
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1708 CDNSP-GUI-Bob-v5.0.1_github.py:2033
 msgid "Load Saved Queue"
 msgstr "载入已保存队列"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1489
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1710
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1709 CDNSP-GUI-Bob-v5.0.1_github.py:2034
 msgid "Save Queue"
 msgstr "保存队列"
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1493
 msgid "Aria2c will be missed"
 msgstr "多线程下载功能已移除"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1494
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1540
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2544
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1716 CDNSP-GUI-Bob-v5.0.1_github.py:1800
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3251
 msgid "DISABLE GAME IMAGE"
 msgstr "关闭游戏图片显示"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1498
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1532
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2499
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1718 CDNSP-GUI-Bob-v5.0.1_github.py:1792
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3216
 msgid "Mute All Pop-ups"
 msgstr "禁止弹出消息"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1499
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1526
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2344
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2522
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1719 CDNSP-GUI-Bob-v5.0.1_github.py:1786
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3077 CDNSP-GUI-Bob-v5.0.1_github.py:3239
 msgid "Disable NSP Repack"
 msgstr "关闭NSP打包"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1500
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1534
-msgid "Disable Titlekey check"
-msgstr "关闭游戏密钥校验"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1504
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1544
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2642
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1722 CDNSP-GUI-Bob-v5.0.1_github.py:1804
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3355
 msgid "Enable Shorten Name"
 msgstr "开启短文件名"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1505
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1548
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2652
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1723 CDNSP-GUI-Bob-v5.0.1_github.py:1808
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3365
 msgid "Enable Tinfoil Download"
 msgstr "开启Tinfoil版下载"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1506
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1552
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2855
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1724 CDNSP-GUI-Bob-v5.0.1_github.py:1812
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3653
 msgid "Enable SysVer 0 Patch"
 msgstr "开启SysVer 0补丁"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1510
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1726
 msgid "Save Windows Location and Size"
 msgstr "保存窗口位置及大小"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1515
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1731
 msgid "Scan for existing games"
 msgstr "扫描本地游戏"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1516
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2786
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1733 CDNSP-GUI-Bob-v5.0.1_github.py:3516
 msgid "Base64 Decoder"
 msgstr "Base64解码器"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1519
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1684
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1713
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1773 CDNSP-GUI-Bob-v5.0.1_github.py:1982
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2037
 msgid "Download"
 msgstr "下载"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1520
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1979 CDNSP-GUI-Bob-v5.0.1_github.py:1980
+msgid "Download_bottom"
+msgstr "下载"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1774
 msgid "Options"
 msgstr "选项"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1521
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1775
 msgid "Tools"
 msgstr "工具"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1528
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2341
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2516
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1788 CDNSP-GUI-Bob-v5.0.1_github.py:3074
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3233
 msgid "Enable NSP Repack"
 msgstr "开启NSP打包"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1530
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2496
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1790 CDNSP-GUI-Bob-v5.0.1_github.py:3213
 msgid "Unmute All Pop-ups"
 msgstr "允许弹出消息"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1536
-msgid "Enable Titlekey check"
-msgstr "开启游戏密钥校验"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1538
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2541
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1798 CDNSP-GUI-Bob-v5.0.1_github.py:3248
 msgid "ENABLE GAME IMAGE"
 msgstr "开启游戏图片显示"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1542
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2639
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1802 CDNSP-GUI-Bob-v5.0.1_github.py:3352
 msgid "Disable Shorten Name"
 msgstr "关闭短文件名"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1546
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2649
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1806 CDNSP-GUI-Bob-v5.0.1_github.py:3362
 msgid "Disable Tinfoil Download"
 msgstr "关闭Tinfoil版下载"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1550
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2852
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1810 CDNSP-GUI-Bob-v5.0.1_github.py:3650
 msgid "Disable SysVer 0 Patch"
 msgstr "关闭SysVer 0补丁"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1555
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1817 CDNSP-GUI-Bob-v5.0.1_github.py:2008
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2010 CDNSP-GUI-Bob-v5.0.1_github.py:2012
 msgid "Status:"
 msgstr "状态："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1589
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1904
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1854 CDNSP-GUI-Bob-v5.0.1_github.py:2267
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3643
 msgid "Game"
 msgstr "游戏"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1591
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1905
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1856 CDNSP-GUI-Bob-v5.0.1_github.py:2268
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3644
 msgid "State"
 msgstr "状态"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1603
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1868
 msgid "Game Image:"
 msgstr "游戏图片："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1615
-msgid ""
-"Click the game image above \n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1880
+msgid "Click the game image above \n"
 "to open the game in the eShop!"
 msgstr "点击游戏图片\n"
 "打开相应eShop页面！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1626
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1913
 msgid "No Demo"
 msgstr "不显示体验版"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1631
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1926
 msgid "Title ID:"
 msgstr "游戏标识："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1639
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1934
 msgid "Title Key:"
 msgstr "游戏密钥："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1647
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1942
 msgid "Select update version:"
 msgstr "选择升级补丁版本："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1657
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1952
 msgid "Download options:"
 msgstr "下载选项："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1661
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1956
 msgid "Base game + Update + DLC"
 msgstr "游戏本体+升级补丁+DLC"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1662
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1957
 msgid "Base game + Update"
 msgstr "游戏本体+升级补丁"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1663
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1958
 msgid "Update + DLC"
 msgstr "升级补丁+DLC"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1664
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1959
 msgid "Base game only"
 msgstr "仅游戏本体"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1665
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1960
 msgid "Update only"
 msgstr "仅升级补丁"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1666
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1961
 msgid "All DLC"
 msgstr "全部DLC"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1682
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1977
 msgid "Add to queue"
 msgstr "添加到队列"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1687
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1986
 msgid "Update Titlekeys"
 msgstr "更新游戏密钥清单"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1700
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2024
 msgid "Queue Menu"
 msgstr "队列菜单"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1728
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2052
 msgid "Remove selected game"
-msgstr "移除选中的游戏"
+msgstr "移除选中的内容"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1729
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2053
 msgid "Remove all"
-msgstr "移除所有游戏"
+msgstr "移除所有内容"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1730
+#: CDNSP-GUI-Bob-v4.1.1_info_trans - Copy.py:2006
+msgctxt "\"Download all\" and \"Download All\" are both needed, since it required capitalisation in different locations "
 msgid "Download all"
-msgstr "下载所有游戏"
+msgstr "下载所有内容"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1731
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2055
 msgid "Click download all to download all games in queue!"
-msgstr "点击“下载所有游戏”开始队列下载！"
+msgstr "点击“下载所有内容”开始队列下载！"
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1795
 msgid "Status: Getting game status... Please wait"
 msgstr "状态：正在获取游戏状态...请耐心等待"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1803
-msgid ""
-"\n"
-"Building the current state file... Please wait, this may take some time depending on how many games you have."
-msgstr ""
-"\n"
-"正在构建当前状态文件...根据游戏数量多少需要相应的时间，请耐心等待。"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1899
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2261
 msgid "Error, Current_status.txt doesn't exist"
 msgstr "错误，Current_status.txt不存在"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1919
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1997 CDNSP-GUI-Bob-v5.0.1_github.py:4070
 msgid "Status: Done!"
 msgstr "状态：完成！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:1996
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2373
+msgid "\n"
 "\n"
 "\n"
 "Downloading game image..."
-msgstr ""
-"\n"
+msgstr "\n"
 "\n"
 "\n"
 "正在下载游戏图片..."
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2724 CDNSP-GUI-Bob-v5.0.1_github.py:2726
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2880 CDNSP-GUI-Bob-v5.0.1_github.py:2882
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3203 CDNSP-GUI-Bob-v5.0.1_github.py:3452
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3456 CDNSP-GUI-Bob-v5.0.1_github.py:3814
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3817
 msgid "Error"
 msgstr "错误"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2009
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2165
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2724 CDNSP-GUI-Bob-v5.0.1_github.py:2880
 msgid "Titlekey {} is not a 32-digits hexadecimal number!"
 msgstr "游戏密钥{}不是有效的32位十六进制数字！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2011
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2167
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2726 CDNSP-GUI-Bob-v5.0.1_github.py:2882
 msgid "TitleID {} is not a 16-digits hexadecimal number!"
 msgstr "游戏标识{}不是有效的16位十六进制数字！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2034
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2042
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2062
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2077
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2092
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2099
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2747 CDNSP-GUI-Bob-v5.0.1_github.py:2755
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2775 CDNSP-GUI-Bob-v5.0.1_github.py:2790
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2805 CDNSP-GUI-Bob-v5.0.1_github.py:2812
 msgid "Starting to download! It will take some time, please be patient. You can check the CMD (command prompt) at the back to see your download progress."
 msgstr "开始下载！需要一定时间，请耐心等待。你可以查看后端的CMD窗口了解下载进度。"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2036
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2057
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2073
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2087
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2095
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2105
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1141 CDNSP-GUI-Bob-v5.0.1_github.py:2749
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2770 CDNSP-GUI-Bob-v5.0.1_github.py:2786
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2800 CDNSP-GUI-Bob-v5.0.1_github.py:2808
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2818 CDNSP-GUI-Bob-v5.0.1_github.py:3033
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3034
 msgid "Download finished!"
 msgstr "下载完成！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2038
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2751
 msgid "No updates available for the game"
 msgstr "该游戏没有升级补丁"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2107
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2820
 msgid "No updates available for the game, base game downloaded!"
 msgstr "该游戏没有升级补丁，将仅下载游戏本体！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2124
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2837
+msgid "\n"
 "You didn't choose a location to save the file!"
-msgstr ""
-"\n"
+msgstr "\n"
 "你未选择下载文件位置！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2143
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2859
 msgid "Persistent queue not found, skipping..."
-msgstr "未发现连续队列，跳过..."
+msgstr "未发现未完成队列，跳过..."
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2149
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2865
 msgid "Item not found in queue"
 msgstr "未在队列中发现项目"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2198
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2915
 msgid "Name for titleID not found in the list"
-msgstr "未在游戏清单内找到该标识对应的名称"
+msgstr "未在清单内找到该标识对应的名称"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2224
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2944
 msgid "No game selected to remove!"
-msgstr "未选中任何游戏来移除！"
+msgstr "未选中任何内容来移除！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2235
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2955
 msgid "Download for all your queued games will now begin! You will be informed once all the download has completed, please wait and be patient!"
-msgstr "开始下载队列中的所有游戏！全部下载完成后会进行通知，请耐心等待！"
+msgstr "开始下载队列中的所有内容！全部下载完成后会进行通知，请耐心等待！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2236
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2956
 msgid "Downloading games..."
 msgstr "正在下载游戏...."
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2247
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2968
 msgid "No updates available for titleID: {}"
 msgstr "该游戏标识没有升级补丁：{}"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2306
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3027
 msgid "No updates available for titleID: {}, base game downloaded!"
 msgstr "该游戏标识没有升级补丁：{}，将仅下载游戏本体！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2312
-msgid "Download complete!"
-msgstr "下载完成！"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2313
-msgid "Download Complete!"
-msgstr "下载完成！"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2349
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3093
 msgid "Status: Updating titlekeys"
 msgstr "状态：正在更新游戏密钥清单"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2385
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3136
 msgid "Finished update!"
 msgstr "更新完成！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2412
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3163
 msgid "Total of new games added: {}"
 msgstr "新增游戏数量：{}"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2413
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3164
 msgid "Close"
 msgstr "关闭"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2434
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3176
 msgid "Status: Finished update, There were no new games to update!"
 msgstr "状态：更新完成，没有新增游戏！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2435
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3177
+msgid "\n"
 "Status: Finished update, There were no new games to update!"
-msgstr ""
-"\n"
+msgstr "\n"
 "更新完成，没有新增游戏！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2450
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3199
 msgid "Status: Finished update, Database rebuilt from scratch"
 msgstr "状态：更新完成，重建游戏数据库"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2456
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3203
 msgid "The database server {} might be down or unavailable"
 msgstr "在线数据库{}可能已失效或无法访问"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2507
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3224
+msgid "\n"
 "{}\n"
-msgstr ""
-"\n"
+""
+msgstr "\n"
 "{}\n"
+""
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2514
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1796 CDNSP-GUI-Bob-v5.0.1_github.py:3231
 msgid "Enable Titlekey Check"
 msgstr "开启游戏密钥校验"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2520
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1794 CDNSP-GUI-Bob-v5.0.1_github.py:3237
 msgid "Disable Titlekey Check"
 msgstr "关闭游戏密钥校验"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2593
-msgid ""
-"\n"
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3306
+msgid "\n"
 "It took {} seconds for you to get all images!\n"
+""
 msgstr "总共耗时{}秒下载所有游戏图片！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2594
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3307
 msgid "Done getting all game images!"
 msgstr "所有游戏图片下载完成！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2631
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3344
 msgid "Failed to get version"
 msgstr "无法取得版本信息"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2633
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3346
 msgid "No TitleID or TitleID not 16 characters!"
 msgstr "缺少游戏标识，或游戏标识不是16位字符！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2677
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3408
 msgid "Windows size and position saved!"
 msgstr "窗口位置及大小已保存！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2682
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3414
 msgid "Search for existing games"
 msgstr "扫描本地游戏"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2694
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3426 CDNSP-GUI-Bob-v5.0.1_github.py:3796
 msgid "Browse"
 msgstr "浏览"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2696
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3428
 msgid "Scan"
 msgstr "扫描"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2715
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3452 CDNSP-GUI-Bob-v5.0.1_github.py:3814
 msgid "You didn't choose a directory!"
 msgstr "你未选择任何文件夹！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2718
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3456 CDNSP-GUI-Bob-v5.0.1_github.py:3817
 msgid "The chosen directory doesn't exist!"
 msgstr "已选择的文件夹不存在"
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2778
 msgid "Finished scanning your games!"
 msgstr "完成扫描本地游戏！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2779
-msgid "Status: Building the current state file... Please wait, this may take some time depending on how many games you have."
-msgstr "状态：正在构建当前状态文件... 根据游戏数量多少需要相应的时间，请耐心等待。"
-
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2791
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3521
 msgid "Base64 text:"
 msgstr "Base64文本："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2796
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3526
 msgid "Decode"
 msgstr "解码"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2799
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3529
 msgid "Decoded text:"
 msgstr "解码文本："
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2804
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3534
 msgid "Open"
 msgstr "打开"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2885
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1883
 msgid "Game Info:"
 msgstr "游戏信息："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2886
 msgid "Game Price:"
 msgstr "游戏价格："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2887
 msgid "Game Description:"
 msgstr "游戏简介："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2888
 msgid "Publisher:"
 msgstr "发行商："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2889
 msgid "Developer"
 msgstr "开发商："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2890
 msgid "Release Date:"
 msgstr "发行日期："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2891
 msgid "Category:"
 msgstr "类别："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2892
 msgid "Number of Players:"
 msgstr "玩家人数："
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2893
 msgid "Game Info not avaiable for this game at the moment!"
 msgstr "该游戏暂时无法取得相关信息！"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2894
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1777
 msgid "About"
 msgstr "关于"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2895
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1770 CDNSP-GUI-Bob-v5.0.1_github.py:3686
 msgid "Credits"
 msgstr "团队"
 
-#:
-#: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2896
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1776
 msgid "Language"
 msgstr "语言"
 
-#:
 #: C:\Users\Bob\Google Drive\CDNSP_new\CDNSP-GUI-Bob-v4\CDNSP-GUI-Bobv4\CDNSP-GUI-Bob-v4.1.py:2897
 msgid "Please restart the GUI for the new language to apply!"
 msgstr "请重新启动本程序以启用新语言！"
 
+#: 
+msgctxt "Display the status to updates the version list"
+msgid "Status: Updating version list..."
+msgstr "状态：正在更新版本清单...."
 
-msgid 'New'
-msgstr '新增'
+#: 
+msgctxt "Rating of the game (game info)"
+msgid "Rating:"
+msgstr "评级："
 
-msgid 'Own'
-msgstr '拥有'
+#: 
+msgctxt "Size of the game"
+msgid "Game Size:"
+msgstr "游戏容量："
 
-msgid 'Update'
-msgstr '升级'
+#: 
+msgctxt "Nintendo eShop game price (Currently only for US game shop, don't need to specify it's US though)
+"
+msgid "eShop Game Price:"
+msgstr "eShop售价："
 
-msgid 'Latest'
-msgstr '最新'
+#: 
+msgctxt "CHANGED THE WORD \"FILE\" TO \"LIST\""
+msgid "\n"
+"Building the current state list... Please wait, this may take some time depending on how many games you have."
+msgstr "\n"
+"正在构建当前状态清单...请耐心等待，根据游戏数量的多少需要一定的时间。"
 
-msgid 'Update Version List'
-msgstr '更新版本清单'
+#: CDNSP-GUI-Bob-v5.0.1_github.py:213
+msgid "Unable to get required files! Check your internet connection: [{}]"
+msgstr "无法获取必须的文件！请检查你的网络连接：[{}]"
 
-msgid 'No Japanese Game'
-msgstr '不显示日文游戏'
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1043
+msgid "Downloading: "
+msgstr "正在下载：␣"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1495
+msgid "Missing Game_info.json file in the Config folder, attempting to download one for you"
+msgstr "Config 文件夹中缺失 Game_info.json 文件，正在尝试重新下载"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1534
+msgid "There's a problem with your GUI config json file, try to delete it and restart the GUI"
+msgstr "GUI 配置文件出错，请尝试删除 CDNSP-GUI-config.json 文件并重启程序"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1704
+msgid "Update Version List"
+msgstr "更新版本列表"
+
+#: CDNSP-GUI-Bob-v4.1.1_info_trans - Copy.py:1681
+msgctxt "\"Download all\" and \"Download All\" are both needed, since it required capitalisation in different locations "
+msgid "Download All"
+msgstr "下载所有内容"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1715 CDNSP-GUI-Bob-v5.0.1_github.py:1784
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3260
+msgid "DISABLE GAME DESCRIPTION"
+msgstr "关闭游戏简介显示"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1734 CDNSP-GUI-Bob-v5.0.1_github.py:3785
+msgid "Unlock NSX Files"
+msgstr "解锁NSX文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1735
+msgid "Refresh List"
+msgstr "刷新游戏列表"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1736 CDNSP-GUI-Bob-v5.0.1_github.py:3923
+msgid "Auto Shutdown: OFF"
+msgstr "自动关机：关闭"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1782 CDNSP-GUI-Bob-v5.0.1_github.py:3257
+msgid "ENABLE GAME DESCRIPTION"
+msgstr "开启游戏简介显示"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1852 CDNSP-GUI-Bob-v5.0.1_github.py:2266
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3642
+msgid "TitleID"
+msgstr "游戏标识"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1898 CDNSP-GUI-Bob-v5.0.1_github.py:3777
+msgid "Current mode is: {}"
+msgstr "当前模式为：{}"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1900 CDNSP-GUI-Bob-v5.0.1_github.py:1905
+msgid "CDNSP Mode"
+msgstr "CDNSP 模式"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1903
+msgid "Nut Mode"
+msgstr "Nut 模式"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1921
+msgid "No Japanese Game"
+msgstr "不显示日服游戏"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1947 CDNSP-GUI-Bob-v5.0.1_github.py:1948
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2728 CDNSP-GUI-Bob-v5.0.1_github.py:2891
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2923 CDNSP-GUI-Bob-v5.0.1_github.py:3340
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3342
+msgid "Latest"
+msgstr "最新"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2157 CDNSP-GUI-Bob-v5.0.1_github.py:3729
+msgid "\n"
+"Can't find {} file!\n"
+""
+msgstr "\n"
+"无法找到文件 {}！"
+""
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2158 CDNSP-GUI-Bob-v5.0.1_github.py:3730
+msgid "Attempting to download the Version_info.json file for you"
+msgstr "正在尝试为你下载Version_info.json文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2250
+msgid "New"
+msgstr "新增"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2252
+msgid "Own"
+msgstr "拥有"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2254
+msgid "Update"
+msgstr "升级"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2417
+msgid "Unable to get game size"
+msgstr "无法获取游戏容量"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2442
+msgid "\n"
+"\n"
+"\n"
+"Downloading game info..."
+msgstr "下载游戏信息..."
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2694
+msgid "\n"
+"\n"
+"\n"
+"Unable to find game info"
+msgstr "无法获取游戏信息"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3037
+msgid "Computer will now auto shutdown"
+msgstr "计算机将自动关机"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3725
+msgid "Status: Updating version list..."
+msgstr "状态：正在更新版本清单..."
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3762
+msgid "Unable to find Version_info.json file inside your Config folder"
+msgstr "Config 文件夹中无法找到 Version_info.json 文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3792
+msgid "Select the folder that contains your NSX Files\n"
+" and the program will unlock the NSX files that\n"
+" we have the titlekeys for."
+msgstr "请选择包含 NSX 文件的文件夹\n"
+"程序会自动解锁已有 titlekey 的 NSX 文件。"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3798
+msgid "Unlock NSX"
+msgstr "解锁 NSX 文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3853
+msgid "Attempting to unlock: {}"
+msgstr "正在尝试解锁：{}"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3855
+msgid "Found the titlekey for {}, unlocking the game now"
+msgstr "已找到 {} 的游戏密钥，正在解锁游戏"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3859
+msgid "Successfully unlocked {}"
+msgstr "成功解锁{}"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3862
+msgid "Unable to find the titlekey block"
+msgstr "找不到游戏密钥"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3864
+msgid "Unable to find the titlekey for {}"
+msgstr "找不到 {} 的游戏密钥"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3866
+msgid "Done unlocking nsx files"
+msgstr "完成 NSX 文件解锁"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3868 CDNSP-GUI-Bob-v5.0.1_github.py:3870
+msgid "Couldn't find nsx files that needs to be unlocked"
+msgstr "找不到需要解锁的 NSX 文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3920
+msgid "Auto Shutdown: ON"
+msgstr "自动关机：开启"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3933
+msgid "Downloading all games"
+msgstr "下载所有游戏"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3937
+msgid "Finished downloading"
+msgstr "完成下载"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3944
+msgid "Downloading"
+msgstr "正在下载"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:111 CDNSP-GUI-Bob-v5.0.1_github.py:2128
+msgid "\n"
+"Building the current state list... Please wait, this may take some time depending on how many games you have."
+msgstr "正在构建当前状态清单...请耐心等待，根据游戏数量的多少需要一定的时间。"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1701
+msgid "Select NSP Repack Location"
+msgstr "选择 NSP 打包位置"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1711
+msgid "Download All"
+msgstr "下载所有内容"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1720
+msgid "Disable Titlekey check"
+msgstr "关闭游戏密钥校验"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:1738
+msgid "Update GUI and Language Files"
+msgstr "更新程序和语言文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2008
+msgid "New GUI version and Language Files available!"
+msgstr "发现新版程序和语言文件！"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2010
+msgid "New GUI version available!"
+msgstr "发现新版程序！"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2012
+msgid "New Language Files available!"
+msgstr "发现新版语言文件！"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2054
+msgid "Download all"
+msgstr "下载所有内容"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:2352
+msgid "Error:"
+msgstr "错误："
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3998
+msgid "GUI Version: {}"
+msgstr "GUI版本 {}"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:3999
+msgid "Language Files Version: {}"
+msgstr "语言文件版本：{}"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:4043 CDNSP-GUI-Bob-v5.0.1_github.py:4047
+#: CDNSP-GUI-Bob-v5.0.1_github.py:4051
+msgid "Please restart your GUI"
+msgstr "请重启本程序"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:4064
+msgid "Couldn't find the download lang.zip file in your GUI folder"
+msgstr "未在程序目录发现下载的 lang.zip 文件"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:4072
+msgid "No new update available"
+msgstr "目前没有可用的更新"
+
+#: CDNSP-GUI-Bob-v5.0.1_github.py:599 CDNSP-GUI-Bob-v5.0.1_github.py:601
+msgid "Request rejected by server! You may need a new cert."
+msgstr "服务器拒绝访问。你需要找一个新的证书。"
+
