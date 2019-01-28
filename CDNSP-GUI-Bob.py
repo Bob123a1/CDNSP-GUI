@@ -15,7 +15,7 @@ import locale
 import json
 import os
 
-__gui_version__ = "6.0.1"
+__gui_version__ = "6.0.2"
 __lang_version__ = "1.0.0"
 
 global sys_locale
@@ -272,6 +272,7 @@ current_mode = ""
 nsp_location = ""
 pause_download = False
 downloading = False # Thanks to rockbass2560 on Github
+installed_global = {}
 
 def read_at(f, off, len):
     f.seek(off)
@@ -622,10 +623,11 @@ def make_request(method, url, certificate='', hdArgs={}):
         certificate = NXclientPath
 
     global fw
-    if fw != '6.0.1-1.0':
-        fw = '6.0.1-1.0' # Hard coded to the latest Switch firmware version
+    if fw != '6.2.0-1.0':
+        fw = '6.2.0-1.0' # Hard coded to the latest Switch firmware version
     
-    reqHd = {'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; did:%s; eid:%s)' % (fw, did, env),
+    reqHd = {'X-Nintendo-DenebEdgeToken': edgeToken,
+             'User-Agent': 'NintendoSDK Firmware/%s (platform:NX; did:%s; eid:%s)' % (fw, did, env),
              'Accept-Encoding': 'gzip, deflate',
              'Accept': '*/*',
              'Connection': 'keep-alive'}
@@ -1050,6 +1052,17 @@ def download_title_tinfoil(gameDir, tid, ver, tkey='', nspRepack=False, n='', ve
         return files
     
 def download_game(tid, ver, tkey='', nspRepack=False, verify=False, clean=False, path_Dir="", nsp_dir=""):
+    read_installed()
+    if tid in installed_global:
+        try:
+            existing_ver = installed_global[tid]
+            existing_ver = int(existing_ver)
+        except:
+            existing_ver = 0
+        if int(ver) <= existing_ver:
+            print("\nAlready have version: {} for this TID: {}".format(ver, tid))
+            return None
+
     nsp_dir = nsp_location
     name = get_name(tid)
     status_label.config(text=_("Downloading: ")+name)
@@ -1854,7 +1867,7 @@ class Application():
         # Setup Treeview and Two Scrollbars
         container = ttk.Frame(game_selection_frame)
         container.grid(row=1, column=0, columnspan=2)
-        self.tree = ttk.Treeview(columns=("num", "tid", "G", "S"), show="headings", selectmode=EXTENDED)
+        self.tree = ttk.Treeview(columns=("num", "tid", "G", "S", "R"), show="headings", selectmode=EXTENDED)
         self.tree.bind('<<TreeviewSelect>>', self.game_info)
         self.tree.heading("num", text="#", command=lambda c="num": self.sortby(self.tree, c, 0))
         self.tree.column("num", width=50)
@@ -1864,6 +1877,8 @@ class Application():
         self.tree.column("G", width=590)
         self.tree.heading("S", text=_("State"), command=lambda c="S": self.sortby(self.tree, c, 0))
         self.tree.column("S", width=130)
+        self.tree.heading("R", text=_("Release Date"), command=lambda c="R": self.sortby(self.tree, c, 0))
+        self.tree.column("R", width=130)
         vsb = ttk.Scrollbar(orient="vertical", command=self.tree.yview)
         hsb = ttk.Scrollbar(orient="horizontal", command=self.tree.xview)
         self.tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
@@ -1901,7 +1916,6 @@ class Application():
         self.game_title = StringVar()
         self.gametitle_entry = Entry(game_selection_frame, textvariable=self.game_title)
         self.gametitle_entry.grid(row=0, column=1, columnspan=1, sticky=E+W, padx=(0,0))
-
         #-------------------------------------------
 
         # Game title info section
@@ -1946,7 +1960,7 @@ class Application():
         self.game_titleID = StringVar()
         self.gameID_entry = Entry(game_info_frame, textvariable=self.game_titleID)
         self.gameID_entry.grid(row=2, column=0, columnspan=2)
-        
+
         # Title Key info
         self.titleID_label = Label(game_info_frame, text=_("Title Key:"))
         self.titleID_label.grid(row=3, column=0, pady=(20,0), columnspan=2)
@@ -2227,6 +2241,18 @@ depending on how many games you have."))
             installed = [install.split(",")[0] for install in installed]
 
 ##            status_file = open(r"Config/Current_status.txt", "w", encoding="utf-8") Not going to rely on writing to a text file anymore
+            titles_dict = {}
+
+            if os.path.isfile("Config/titles.json"):
+                with open("Config/titles.json", "r", encoding="utf-8") as file:
+                    file_json = json.load(file)
+                    for key in file_json:
+                        key_u = key.upper()
+                        titles_dict[key_u] = file_json[key]["releaseDate"]
+            else:
+                print("\n" + _("Unable to find titles.json file. Check changelog for more information on how to download it.") + "\n")
+                
+
             self.status_list = []
 
             for tid in self.titleID:
@@ -2245,25 +2271,36 @@ depending on how many games you have."))
                 
                 if tid in updates_tid:
                     state = "Update"
+
+                tid_u = str(tid).upper()
+                if tid_u in titles_dict:
+                    if titles_dict[tid_u] == None or titles_dict[tid_u] == "":
+                        release_date = "0000-00-00"
+                    else:
+                        release_date = str(titles_dict[tid_u])
+                        release_date = release_date[:4]+"-"+release_date[4:6]+"-"+release_date[6:8]
+                else:
+                    release_date = "0000-00-00"
                 # Thanks to Moko0815 for the solution to fill with leading 0s
-                tree_row = (str(number).zfill(4), tid, game_name, state)
+                tree_row = (str(number).zfill(4), tid, game_name, state, release_date)
                 self.status_list.append(str(tree_row))
 ##            threading.Timer(1, self.done_status).start()
             self.done_status()
             self.update_list()
             
-        elif search:
-            search_term = self.search_var.get()
-            self.tree.delete(*self.tree.get_children())
-            for game_status in self.current_status:
-                number = game_status[0].strip()
-                tid = game_status[1].strip()
-                game_name = game_status[2].strip()
-                state = game_status[3].strip()
-                
-                tree_row = (str(number).zfill(4), tid, game_name, state)
-                if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
-                    self.tree.insert('', 'end', values=tree_row)
+##        elif search:
+##            search_term = self.search_var.get()
+##            self.tree.delete(*self.tree.get_children())
+##            for game_status in self.current_status:
+##                number = game_status[0].strip()
+##                tid = game_status[1].strip()
+##                game_name = game_status[2].strip()
+##                state = game_status[3].strip()
+##                release_date = game_status[4].strip()
+##                
+##                tree_row = (str(number).zfill(4), tid, game_name, state, release_date)
+##                if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
+##                    self.tree.insert('', 'end', values=tree_row)
                     
         else:
             self.current_status = []
@@ -2280,7 +2317,6 @@ depending on how many games you have."))
                         line = line.replace("'Update'", "'" + _("Update") + "'")
                     status_list = eval(line)
                     self.current_status.append(status_list)
-                self.update_list(search=True)
                 self.make_list()
                 self.filter_game()
             else:
@@ -3149,9 +3185,20 @@ depending on how many games you have."))
         
         self.status_label.config(text=_("Status: Updating titlekeys"))
         print(titlekey_url)
+
 ##        try:
-        r = requests.get(titlekey_url, allow_redirects=True, verify=False)
-        if str(r.history) == "[<Response [302]>]" and str(r.status_code) == "200":
+        r = requests.get(titlekey_url, allow_redirects=True)
+
+        if "snip" in titlekey_url:
+            try:
+                result = re.search(r"<a href=\"(.*?)\">Proceed", r.text)
+                if result:
+                    titlekey_url = result.group(1)
+                    r = requests.get(titlekey_url, allow_redirects=True, verify=True)
+            except:
+                pass
+            
+        if str(r.status_code) == "200":
             r.encoding = "utf-8"
             newdb = r.text.replace("\r", "").split('\n')
             if newdb[-1] == "":
@@ -3474,11 +3521,11 @@ depending on how many games you have."))
                     update_list.append("none")
                 else:
                     ver = int(ver)
-                    
+
                     while ver != 0:
                         update_list.append(str(ver))
                         ver -= 65536
-                    
+
                 if not tid.endswith("00"):
                     update_list.append("0")
                 update_list = update_list[::-1]
@@ -3490,7 +3537,7 @@ depending on how many games you have."))
 ##                update_list.insert(0, _("Latest"))
                 self.version_select["values"] = [_("Latest")]
                 self.version_select.set(_("Latest"))
-            
+
         else:
             tid = self.game_titleID.get()
             if tid != "" and len(tid) == 16:
@@ -3523,6 +3570,7 @@ depending on how many games you have."))
                     print(_("Failed to get version"))
             else:
                 print(_("No TitleID or TitleID not 16 characters!"))
+
 
     def shorten(self):
         global truncateName
@@ -3811,8 +3859,9 @@ depending on how many games you have."))
             tid = game_status[1].strip()
             game_name = game_status[2].strip()
             state = game_status[3].strip()
+            release_date = game_status[4].strip()
             
-            tree_row = (str(number).zfill(4), tid, game_name, state)
+            tree_row = (str(number).zfill(4), tid, game_name, state, release_date)
             if search_term.lower().strip() in game_name.lower() or search_term.lower().strip() in tid.lower():
                 self.tree.insert('', 'end', values=tree_row)
                 
@@ -4174,6 +4223,7 @@ Malaysian: fadzly#4390"""
             
         
         gui_ver, lang_ver = ver_list
+        gui_ver = __gui_version__
         
         gui_ver = gui_ver.strip()
         lang_ver = lang_ver.strip()
@@ -4181,7 +4231,7 @@ Malaysian: fadzly#4390"""
         print("\n"+_("GUI Version: {}").format(__gui_version__))
         print(_("Language Files Version: {}").format(lang_ver))
         
-        self.gui_ver = gui_ver
+        self.gui_ver = __gui_version__
         self.lang_ver = lang_ver
                 
         new_cdnsp_ver = requests.get("https://\
@@ -4264,7 +4314,21 @@ def find_index(header_list, text):
     else:
         print("Couldn't match the header text: {} in the header provided".format(text))
         sys.exit()
-    
+
+def read_installed():
+    if os.path.isfile("Config/installed.txt"):
+        global installed_global
+        installed_global = {}
+        with open("Config/installed.txt", "r", encoding="utf-8") as file:
+            for line in file.readlines():
+                tid = line.split(",")[0].strip()
+                ver = line.split(",")[1].strip()
+                if tid not in installed_global:
+                    installed_global[tid] = ver
+                else:
+                    if ver > installed_global[tid]:
+                        installed_global[tid] = ver
+
 def read_titlekey_list():
     titleID_list = []
     titleKey_list = []
@@ -4350,7 +4414,7 @@ def read_titlekey_list():
                                     title_list.append(title[:-1])
                                 else:
                                     title_list.append(title)
-                                region = content_row[index_region]
+                                region = content_row[index_region].strip()
                                 info_list.append((isDemo, region))
         f.close()
 
@@ -4426,7 +4490,8 @@ def main():
             edgeToken = edgeToken.strip()
             if edgeToken == "":
                 edgeToken = None
-
+    print("\nToken: ", end="")
+    print(edgeToken)
     root = Tk()
     root.title("CDNSP GUI - Bobv"+__gui_version__)
     Application(root, titleID_list, titleKey_list, title_list, dbURL, info_list=info_list)
