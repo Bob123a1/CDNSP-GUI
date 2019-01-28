@@ -1840,7 +1840,7 @@ class Application():
         else:
             entryWidth = self.listWidth
         self.entry = Entry(game_selection_frame, textvariable=self.search_var, width=entryWidth)
-        self.entry.grid(row=0, column=0, columnspan=2, sticky=N)
+        self.entry.grid(row=0, column=0, columnspan=1, sticky=N)
 
         # Setup Scrollbar
         self.scrollbar = Scrollbar(game_selection_frame)
@@ -1894,6 +1894,14 @@ class Application():
 
         self.game_text = game_text
         game_text.grid(row=3, column=1, sticky=N)
+
+        # GameName
+        #self.gametitle_label = Label(game_selection_frame, text=_("GameName:"))
+        #self.gametitle_label.grid(row=4, column=1)
+        self.game_title = StringVar()
+        self.gametitle_entry = Entry(game_selection_frame, textvariable=self.game_title)
+        self.gametitle_entry.grid(row=0, column=1, columnspan=1, sticky=E+W, padx=(0,0))
+
         #-------------------------------------------
 
         # Game title info section
@@ -1938,7 +1946,7 @@ class Application():
         self.game_titleID = StringVar()
         self.gameID_entry = Entry(game_info_frame, textvariable=self.game_titleID)
         self.gameID_entry.grid(row=2, column=0, columnspan=2)
-
+        
         # Title Key info
         self.titleID_label = Label(game_info_frame, text=_("Title Key:"))
         self.titleID_label.grid(row=3, column=0, pady=(20,0), columnspan=2)
@@ -1952,7 +1960,7 @@ class Application():
         self.version_label.grid(row=5, column=0, pady=(20,0), columnspan=2)
 
         self.version_option = StringVar()
-        self.version_select = ttk.Combobox(game_info_frame, textvariable=self.version_option, state="readonly", postcommand=self.get_update_ver)
+        self.version_select = ttk.Combobox(game_info_frame, textvariable=self.version_option, state="readonly", postcommand=self.get_update_lastestVer)
         self.version_select["values"] = ([_('Latest')])
         self.version_select.set(_("Latest"))
         self.version_select.grid(row=6, column=0, columnspan=2)
@@ -2320,6 +2328,8 @@ depending on how many games you have."))
             value -= 1
             self.game_titleID.set(self.titleID[value])
             self.game_titleKey.set(self.titleKey[value])
+            self.game_title.set(self.title[value])
+            self.get_update_lastestVer()
 ##            except:
 ##                pass
 
@@ -3449,6 +3459,66 @@ depending on how many games you have."))
                     update_list.insert(0, _("Latest"))
                     self.version_select["values"] = update_list
                     self.version_select.set(_("Latest"))
+                except:
+                    print(_("Failed to get version"))
+            else:
+                print(_("No TitleID or TitleID not 16 characters!"))
+
+    def get_update_lastestVer(self):
+        if edgeToken == None:
+            tid = self.game_titleID.get().lower()
+            if tid in known_ver:
+                ver = known_ver[tid]
+                update_list = []
+                if ver == "none":
+                    update_list.append("none")
+                else:
+                    ver = int(ver)
+                    
+                    while ver != 0:
+                        update_list.append(str(ver))
+                        ver -= 65536
+                    
+                if not tid.endswith("00"):
+                    update_list.append("0")
+                update_list = update_list[::-1]
+                update_list.insert(0, _("Latest"))
+                self.version_select["values"] = update_list
+                self.version_select.set(update_list[-1])
+            else:
+                print("Unable to get the latest version for this TID")
+##                update_list.insert(0, _("Latest"))
+                self.version_select["values"] = [_("Latest")]
+                self.version_select.set(_("Latest"))
+            
+        else:
+            tid = self.game_titleID.get()
+            if tid != "" and len(tid) == 16:
+                value = self.titleID.index(tid)
+                print(tid)
+                try:
+                    isDLC = False
+                    tid = self.titleID[value]
+                    updateTid = tid
+                    if tid.endswith('000'):
+                        updateTid = '%s800' % tid[:-3]
+                    elif tid.endswith('800'):
+                        baseTid = '%s000' % tid[:-3]
+                        updateTid = tid
+                    elif not tid.endswith('00'):
+                        isDLC = True
+                    update_list = []
+                    for i in get_versions(updateTid):
+                        update_list.append(i)
+                    if isDLC:
+                        if update_list[0] != "0":
+                            update_list.insert(0, "0")
+                    if update_list[0] == 'none':
+                        update_list[0] = "0"
+                    print(update_list)
+                    update_list.insert(0, _("Latest"))
+                    self.version_select["values"] = update_list
+                    self.version_select.set(update_list[-1])
                 except:
                     print(_("Failed to get version"))
             else:
