@@ -23,4 +23,3 @@ You can check out my [Project](https://github.com/Bob123a1/CDNSP-GUI/projects) p
 ## GUI screenshot:
 ![GUI screenshot](https://github.com/Bob123a1/CDNSP-GUI/raw/master/cdnsp_gui_bob_v6.0.2_ss.png)
 
-For people having problems setuping up the program due to some files being deleted, then please [download this zip file](https://github.com/Bob123a1/CDNSP-GUI/releases/download/v6.0.2/CDNSP-GUI-Bob-v6.0.2.zip) and extract it. All the required files are packed inside.
