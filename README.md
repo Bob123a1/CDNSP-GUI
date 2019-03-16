@@ -23,3 +23,4 @@ You can check out my [Project](https://github.com/Bob123a1/CDNSP-GUI/projects) p
 ## GUI screenshot:
 ![GUI screenshot](https://github.com/Bob123a1/CDNSP-GUI/raw/master/cdnsp_gui_bob_v6.0.2_ss.png)
 
+Here's a [link](https://anonfile.com/Q1bak2x6b2/Files_zip) to the Nut_titlekeys.txt (with titlekeys blanked out) and titles.json files for the people that needs it. 
